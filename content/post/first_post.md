@@ -21,4 +21,6 @@ and not have to worry about the formatting at all. You know, when you had
 an editor that could, like, spell check?
 
 And I am not in need of a blog, per se for taht.net, just all the pointers
-it used to have to useful stuff, my music, my family, etc.
+it used to have to useful stuff, my music, my family, etc. That's
+all on something like 4 backup drives spread around the planet, so it
+will be a while.
