@@ -6,7 +6,7 @@ title = "Cerowrt"
 description = "Trying to get a place to write"
 +++
 
-##  taht.net
+##  CeroWrt
 
 For years I maintained multiple sites on the internet. After a while, it
 seemed less and less relevant, and most of my energies were sucked into
