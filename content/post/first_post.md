@@ -2,7 +2,7 @@
 date = "2015-12-12T18:02:58+01:00"
 draft = false
 tags = [ "musings" ]
-title = "First Post"
+title = "The Tenative Return of Teklibre"
 description = "Been away a long time"
 +++
 
@@ -19,3 +19,5 @@ now I'm trying hugo.
 This is just a skeleton of my return. I'd just like to sit down and WRITE,
 and not have to worry about the formatting at all. You know, when you had
 an editor that could, like, spell check?
+
+And I am not in need of a blog, per se for teklibre.
