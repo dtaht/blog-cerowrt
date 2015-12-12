@@ -21,4 +21,5 @@ and not have to worry about the formatting at all. You know, when you had
 an editor that could, like, spell check?
 
 And I am not in need of a blog, per se for cerowrt, just a place
-to stick new material that is NOT in redmine.
+to stick new material that is NOT in redmine. I have some hope that
+after getting experience with this I can get off of redmine.
