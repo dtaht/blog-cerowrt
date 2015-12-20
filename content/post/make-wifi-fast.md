@@ -6,6 +6,6 @@ title = "Make wifi fast video"
 description = ""
 +++
 
-Let's try a shortcode
+Let's try a shortcode. Anything to make the urls saner
 
 {{< youtube Rb-UnHDw02o>}}
