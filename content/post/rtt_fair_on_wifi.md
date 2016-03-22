@@ -1,6 +1,6 @@
 +++
 date = "2016-03-22T18:02:58+01:00"
-draft = true
+draft = false
 tags = [ "wifi", "bufferbloat" ]
 title = "Analyzing ath10k's current behavior"
 description = "We have a long way to go as yet"
@@ -11,9 +11,9 @@ on the
 [current work](https://github.com/kazikcz/linux/tree/fqmac-rfc-v2) on
 adding fq_codel to the ath10k driver:
 
-{{< figure src="/flent/wifi/rtt_fair_on_wifi/kaboom.svg" title="Wifi: Peaking at 2.2 sec of latency before going haywire" >}}
+{{< figure src="/flent/wifi/rtt_fair_on_wifi/kaboom.svg" title="Wifi: Peaking at 2.5 sec of latency before going haywire" >}}
 
-It peaks at 2.2 seconds of latency. After finally dropping a packet
+It peaks at 2.5 seconds of latency. After finally dropping a packet
 somewhere in the stack at T+13, there's 3sec (T+18) before it sort of
 recovers, but that gets worse with all the accumulated backlog - in fact
 throughput drops to a low ebb, and the test itself eventually fails, and
@@ -84,7 +84,7 @@ The closest thing to a comparison I can come up with for a simulation of
 what's going on here is the behavior of the pi, rate limited to the same
 speed, but using a 1000 packet pfifo buffer instead of fq_codel.
 
-{{< figure src="/flent/wifi/rtt_fair_on_wifi/pfifo_collapse.svg" title="Rasberry pi3 configured with the sqm-scripts for 5.5mbit down, 500k up, for pfifo w/1000 packets" >}}
+{{< figure src="/flent/wifi/rtt_fair_on_wifi/pfifo_collapse.svg" width=640px title="Rasberry pi3 configured with the sqm-scripts for 5.5mbit down, 500k up, for pfifo w/1000 packets" >}}
 
 Ugh!
 
