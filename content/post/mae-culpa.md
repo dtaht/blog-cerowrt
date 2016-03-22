@@ -2,9 +2,10 @@
 date = "2015-12-12T18:02:58+01:00"
 draft = false
 tags = [ "musings" ]
-title = "Cerowrt"
-description = "a new place to write"
+title = "Mae Culpa"
+description = ""
 +++
 
-##  CeroWrt
+Seemingly intent on destroying itself.
+
 
