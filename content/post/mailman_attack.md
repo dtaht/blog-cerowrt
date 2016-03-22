@@ -1,5 +1,12 @@
++++
+date = "2015-12-12T18:02:58+01:00"
+draft = true
+tags = [ "security" ]
+title = "Attacks on mailman"
+description = "Some days it doesn't pay to run your own email server"
++++
 
-My mailman servers - 
+My mailman servers have been under attack for months. 
 
 I thought about adding [capcha support to mailman](https://www.dragonsreach.it/2014/05/03/adding-recaptcha-support-to-mailman/) - but that ended up relying
 on a google service to do it, and I am sort of on a quest to live google-free,

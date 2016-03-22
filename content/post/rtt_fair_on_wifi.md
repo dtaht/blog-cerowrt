@@ -1,6 +1,6 @@
 +++
 date = "2016-03-22T18:02:58+01:00"
-draft = true
+draft = false
 tags = [ "wifi", "bufferbloat" ]
 title = "Analyzing ath10k's current behavior"
 description = "We have a long way to go as yet"

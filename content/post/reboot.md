@@ -1,8 +1,8 @@
 +++
 date = "2015-12-12T18:02:58+01:00"
-draft = false
+draft = true
 tags = [ "reboot" ]
-title = "Cerowrt"
+title = "trying to manage my sites"
 description = "a new place to write"
 +++
 

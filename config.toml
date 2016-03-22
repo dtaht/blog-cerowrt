@@ -1,4 +1,7 @@
 baseurl = "http://blog.cerowrt.org/"
 languageCode = "en-us"
-title = "Cerowrt Lives"
+title = "CeroWrt Lives!"
 canonifyurls = true
+[params]
+author = "Dave Täht"
+
