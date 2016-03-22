@@ -3,7 +3,7 @@ date = "2016-03-22T18:02:58+01:00"
 draft = false
 tags = [ "wifi", "bufferbloat" ]
 title = "Analyzing ath10k's current behavior"
-description = "We have a long way to go as yet"
+description = "We have a long way to go as yet..."
 +++
 
 I looked over the first rtt_fair_up tests at the lowest rate (6mbits)
