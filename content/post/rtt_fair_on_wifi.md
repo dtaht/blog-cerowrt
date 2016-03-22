@@ -1,6 +1,6 @@
 +++
 date = "2016-03-22T18:02:58+01:00"
-draft = false
+draft = true
 tags = [ "wifi", "bufferbloat" ]
 title = "Analyzing ath10k's current behavior"
 description = "We have a long way to go as yet"
@@ -45,8 +45,8 @@ What was actually going on at the packet level was this:
 
 ## Packet loss is good
 
-* NO ECN, loss rate of ~23%
-
+### NO ECN, loss rate of ~23%
+```
 qdisc htb 1: root refcnt 2 r2q 10 default 10 direct_packets_stat 0 direct_qlen 32
  Sent 37986258 bytes 26779 pkt (dropped 6208, overlimits 58740 requeues 0)
  backlog 0b 0p requeues 0
@@ -55,18 +55,18 @@ qdisc fq_codel 110: parent 1:10 limit 1001p flows 1024 quantum 1514 target 5.0ms
  backlog 0b 0p requeues 0
   maxpacket 1514 drop_overlimit 0 new_flow_count 1250 ecn_mark 0
   new_flows_len 0 old_flows_len 2
-
-* With ECN - mark rate of ~91%
-
+```
+### With ECN - mark rate of ~91%
+```
 qdisc htb 1: root refcnt 2 r2q 10 default 10 direct_packets_stat 0 direct_qlen 32
  Sent 38002966 bytes 26818 pkt (dropped 2, overlimits 52774 requeues 0)
  backlog 0b 0p requeues 0
-qdisc fq_codel 110: parent 1:10 limit 1001p flows 1024 quantum 1514 target 5.0ms interval 100.0ms ecn 
- Sent 38002966 bytes 26818 pkt (dropped 2, overlimits 0 requeues 0) 
- backlog 0b 0p requeues 0 
+qdisc fq_codel 110: parent 1:10 limit 1001p flows 1024 quantum 1514 target 5.0ms interval 100.0ms ecn
+ Sent 38002966 bytes 26818 pkt (dropped 2, overlimits 0 requeues 0)
+ backlog 0b 0p requeues 0
   maxpacket 1514 drop_overlimit 0 new_flow_count 1153 ecn_mark 24510
   new_flows_len 0 old_flows_len 2
-
+```
 
 Key here is that a packet loss rate of 25% or a packet mark rate of 90%
 is to be expected on the rtt_fair test at *this speed and RTT on
