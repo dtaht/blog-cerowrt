@@ -81,7 +81,7 @@ qdisc fq_codel 110: parent 1:10 limit 1001p flows 1024 quantum 1514 target 5.0ms
 
 Key here is that a packet loss rate of 25% or a packet mark rate of 90%
 is to be expected on the rtt_fair test at *this speed and RTT on
-ethernet. There is (almost) always a TCP packet behind the one you
+ethernet*. There is (almost) always a TCP packet behind the one you
 dropped, the data got through, and while the packet is retransmitted,
 the hole is filled quickly - so you don't notice.
 
