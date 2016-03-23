@@ -5,3 +5,17 @@ body {
 footer {
     margin: 50px 0;
 }
+
+.panel-heading {
+    padding: 5px;
+}
+
+.panel-heading img {
+    float: right;
+    margin-top: 5px;
+}
+
+.panel-body h4 {
+    border-bottom: 1px solid black;
+    margin-top: 30px;
+}
