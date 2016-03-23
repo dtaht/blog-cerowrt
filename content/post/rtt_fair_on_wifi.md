@@ -12,7 +12,7 @@ bandwidths in the 802.11ac standard touted by manufacturers as hundreds of megab
 rates under real conditions are often 20mbits or less, and the latency,
 under load, horrific. Triggered by [discussions at the netdev
 1.1](https://www.youtube.com/channel/UCribHdOMgiD5R3OUDgx2qTg) conference, multiple developers are attempting to apply the [same
-techniques we successfully applied to ethernet, cable, and dsl])(https://wiki.openwrt.org/doc/howto/sqm) to reduce latency(lag) on wifi, but it's harder - individual stations have wildly varying
+techniques we successfully applied to ethernet, cable, and dsl](https://wiki.openwrt.org/doc/howto/sqm) to reduce latency(lag) on wifi, but it's harder - individual stations have wildly varying
 rates, it's a shared medium, device firmwares have few good feedback loops and there's 10 years of accumulated cruft
 in the stack to excise.
 
