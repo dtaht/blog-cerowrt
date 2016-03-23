@@ -8,8 +8,9 @@ description = "We have a long way to go as yet..."
 
 [Bufferbloat](http://www.bufferbloat.net). It's bad everywhere, and as ISP speeds crack 35Mbit on more
 and more connections, it shifts to the wifi, and despite headline
-bandwidths there touted by manufacturers as hundreds of megabits, real
-rates are often 20mbits or less. Triggered by [discussions at the netdev
+bandwidths in the 802.11ac standard touted by manufacturers as hundreds of megabits, real
+rates under real conditions are often 20mbits or less, and the latency,
+under load, horrific. Triggered by [discussions at the netdev
 1.1](https://www.youtube.com/channel/UCribHdOMgiD5R3OUDgx2qTg) conference, multiple developers are attempting to apply the same
 techniques we successfully applied to ethernet to reduce latency there
 to wifi, but it's harder - individual stations have wildly varying
@@ -21,17 +22,18 @@ on the
 [current work](https://github.com/kazikcz/linux/tree/fqmac-rfc-v2) on
 adding fq_codel to the ath10k driver:
 
-{{< figure src="/flent/wifi/rtt_fair_on_wifi/kaboom.svg" title="Wifi: Peaking at 2.5 sec of latency before going haywire" >}}
+{{< figure src="/flent/wifi/rtt_fair_on_wifi/kaboom.svg" title="Ath10k Wifi: Peaks at 2.5 sec of latency before going haywire" >}}
 
-It peaks at 2.5 seconds of latency. After finally dropping a packet
-somewhere in the stack at T+13, there's 3sec (T+18) before it sort of
-recovers, but that gets worse with all the accumulated backlog - in fact
-throughput drops to a low ebb, and the test itself eventually fails, and
-times out, by the end, and the wifi link is essentially unusable until
-the queues drain...
+After finally dropping a packet somewhere in the stack at T+13, there's
+3sec (T+18) before it sort of recovers, but that gets worse with all the
+accumulated backlog - in fact throughput drops to a low ebb, and the
+test itself eventually fails, and times out, by the end, and the wifi
+link is essentially unusable until the queues drain...
 
 So we have a bit of a ways to go before we get to an algorithm that has
-some bite here, on wifi.
+some bite here, on wifi. Please note that *every* AP and chipset
+I've tested has similar bad behaviors today; we're trying to fix them - on
+iwl, mt72, ath9k, and ath10k, as fast as we figure out how.
 
 ## A baseline "good" result
 
