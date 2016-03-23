@@ -35,3 +35,7 @@ footer {
         float: left;
     }
 }
+
+figure img {
+    max-width: 100%;
+}
