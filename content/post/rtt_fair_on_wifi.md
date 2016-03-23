@@ -6,6 +6,16 @@ title = "Analyzing ath10k's current behavior"
 description = "We have a long way to go as yet..."
 +++
 
+[Bufferbloat](http://www.bufferbloat.net). It's bad everywhere, and as ISP speeds crack 35Mbit on more
+and more connections, it shifts to the wifi, and despite headline
+bandwidths there touted by manufacturers as hundreds of megabits, real
+rates are often 20mbits or less. Triggered by [discussions at the netdev
+1.1](https://www.youtube.com/channel/UCribHdOMgiD5R3OUDgx2qTg) conference, multiple developers are attempting to apply the same
+techniques we successfully applied to ethernet to reduce latency there
+to wifi, but it's harder - individual stations have wildly varying
+rates, it's a shared medium, devices have no good feedback loops and there's 10 years of accumulated cruft
+in the stack to excise.
+
 I looked over the first rtt_fair_up tests at the lowest rate (6mbits)
 on the
 [current work](https://github.com/kazikcz/linux/tree/fqmac-rfc-v2) on
