@@ -42,7 +42,7 @@ ethernet:
 
 Admittedly this test is not half duplex (hard to do except at 10mbit),
 there's no retries, but... the latency is 3 orders of magnitude lower,
-and tcp doesn't collapse.
+and TCP doesn't collapse.
 
 How do we get this result? TCP relies on loss or markings to reduce it's
 rate. There is an astounding amount of loss and marking to get to this
@@ -80,7 +80,7 @@ qdisc fq_codel 110: parent 1:10 limit 1001p flows 1024 quantum 1514 target 5.0ms
 
 Key here is that a packet loss rate of 25% or a packet mark rate of 90%
 is to be expected on the rtt_fair test at *this speed and RTT on
-ethernet. There is (almost) always a tcp packet behind the one you
+ethernet. There is (almost) always a TCP packet behind the one you
 dropped, the data got through, and while the packet is retransmitted,
 the hole is filled quickly - so you don't notice.
 
@@ -127,7 +127,8 @@ This test with the new code is actually pretty encouraging - the fast
 station has high throughput and low latency, the slow one, low
 throughput and high latency.
 
-{{< figure src="/flent/wifi/rtt_fair_on_wifi/encouraging_fast_slow.svg" title="fast_slow test newmac" >}}
+{{< figure src="/flent/wifi/rtt_fair_on_wifi/encouraging_fast_slow.svg"
+title="Two stations at different rates" >}}
 
 If we can get to low throughput and low latency on the slow station,
 while keeping the other station fast, we're winning.
@@ -142,7 +143,7 @@ while... for long enough to smash things down to 20ms... but that's me.
 Or I'd say it was me, only if I didn't think long term behaviors this
 bad, were, well, very bad for users and the internet itself.
 
-Classic tcp benchmarking has a tendency to last 10 or 15 seconds, and
+Classic TCP benchmarking has a tendency to last 10 or 15 seconds, and
 inside of those 15 seconds you can, indeed deliver a few more packets if
 you buffer excessively, and never drop any.
 
@@ -152,7 +153,7 @@ emulation again:
 
 {{< figure src="/flent/wifi/rtt_fair_on_wifi/compared.svg" title="Kaboom!" >}}
 
-What you want is stable tcp behavior at *all timescales* - not zero to
+What you want is stable TCP behavior at *all timescales* - not zero to
 10 seconds, but zero to infinity.
 
 Some innate features of the flent test suite limit the maximum test
@@ -172,7 +173,9 @@ with a pfifo as above (2.2 sec of buffering) vs the total throughput of
 the pi+fq_codel emulation (1ms of buffering) over the full 60 second
 test run.
 
-{{< figure src="/flent/wifi/rtt_fair_on_wifi/twice_as_much_real_data_transferred.svg" title="low latency for tcp leads to 2x more real data transferred" >}}
+{{< figure
+src="/flent/wifi/rtt_fair_on_wifi/twice_as_much_real_data_transferred.svg"
+title="Low latency for TCP leads to 2x more real data transferred smoothly" >}}
 
 The explosions taking place after buffers are filled are extremely
 damaging to actual long term throughput, all caused by excessive latency
