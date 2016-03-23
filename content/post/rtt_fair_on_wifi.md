@@ -3,7 +3,7 @@ date = "2016-03-22T18:02:58+01:00"
 draft = false
 tags = [ "wifi", "bufferbloat" ]
 title = "Analyzing ath10k's current behavior"
-description = "We have a long way to go as yet..."
+description = "We have a long way to go as yet on 802.11ac..."
 +++
 
 [Bufferbloat](http://www.bufferbloat.net). It's [bad everywhere](http://www.dslreports.com/speedtest/results/bufferbloat?up=1), and as ISP speeds crack 35Mbit on more
