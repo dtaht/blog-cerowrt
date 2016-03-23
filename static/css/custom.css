@@ -19,3 +19,19 @@ footer {
     border-bottom: 1px solid black;
     margin-top: 30px;
 }
+
+.container {
+    width: 100%;
+}
+
+@media (min-width: 992px) {
+    .col-md-9 {
+        width: calc(100% - 20em);
+        float: left;
+    }
+
+    .col-md-3 {
+        width: 20em;
+        float: left;
+    }
+}
