@@ -6,20 +6,23 @@ title = "Analyzing ath10k's current behavior"
 description = "We have a long way to go as yet on 802.11ac..."
 +++
 
-[Bufferbloat](http://www.bufferbloat.net). It's [bad everywhere](http://www.dslreports.com/speedtest/results/bufferbloat?up=1), and as ISP speeds crack 35Mbit on more
-and more connections, it shifts to the wifi, and despite headline
-bandwidths in the 802.11ac standard touted by manufacturers as hundreds of megabits, real
-rates under real conditions are often 20mbits or less, and the latency,
-under load, horrific. Triggered by [discussions at the netdev
-1.1](https://www.youtube.com/channel/UCribHdOMgiD5R3OUDgx2qTg) conference, multiple developers are attempting to apply the [same
-techniques we successfully applied to ethernet, cable, and dsl](https://wiki.openwrt.org/doc/howto/sqm) to reduce latency(lag) on wifi, but it's harder - individual stations have wildly varying
-rates, it's a shared medium, device firmwares have few good feedback loops and there's 10 years of accumulated cruft
-in the stack to excise.
+[Bufferbloat](http://www.bufferbloat.net). It's
+[bad everywhere](http://www.dslreports.com/speedtest/results/bufferbloat?up=1),
+and as ISP speeds crack 35Mbit on more and more connections, it shifts
+to the wifi, and despite headline bandwidths in the 802.11ac standard
+touted by manufacturers as hundreds of megabits, real rates under real
+conditions are often 20mbits or less, and the latency, under load,
+horrific. Triggered by
+[discussions at the netdev 1.1](https://www.youtube.com/channel/UCribHdOMgiD5R3OUDgx2qTg)
+conference, multiple developers are attempting to apply the
+[same techniques we successfully applied to ethernet, cable, and dsl](https://wiki.openwrt.org/doc/howto/sqm)
+to reduce latency(lag) on wifi, but it's harder - individual stations
+have wildly varying rates, it's a shared medium, device firmwares have
+few good feedback loops and there's 10 years of accumulated cruft in the
+stack to excise.
 
 I looked over the first rtt_fair_up tests at the lowest rate (6mbits)
-on the
-[current work](https://github.com/kazikcz/linux/tree/fqmac-rfc-v2) on
-adding fq_codel to the ath10k driver:
+on the current ath10k driver for Linux.
 
 {{< figure src="/flent/wifi/rtt_fair_on_wifi/kaboom.svg" title="Ath10k Wifi: Peaks at 2.5 sec of latency before going haywire" >}}
 
@@ -29,10 +32,9 @@ accumulated backlog - in fact throughput drops to a low ebb, and the
 test itself eventually fails, and times out, by the end, and the wifi
 link is essentially unusable until the queues drain...
 
-So we have a bit of a ways to go before we get to an algorithm that has
-some bite here, on wifi. Please note that *every* AP and chipset
-I've tested has similar bad behaviors today; we're trying to fix them - on
-iwl, mt72, ath9k, and ath10k, as fast as we figure out how.
+Please note that *every* AP and chipset I've tested has similar bad
+behaviors today; we're trying to fix them - on iwl, mt72, ath9k, and
+ath10k, as fast as we figure out how.
 
 ## A baseline "good" result
 
@@ -88,18 +90,16 @@ the hole is filled quickly - so you don't notice.
 A net latency figure for wifi, thus, would be somewhere the low side
 of 1.2ms vs 2600ms at the lowest rate. ( :) )
 
-Since wifi data is noisy, I tried to recreate the first wifi plot above
-on ethernet.
-
-The closest thing to a comparison I can come up with for a simulation of
-what's going on here is the behavior of the pi, rate limited to the same
-speed, but using a 1000 packet pfifo buffer instead of fq_codel.
+To recreate the first horrific plot above on ethernet, the closest thing
+to a comparison I can come up with for a simulation of what's going on
+here is the behavior of the pi, rate limited to the same speed, but
+using a 1000 packet pfifo buffer instead of fq_codel.
 
 {{< figure src="/flent/wifi/rtt_fair_on_wifi/pfifo_collapse.svg" width=640px title="Rasberry pi3 configured with the sqm-scripts for 5.5mbit down, 500k up, for pfifo w/1000 packets" >}}
 
-Ugh!
+Ugh! But this is close enough for exposition.
 
-## Some thoughts
+## Some thoughts on benchmarking
 
 Definitely keep testing for 40 seconds or more. Too many tests don't
 test long enough.
@@ -115,24 +115,6 @@ once - scale up a bit for higher speeds and bursts where the rate
 controller is actually going to try more than one speed. Feedback as to
 how long a given txop took to finish and the actual rate on completion
 would be better...
-
-## Testing multiple stations
-
-In the test data supplied me - it hadn't occurred to me to consistently
-use the rtt_fair_up tests as tests against 1,2 or 4 stations!
-
-I especially like the idea of using rtt_fair_up to test two stations,
-one slow, one fast.
-
-This test with the new code is actually pretty encouraging - the fast
-station has high throughput and low latency, the slow one, low
-throughput and high latency.
-
-{{< figure src="/flent/wifi/rtt_fair_on_wifi/encouraging_fast_slow.svg"
-title="Two stations at different rates" >}}
-
-If we can get to low throughput and low latency on the slow station,
-while keeping the other station fast, we're winning.
 
 ## Why reducing latency matters
 
@@ -170,8 +152,8 @@ network (engine) explodes at the end of the test. Why all this
 buffering?? "For THROUGHPUT!", they cry...
 
 Well, here is a comparison of the total throughput of the pi emulated
-with a pfifo as above (2.2 sec of buffering) vs the total throughput of
-the pi+fq_codel emulation (1ms of buffering) over the full 60 second
+with a pfifo as above (2.5 sec of buffering) vs the total throughput of
+the pi+fq_codel emulation above (~1ms of buffering) over the full 60 second
 test run.
 
 {{< figure
@@ -183,8 +165,10 @@ damaging to actual long term throughput, all caused by excessive latency
 in this portion of the stack.
 
 And (sigh) this sort of behavior is so darn common because nobody runs
-benchmarks long enough to see the pieces spread across the end of the track.
+TCP benchmarks long enough to see the burnt, crispy pieces spread across
+the end of the track.
 
-Maybe if I go rant about the tcp_square wave tests in flent, and how
+Maybe if I go rant about the tcp_square wave tests in [flent](https://flent.org), and how
 they provide insight into how congestion control actually should work,
-that will help. (next up).
+that will help. I'll do that in a bit, but next up is showing the
+wonderful results of the [first working fq_codel patch for the ath10k](/post/fq_codel_on_ath10k).
