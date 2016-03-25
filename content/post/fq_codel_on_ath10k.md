@@ -15,13 +15,14 @@ Let's start with [where we were yesterday](/post/rtt_fair_on_wifi):
 
 Vs today: 6mbits of clean throughput (4 streams going here), with less than 20ms latency.
 
-{{< figure src="/flent/wifi/rtt_fair_on_wifi/enormous_improvement.png" title="First ever fq_codel implementation results" >}}
+{{< figure src="/flent/wifi/rtt_fair_on_wifi/enormous_improvement.png"
+title="First ever fq_codel implementation on wifi results" >}}
 
-*This is the first time I have ever seen a wifi card behave
-sanely in over a decade* at low rates outside of experiments and
-simulations. I was so happy to see this result on a real card in real
-conditions, I cried. Every time I showed someone the
-graphs....
+*This is the first time I have ever seen a wifi card behave sanely in
+over a decade* at low rates, outside of experiments and simulations. I
+was so happy to see this result on a real card in real conditions, I got
+really emotional, every time I showed someone in the bufferbloat project
+the graphs....
 
 5 years of work...
 [theory](https://datatracker.ietf.org/doc/draft-ietf-aqm-codel/?include_text=1)...
@@ -66,8 +67,8 @@ while keeping the other station fast, we're winning.
 
 3 out of 4 ain't bad.
 
-And it seems plausible that we can get more bandwidth into the fast
-station while still servicing the slow one with a bit more work.
+And it seems plausible that he can get even more bandwidth into the fast
+station while still servicing the slow one, with a bit more work.
 
 ## What's with these spikes early and late in the test?
 
