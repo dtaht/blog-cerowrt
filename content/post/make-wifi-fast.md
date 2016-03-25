@@ -1,7 +1,7 @@
 +++
 date = "2015-12-12T18:02:58+01:00"
 draft = false
-tags = [ "talks", "wifi" ]
+tags = [ "talks", "wifi", "bufferbloat" ]
 title = "Make wifi fast video"
 description = "Some 'basics' on how to improve latency on wifi"
 +++
