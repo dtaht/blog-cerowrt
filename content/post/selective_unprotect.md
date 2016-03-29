@@ -9,7 +9,7 @@ description = "Some alternative approaches for losing more packets in a wifi agg
 For years now I've kept trying to get manufacturers, firmware writers,
 device driver writers and OS makers to find ways to drop a couple
 packets, when needed. Not enough have believed me. Their part of the stack MUST
-BE PERFECT, even over massively unreliable transports like wifi and 3G.
+BE PERFECT, even over massively unreliable transports like wifi and 3G. [Every Packet is Sacred](http://www.bufferbloat.net/projects/bloat/wiki/Humor), they sing....
 
 I'm always willing to sacrifice throughput for low latency. Always.
 Usually it pays off. If I had known that the wifi retry problem would
@@ -18,13 +18,12 @@ A little bit of retry went a long way back then. 1 retry at
 the 802.11b mac layer was
 enough to get a packet loss percentage of 1-3% and once we added
 [wondershaper](http://www.bufferbloat.net/projects/cerowrt/wiki/Wondershaper_Must_Die)
-into the mix, everything was fine. No [bufferbloat](/tags/bufferbloat)
-back then, at least, none that mattered. We improved web things by using a squid
+into the mix, everything was fine. While there *was* [bufferbloat](/tags/bufferbloat)
+back then, at least, queues were much smaller - 4 packets in the driver, 100 in the txqueue. We improved web things by using a squid
 cache on the other side of the wifi link, also. The short RTTs made TCP
-recover nicely... and since 1998 and the rise of CDNs, many important TCP RTT sites are now down in the 10-20ms range, today. And - I wish [mosh](http://mosh.mit.edu) had existed then and more people built on the ideas in it for things like RDP and X11.
+recover nicely... and since 1998 and the rise of CDNs, many important TCP based sites now have RTTs down in the 10-30ms range, today. And - I wish [mosh](http://mosh.mit.edu) had existed then and more people built on the ideas in it for things like RDP and X11.
 
-Lastly... I never expected wifi device driver writers to up the retries to 10
-(ath9k), or to infinity!
+Lastly... I never expected wifi device driver writers to up the retries to a fixed size of 10 (ath9k), or to infinity!
 
 In the
 [first ever fq_codel implementation for wifi](/post/fq_codel_on_ath10k), I
@@ -116,7 +115,7 @@ hurt, they just get ignored. (mostly).
 
 TCP data arriving out of order will be compensated for by most modern
 TCPS. Bittorrent doesn't care at all. It will mess up voip if multiple
-packets get in an aggregate (unlikely), but most videoconferencing
+packets get in an aggregate (unlikely), but video in most videoconferencing
 protocols should recover just fine.
 
 But: God help you if you have TWO routers actually acting this way. I'm
@@ -142,7 +141,7 @@ inside of an RTT), so you could apply the "lower the retry rate"
 periodically triggered much like how pie works.
 
 Having rate control not aim for the perfect rate, but the slightly
-less than perfect rate that ensures enough loss seems fairly ideal... but hard.
+less than perfect (and usually faster) rate that ensures enough loss seems fairly ideal... but hard.
 
 ## Ack thinning
 
