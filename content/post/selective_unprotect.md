@@ -3,33 +3,33 @@ date = "2016-03-30T18:02:58+01:00"
 draft = false
 tags = [ "wifi", "bufferbloat" ]
 title = "Selective unprotect"
-description = "Some alternative approaches to losing more packets in a wifi aggregate"
+description = "Some alternative approaches for losing more packets in a wifi aggregate when needed..."
 +++
 
 For years now I've kept trying to get manufacturers, firmware writers,
 device driver writers and OS makers to find ways to drop a couple
-packets, when needed. Nobody believes me. Their part of the stack MUST
+packets, when needed. Not enough have believed me. Their part of the stack MUST
 BE PERFECT, even over massively unreliable transports like wifi and 3G.
 
 I'm always willing to sacrifice throughput for low latency. Always.
 Usually it pays off. If I had known that the wifi retry problem would
-grow so out of hand, in [1998 I would have advocated for something else](http://www.rage.net).
-Probably. A little bit of retry went a long way back then. 1 retry at
+grow so out of hand, in [1998 I would have advocated for something else](http://www.rage.net/wireless/diary.html).
+A little bit of retry went a long way back then. 1 retry at
 the 802.11b mac layer was
 enough to get a packet loss percentage of 1-3% and once we added
 [wondershaper](http://www.bufferbloat.net/projects/cerowrt/wiki/Wondershaper_Must_Die)
 into the mix, everything was fine. No [bufferbloat](/tags/bufferbloat)
-back then that mattered. We improved things by using a squid
+back then, at least, none that mattered. We improved web things by using a squid
 cache on the other side of the wifi link, also. The short RTTs made TCP
-recover nicely...
+recover nicely... and since 1998 and the rise of CDNs, many important TCP RTT sites are now down in the 10-20ms range, today. And - I wish [mosh](http://mosh.mit.edu) had existed then and more people built on the ideas in it for things like RDP and X11.
 
-I never expected wifi device driver writers to up the retries to 10
+Lastly... I never expected wifi device driver writers to up the retries to 10
 (ath9k), or to infinity!
 
 In the
 [first ever fq_codel implementation for wifi](/post/fq_codel_on_ath10k), I
 showed that four upload streams had a codel induced loss rate of *25%*
-at 6Mbits, at no cost in throughput.
+at 6Mbits on a 2ms path, at no cost in throughput.
 
 You can say, as I did: *"YEA! codel works!"* But, honestly it would not
 hurt to actually lower the retry rate on the wifi media when you are
@@ -40,11 +40,11 @@ down - and the number of stations you can service effectively - go up.
 Modern TCPs are very aggressive, they'll recover. Believe me.
 
 Furthermore I worry that as we increase the aggregate sizes (as in
-802.11ac)that retries will go up even further than they already have,
+802.11ac) that retries will go up even further than they already have,
 and am certain as our networks get more dense and interference goes up
 that we're going to have more issues there. Worse, your typical retry is
 at a lower rate than the first attempt, which gives it even more
-latency... just send another packet, later...
+latency... sigh. just send another packet, later...
 
 One of the reasons why I advocate for ECN support is that you cannot
 convince some people that packet loss is GOOD, thus having some way to
@@ -54,7 +54,7 @@ that I care for ECN much.
 Anyway...
 
 I have come up with a few other ways besides codel to drop packets, by
-getting the retry rate down, *while* still saving the few packets
+getting the wifi retry rate down, *while* still saving the few packets
 considered precious.
 
 Instead of codel doing all the work, you could signal the lower layer of
@@ -94,7 +94,7 @@ block everything... So go ahead, protect those *to some extent*! and
 otherwise... feel free to drop some darn packets!
 
 You could even do [shortest queue first](http://www.internetsociety.org/sites/default/files/pdf/accepted/4_sqf_isoc.pdf) within the aggregate, shipping C1
-and D1 first rather than round robin A,B,C,D. I have no data as to where
+and D1 first rather than round robin A,B,C,D. I have no data (yet) as to where
 most interference happens nowadays, but this would be much like how
 fq_codel's new and old queues function and force the receiver to respond
 to and grow those flows first, grabbing a fairer share of the link.
@@ -141,6 +141,9 @@ down until the backlog clears is overly damaging (you just need to do it
 inside of an RTT), so you could apply the "lower the retry rate"
 periodically triggered much like how pie works.
 
+Having rate control not aim for the perfect rate, but the slightly
+less than perfect rate that ensures enough loss seems fairly ideal... but hard.
+
 ## Ack thinning
 
 There's a well known technique for squeezing more bandwidth out of
@@ -149,7 +152,7 @@ default), but more than a few routing devices will do deep packet
 inspection to determine what are acks and selectively thin them out.
 
 Eric Dumazet pointed out to me that, really, on a wifi client, all you
-needed was the last ack to get through, so instead of shipping, say, 42 acks
+needed was the last TCP ack to get through, so instead of shipping, say, 42 acks
 on a flow over wifi (and retrying until you got them all, and buffering
 until you can ship them in order) you can just ship one - and make utterly
 sure that gets through. That would cut the size of a typical TXOP from a
@@ -161,12 +164,12 @@ will suffice to release a stream of packets in the other direction that
 will behave properly. Usually.
 
 There are other problems with this idea - a lot of the companies that
-did DPI on acks didn't recognize the timestamp option, or ipv6 - and
+did DPI to find acks didn't recognize the timestamp option, or ipv6 - and
 newer TCP-like protocols like QUIC wouldn't be handled - and the loss of
 that single packet elsewhere on the network (think multiple wifi hops)
 would be disasterous, but I suspect we'll see it more and more.
 
-I tend to favor making AMPDUs more efficient, but that's me.
+I tend to favor making AMPDSUs more efficient, but that's me.
 
 ## Summary
 
