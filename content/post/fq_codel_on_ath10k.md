@@ -77,7 +77,9 @@ seconds at the begining and end of the test merely pinging), power save
 kicks in and we see long delays. This is totally ok, expected behavior,
 although it is not at all what you see on ethernet.
 
-Next up - [Michal's experiments with using DQL](/post/dql_on_wifi),
+Next up - [Some alternative approaches to codel on wifi](/post/selective_unprotect)...
+
+and after then I'll try to tackle [Michal's experiments with using DQL](/post/dql_on_wifi),
 which is a simpler technique for measuring available bandwidth than
 looking directly at wireless's rate control is. DQL was designed for
 ethernet, can it be extended to wireless?
