@@ -119,7 +119,7 @@ TCPS. Bittorrent doesn't care at all. It will mess up voip if multiple
 packets get in an aggregate (unlikely), but video in most videoconferencing
 protocols should recover just fine.
 
-But: God help you if you have TWO routers actually acting this way. I'm
+But: Ghu help you if you have TWO routers actually acting this way. I'm
 really tempted to do this experiment just because I don't know of any
 good way to simulate what would happen!
 
@@ -156,7 +156,8 @@ needed was the last TCP ack to get through, so instead of shipping, say, 42 acks
 on a flow over wifi (and retrying until you got them all, and buffering
 until you can ship them in order) you can just ship one - and make utterly
 sure that gets through. That would cut the size of a typical TXOP from a
-client enormously.
+client enormously. Clients run at lower rates and have lousy antennas,
+so are more than half the problem.
 
 With things like TCP packet pacing now heavily deployed, we've already
 got away from ack clocking the return feed, anyway, so that single ack
@@ -175,4 +176,4 @@ I tend to favor making AMPDSUs more efficient, but that's me.
 
 You gotta drop packets on any form of network. Somewhere. Often enough
 to give TCPs enough signal to not backlog the network. Period. Next
-question?
+question: [Can DQL help]()?
