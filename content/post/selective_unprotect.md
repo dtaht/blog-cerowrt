@@ -21,7 +21,7 @@ enough to get a packet loss percentage of 1-3% and once we added
 into the mix, everything was fine. While there *was* [bufferbloat](/tags/bufferbloat)
 back then, at least, queues were much smaller - 4 packets in the driver, 100 in the txqueue. We improved web things by using a squid
 cache on the other side of the wifi link, also. The short RTTs made TCP
-recover nicely... and since 1998 and the rise of CDNs, many important TCP based sites now have RTTs down in the 10-30ms range, today. And - I wish [mosh](http://mosh.mit.edu) had existed then and more people built on the ideas in it for things like RDP and X11.
+recover nicely... and since 1998 and the rise of CDNs, many important TCP based sites now have RTTs down in the 10-30ms range, today. And - I wish [mosh](http://mosh.mit.edu) and [QUIC](https://www.chromium.org/quic) had existed then and more people built on the ideas in them for things like RDP and X11.
 
 Lastly... I never expected wifi device driver writers to up the retries to a fixed size of 10 (ath9k), or to infinity!
 
