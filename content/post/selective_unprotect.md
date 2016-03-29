@@ -67,7 +67,7 @@ packets, B, 8, C 1, D, 2...
 So ship an aggregate formed like this - protecting the last 1-2 packets
 in the flow.
 
-A1,B1,C1,D1,A2,B2,D2,P A3,D4, P A4, D5,D6,P D7, P D8.
+A1,B1,C1,D1,A2,B2,D2,P A3, B3, P A4, B4, B5, B6,P B7, P B8.
 
 Even if you lose all the packets besides the protected ones, it is
 guaranteed that the TCP rates on the other side will only halve inside
