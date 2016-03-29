@@ -14,7 +14,14 @@ BE PERFECT, even over massively unreliable transports like wifi and 3G.
 I'm always willing to sacrifice throughput for low latency. Always.
 Usually it pays off. If I had known that the wifi retry problem would
 grow so out of hand, in [1998 I would have advocated for something else](http://www.rage.net).
-Probably. A little bit of retry went a long way back then.
+Probably. A little bit of retry went a long way back then. 1 retry at
+the mac layer was
+enough to get a packet loss percentage of 1-3% and once we added
+[wondershaper](http://www.bufferbloat.net/projects/cerowrt/wiki/Wondershaper_Must_Die)
+into the mix, everything was fine. No [bufferbloat](/tags/bufferbloat)
+back then that mattered. We improved things by using a squid
+cache on the other side of the wifi link, also. The short RTTs made TCP
+recover nicely...
 
 In the
 [first ever fq_codel implementation for wifi](/post/fq_codel_on_ath10k), I
