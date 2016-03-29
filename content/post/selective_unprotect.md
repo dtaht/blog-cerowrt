@@ -8,10 +8,8 @@ description = "Some alternative approaches to losing more packets in a wifi aggr
 
 For years now I've kept trying to get manufacturers, firmware writers,
 device driver writers and OS makers to find ways to drop a couple
-packets, when needed.
-
-Nobody believes me. Their part of the stack MUST BE PERFECT, even over
-massively unreliable transports like wifi and 3G.
+packets, when needed. Nobody believes me. Their part of the stack MUST
+BE PERFECT, even over massively unreliable transports like wifi and 3G.
 
 I'm always willing to sacrifice throughput for low latency. Always.
 Usually it pays off. If I had known that the wifi retry problem would
@@ -23,7 +21,7 @@ In the
 showed that four upload streams had a codel induced loss rate of *25%*
 at 6Mbits, at no cost in throughput.
 
-You can say, as I did: "YEA! codel works!" But, honestly it would not
+You can say, as I did: *"YEA! codel works!"* But, honestly it would not
 hurt to actually lower the retry rate on the wifi media when you are
 experiencing congestion and drop a couple packets there instead - codel
 won't have to work so hard - and latency - for your station - would go
@@ -31,12 +29,12 @@ down - and the number of stations you can service effectively - go up.
 
 Modern TCPs are very aggressive, they'll recover. Believe me.
 
-Furthermore I worry that as we increase the aggregate sizes that retries
-will go up even further than they already have, and am certain as our
-networks get more dense and interference goes up that we're going to
-have more issues there. Worse, your typical retry is at a lower rate
-than the first attempt, which gives it even more latency... send another
-packet, later...
+Furthermore I worry that as we increase the aggregate sizes (as in
+802.11ac)that retries will go up even further than they already have,
+and am certain as our networks get more dense and interference goes up
+that we're going to have more issues there. Worse, your typical retry is
+at a lower rate than the first attempt, which gives it even more
+latency... just send another packet, later...
 
 One of the reasons why I advocate for ECN support is that you cannot
 convince some people that packet loss is GOOD, thus having some way to
@@ -81,9 +79,15 @@ them, and thus need to retry less, and get a bigger slowdown as a result.
 
 In general you do want the sparser flows to be preserved - DNS in
 particular is very sensitive to loss, it's bad to lose more than 2-3
-voip packets in a row, arp requests block everything... So go ahead,
-protect those *to some extent*! and otherwise... feel free to drop some
-darn packets!
+voip packets in a row, losing syn and syn/ack are bad, and arp requests
+block everything... So go ahead, protect those *to some extent*! and
+otherwise... feel free to drop some darn packets!
+
+You could even do [shortest queue first](http://www.internetsociety.org/sites/default/files/pdf/accepted/4_sqf_isoc.pdf) within the aggregate, shipping C1
+and D1 first rather than round robin A,B,C,D. I have no data as to where
+most interference happens nowadays, but this would be much like how
+fq_codel's new and old queues function and force the receiver to respond
+to and grow those flows first, grabbing a fairer share of the link.
 
 ## Last packets first
 
@@ -93,6 +97,8 @@ The above approach has head of line blocking, and I suspect we'll see a
 lot more tail loss than head loss in future wireless networks. It's the
 nature of the beast - the more airtime you use, the more likelihood
 someone else is going to mess up your transmission.
+
+Say you have 4 packets in flow A, 8 in flow B, 1 in flow C, and 2 in D.
 
 You could ship A4,B8,C1,D2 first in the aggregate, and only protect
 those for the retransmit phase. TCP acks arriving out of order don't
@@ -119,6 +125,11 @@ It's not optimal - you have some tricky interactions with rate control,
 you will lose some packets you don't want to lose, and - in the case of
 the media or rate control acting perfectly - you still need some way of
 dropping or marking packets further up the queue - but it would help.
+
+Now - 10 years later, I've also realized that merely turning retries way
+down until the backlog clears is overly damaging (you just need to do it
+inside of an RTT), so you could apply the "lower the retry rate"
+periodically triggered much like how pie works.
 
 ## Ack thinning
 
