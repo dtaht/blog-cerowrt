@@ -28,7 +28,8 @@ Lastly... I never expected wifi device driver writers to up the retries to a fix
 In the
 [first ever fq_codel implementation for wifi](/post/fq_codel_on_ath10k), I
 showed that four upload streams had a codel induced loss rate of *25%*
-at 6Mbits on a 2ms path, at no cost in throughput.
+at 6Mbits on a 2ms path, at no cost in throughput, for a net queue depth of
+20ms.
 
 You can say, as I did: *"YEA! codel works!"* But, honestly it would not
 hurt to actually lower the retry rate on the wifi media when you are
