@@ -176,4 +176,4 @@ I tend to favor making AMPDSUs more efficient, but that's me.
 
 You gotta drop packets on any form of network. Somewhere. Often enough
 to give TCPs enough signal to not backlog the network. Period. Next
-question: [Can DQL help]()?
+question: [Can DQL help](/post/dql_on_wifi)?
