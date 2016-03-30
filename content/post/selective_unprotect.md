@@ -144,10 +144,10 @@ periodically triggered much like how pie works.
 Having rate control not aim for the perfect rate, but the slightly
 less than perfect (and usually faster) rate that ensures enough loss seems fairly ideal... but hard.
 
-## Ack thinning
+## Ack thinning/Stretch acks
 
 There's a well known technique for squeezing more bandwidth out of
-highly asymmetric links - it's most often used in TCPs (OSX uses it by
+highly asymmetric links - "Stretch Acks". It's most often used in TCPs (OSX uses it by
 default), but more than a few routing devices will do deep packet
 inspection to determine what are acks and selectively thin them out.
 
@@ -156,21 +156,23 @@ needed was the last TCP ack to get through, so instead of shipping, say, 42 acks
 on a flow over wifi (and retrying until you got them all, and buffering
 until you can ship them in order) you can just ship one - and make utterly
 sure that gets through. That would cut the size of a typical TXOP from a
-client enormously. Clients run at lower rates and have lousy antennas,
-so are more than half the problem.
+client enormously. (Clients run at lower rates and have lousy antennas,
+so are more than half the problem).
 
-With things like TCP packet pacing now heavily deployed, we've already
+With things like [TCP packet pacing](https://fasterdata.es.net/host-tuning/linux/fair-queuing-scheduler/) now heavily deployed, we've already
 got away from ack clocking the return feed, anyway, so that single ack
 will suffice to release a stream of packets in the other direction that
-will behave properly. Usually.
+will behave properly. [Usually](https://tools.ietf.org/html/rfc2525#page-40).
 
-There are other problems with this idea - a lot of the companies that
+There are other problems with stretch acks - a lot of the companies that
 did DPI to find acks didn't recognize the timestamp option, or ipv6 - and
 newer TCP-like protocols like QUIC wouldn't be handled - and the loss of
 that single packet elsewhere on the network (think multiple wifi hops)
 would be disasterous, but I suspect we'll see it more and more.
 
-I tend to favor making AMPDSUs more efficient, but that's me.
+I do not have [any problem](https://tools.ietf.org/html/rfc2525) with *endpoints* making the stretch
+ack decision, but [not much in favor of middleboxes](https://tools.ietf.org/html/rfc2525) doing it - and I 
+tend to favor making AMPDSUs more efficient, but that's me. 
 
 ## Summary
 
