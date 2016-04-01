@@ -26,8 +26,8 @@ recover nicely... and since 1998 and the rise of CDNs, many important TCP based 
 Lastly... I never expected wifi device driver writers to up the retries to a fixed size of 10 (ath9k), or to infinity!
 
 In the
-[first ever fq_codel implementation for wifi](/post/fq_codel_on_ath10k), I
-showed that four upload streams had a codel induced loss rate of *25%*
+[first ever fq_codel implementation for wifi](/post/fq_codel_on_ath10k), [I
+showed](/post/rtt_fair_on_wifi/) that four upload streams had a codel induced loss rate of *25%*
 at 6Mbits on a 2ms path, at no cost in throughput, for a net queue depth of
 20ms.
 
