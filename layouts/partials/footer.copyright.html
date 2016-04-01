@@ -2,7 +2,7 @@
             <div class="row">
                 <hr>
                 <div class="col-sm-12">
-                    <p>&copy; M.D. Täht<br></p>
+                    <p>&copy; {{if .Params.author}}{{.Params.author}}{{else}}{{ .Site.Params.author }}{{end}} <br></p>
                 </div>
             </div>
         </footer>
