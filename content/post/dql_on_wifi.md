@@ -1,6 +1,6 @@
 +++
-date = "2016-03-25T18:02:58+01:00"
-draft = true
+date = "2016-04-02T18:02:58+01:00"
+draft = false
 tags = [ "wifi", "bufferbloat", "ath10k" ]
 title = "Adapting DQL to wifi"
 description = "Can the dynamic queue limits infrastructure in linux be adapted to wifi?"
@@ -14,8 +14,7 @@ In some of my tests (using flent) it seems to reduce induced latency by orders o
 I'm not sure yet if it's worth to consider this patch for merging per se. My motivation was to have something to prove mac80211 fq works and to see if DQL can learn the proper queue limit in face of wireless rate control at all.
 
 Here's the
-[flent dataset for dql on wifi experiment](/flent/wifi/dql_for_wifi/dql.tar.tgz)
-if you would like to poke around the dataset.
+[flent data for dql on wifi experiment]( http://kazikcz.github.io/dl/2016-04-01-flent-ath10k-dql.tar.gz) if you would like to poke around the dataset.
 
 Here's a short description what-is-what test naming:
  - sw/fq contains only txq/flow stuff (no scheduling, no txop queue limits)
@@ -68,4 +67,3 @@ To sum things up:
 (which requires rate control info)
  - mac80211 fair queuing works!
 
-A few plots for quick and easy reference:
