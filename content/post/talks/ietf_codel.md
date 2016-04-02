@@ -4,7 +4,9 @@ draft = false
 tags = [ "talks", "bufferbloat", "aqm" ]
 title = "Van Jacobson's ietf talk about Codel"
 description = "Insights from the co-author as to how codel works"
+author = "Van Jacobson"
 +++
+
 
 Van Jacobson (of Google) introduces the codel solution for aqms and the packet
 fountain analogy at the IETF84 conference. Like all his talks, it is
