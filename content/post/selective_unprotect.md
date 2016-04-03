@@ -59,7 +59,9 @@ considered precious.
 
 Instead of codel doing all the work, you could signal the lower layer of
 the stack that it's ok to drop a few more packets... this is more
-similar to how the native randomness in a RED or PIE based AQM would work.
+similar to how the native randomness in a RED or PIE based AQM would work,
+although codel's drop scheduler and use of timestamping have other benefits
+that also can be used.
 
 ## Selective Unprotect
 
@@ -139,10 +141,10 @@ dropping or marking packets further up the queue - but it would help.
 Now - 10 years later, I've also realized that merely turning retries way
 down until the backlog clears is overly damaging (you just need to do it
 inside of an RTT), so you could apply the "lower the retry rate"
-periodically triggered much like how pie works.
+periodically triggered much like how pie works (codel would work too).
 
-Having rate control not aim for the perfect rate, but the slightly
-less than perfect (and usually faster) rate that ensures enough loss seems fairly ideal... but hard.
+Having wifi rate control not aim for the perfect rate, but the slightly
+less than perfect (and usually faster) rate that *ensures enough loss to keep the backlog small* seems fairly ideal... but hard.
 
 ## Ack thinning/Stretch acks
 
