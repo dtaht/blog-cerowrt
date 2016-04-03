@@ -2,9 +2,8 @@
 date = "2016-03-25T18:02:58+01:00"
 draft = true
 tags = [ "wifi", "bufferbloat", "ath10k" ]
-title = "Reveng of the too perfect network"
+title = "Revenge of the too perfect network"
 description = "We've outbuilt ourselves"
-author = "Dave Taht"
 +++
 
 http://www.isen.com/papers/Dawnstupid.html
@@ -20,5 +19,12 @@ The rise of Apps
 Delay based TCPs, QoS, and so on all have one thing in common:
 
 They don't work.
+
+
+Revenge of the too-perfect network
+
+diddled, working on delay based tcps, and 
+
+working on making their portions of the network ever more perfect.
 
 
