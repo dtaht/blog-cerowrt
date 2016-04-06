@@ -1,10 +1,13 @@
 +++
 date = "2016-03-25T18:02:58+01:00"
 draft = true
-tags = [ "wifi", "bufferbloat", "ath10k" ]
+tags = [ "bufferbloat" ]
 title = "Revenge of the too perfect network"
 description = "We've outbuilt ourselves"
 +++
+
+Just note to myself about fixing stuff. This may be long and
+will probably get published elsewhere.
 
 http://www.isen.com/papers/Dawnstupid.html
 
@@ -27,4 +30,10 @@ diddled, working on delay based tcps, and
 
 working on making their portions of the network ever more perfect.
 
+take for granted that the underlying layer will be perfect, and that
+delays due to retransmits part of the "atmosphere" at Layer 2. 
+
+today's internet, congested, and bursting at the seams.
+
+Lose packets at the point of congestion
 
