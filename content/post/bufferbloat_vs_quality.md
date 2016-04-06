@@ -28,7 +28,7 @@ But: the total cpu used on the router was still nearly everything.  Better hardw
 
 The next generation of devices has taken a long time to roll out, but things
 are beginning to look up.  I recently started working with the linksys 1200ac, which under test, is easily cracking over 300Mbits of shaping capability with cake. Being a newer product, there are inevitable bugs elsewhere in that preclude me from wanting to foist it or stuff similar to it (like the Turris Omnia) on more
-normal users, as yet. Well, x86 is good to go...
+normal users, as yet. Well, x86 is good to go... and it would be enormously better for the main router to be doing the job natively, at much lower cost in cpu...
 
 To see if you are experiencing bufferbloat, try the [dslreports](http://www.dslreports.com/speedtest) test.
 
