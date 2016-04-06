@@ -7,11 +7,10 @@ description = "The next generation of home routers can do > 85Mbits right"
 +++
 
 Nearly 4 years ago we had finally beaten bufferbloat on ethernet, dsl,
-cable modems, and fiber. 
+cable modems, and fiber by putting another router in front of the mis-behaving devices to control them better. 
 
-Time went by... 
-
-As ISP bandwidths cracked 60Mbits on a more regular basis, we ran out of CPU on common low end hardware to do the job right.
+Time went by... the hope has long been that these new fq/aqm technologies would
+make it into the next generation of devices... but, as ISP bandwidths cracked 60Mbits on a more regular basis, we ran out of CPU on common low end home routers to do the job right.
 
 Starting about 2 years ago, we've worked on improving the speed of the code, using a new variant of htb+fq_codel we call [cake](http://www.bufferbloat.net/projects/codel/wiki/CakeTechnical).
 
