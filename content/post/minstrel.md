@@ -15,7 +15,7 @@ most proprietary firmwares.
 The Minstrel related algorithms (minstrel-ht and minstrel-blues) have seen continuous tweaks for each new wifi technology (it
 pre-dates 802.11n), without rigorous widescale testing or analysis.
 
-The paper (which has long circulated as "samizdat") fills in many missing blanks as to how to do wifi rate control better, that, so far, I haven't seen in the liturature, even a decade after "non-publication".
+The paper (which has long circulated as "samizdat") fills in many missing blanks as to how to do wifi rate control better, that, so far, I haven't seen in the literature, even a decade after "non-publication".
 
 Minstrel's development pre-dates 802.11n aggregates, it pre-dates the aggressive retries used in many (most) wifi devices, it pre-dates massive improvements
 in DSP technologies, pre-dates MIMO, and it predates wifi achieving a dynamic range of bandwidths of 1Mbit to over a gigabit. It also completely ignores the congestion
