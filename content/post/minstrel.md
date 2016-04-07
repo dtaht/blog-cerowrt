@@ -6,7 +6,7 @@ title = "On the Minstrel Wifi Rate Controller"
 description = "Wireless rate selection is *hard* and deeply misunderstood..."
 +++
 
-Andrew Mcgregor's ["Rate Adaptation for 802.11 Wireless Networks: Minstrel"](/papers/minstrel-sigcomm-final.pdf) is the key, [fundamental paper on minstrel wifi rate control](/papers/minstrel-sigcomm-final.pdf). I don't know how many hundreds of millions of machines Minstrel is deployed on today, but the paper itself *never got past academic review*, perhaps because the opening sentence contained the word *"practical"*.  Even if this paper had been published, and had been deeply understood, very few today seem to understand the problems Minstrel addressed, how those problems have morphed over time, and how new problems have arisen. I will try to get into those in detail in the coming weeks, but briefly:
+Andrew Mcgregor's ["Rate Adaptation for 802.11 Wireless Networks: Minstrel"](/papers/minstrel-sigcomm-final.pdf) is the key, [fundamental paper on minstrel wifi rate control](/papers/minstrel-sigcomm-final.pdf). I don't know how many hundreds of millions of machines Minstrel is deployed on today, but the paper itself describing the algorithm, *never got past academic review*, perhaps because the opening sentence contained the word *"practical"*.  Even if this paper had been published, and had been deeply understood, very few today seem to understand the problems Minstrel addressed, how those problems have morphed over time, and how new problems have arisen. I will try to get into those in detail in the coming weeks, but briefly:
 
 Most research into wifi rate control has died, in part due to
 inaccessabilty of the basic statistics about wifi transmit rates from
