@@ -13,6 +13,10 @@ nextinsection
 
 ## Get images to wrap text around them when I want them
 
+## Pick a commenting system
+
+## Add header graphics
+
 ## DONE: Add mathjax
 
 ## DONE: Get CSS to do better alignment
