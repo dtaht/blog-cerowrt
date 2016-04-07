@@ -26,3 +26,5 @@ support exists for all the basic symbols (&#937;) which is simpler to
 use, and [easily referenced from web resources online](http://www.fileformat.info/info/unicode/char/03a9/index.htm). I suspect I will
 use the UTF-8 codes for the simple stuff and only lean on mathjax for
 complicated equations.
+
+I found out how to get mathjax working for hugo, [here](https://gohugo.io/tutorials/mathjax/).
