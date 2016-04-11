@@ -16,54 +16,69 @@ I'm not sure yet if it's worth to consider this patch for merging per se. My mot
 Here's the
 [flent data for dql on wifi experiment]( http://kazikcz.github.io/dl/2016-04-01-flent-ath10k-dql.tar.gz) if you would like to poke around the dataset.
 
-Here's a short description what-is-what test naming:
- - sw/fq contains only txq/flow stuff (no scheduling, no txop queue limits)
- - sw/ath10k_dql contains only ath10k patch which applies DQL to driver-firmware tx queue naively
- - sw/fq+ath10k_dql is obvious
- - sw/base today's ath.git/master checkout used as base
- - "veryfast" tests TCP tput to reference receiver (4 antennas)
- - "fast" tests TCP tput to ref receiver (1 antenna)
- - "slow" tests TCP tput to ref receiver (1 *unplugged* antenna)
- - "fast+slow" tests sharing between "fast" and "slow"
- - "autorate" uses default rate control
- - "rate6m" uses fixed-tx-rate at 6mbps
- - the test uses QCA9880 w/ 10.1.467
- - no rrul tests, sorry Dave! :)
+Here's a short description what-is-what test naming:  
+- sw/fq contains only txq/flow stuff (no scheduling, no txop queue limits)  
+- sw/ath10k_dql contains only ath10k patch which applies DQL to driver-firmware tx queue naively  
+- sw/fq+ath10k_dql is obvious  
+- sw/base today's ath.git/master checkout used as base  
+- "veryfast" tests TCP tput to reference receiver (4 antennas)  
+- "fast" tests TCP tput to ref receiver (1 antenna)  
+- "slow" tests TCP tput to ref receiver (1 *unplugged* antenna)  
+- "fast+slow" tests sharing between "fast" and "slow"  
+- "autorate" uses default rate control  
+- "rate6m" uses fixed-tx-rate at 6mbps  
+- the test uses QCA9880 w/ 10.1.467  
+- no rrul tests, sorry Dave! :)  
+
+*april 11, note* - I am in progress in regenerating the graphs, excuse the broken links below.
+
+[Dave commented](/fixme) that "testing with rrul is pointless as yet. Although
+interesting to have as a baseline, [rrul](/fixme) will end up stressing out the unchanged
+wifi card's driver more than what you are actually testing".
 
 ## Observations / conclusions:
 
+{{< figure src="/flent/dql_on_wifi.svg" >}}
+
  - DQL builds up throughput slowly on "veryfast"; in some tests it
 doesn't get to reach peak (roughly 210mbps average) because the test
-is too short
+is too short  
+
+{{< figure src="/flent/dql_on_wifi.svg" >}}
 
  - DQL shows better latency results in almost all cases compared to
-the txop based scheduling from my mac80211 RFC (but i haven't
+the txop based scheduling from my mac80211 RFC (but I haven't
 thoroughly looked at *all* the data; I might've missed a case where it
-performs worse)
+performs worse)  
+
+{{< figure src="/flent/dql_on_wifi.svg" >}}
 
  - latency improvement seen on sw/ath10k_dql @ rate6m,fast compared to
 sw/base (1800ms -> 160ms) can be explained by the fact that txq AC
 limit is 256 and since all TCP streams run on BE (and fq_codel as the
-qdisc) the induced txq latency is 256 * (1500 / (6*1024*1024/8.)) / 4
-= ~122ms which is pretty close to the test data (the formula ignores
+qdisc) the induced txq latency is
+`$ ~122ms = 256 * (1500 / (6*1024*1024/8)) / 4 $`
+which is pretty close to the test data (the formula ignores
 MAC overhead, so the latency in practice is larger). Once you consider
 the overhead and in-flight packets on driver-firmware tx queue 160ms
 doesn't seem strange. Moreover when you compare the same case with
 sw/fq+ath10k_dql you can clearly see the advantage of having fq_codel
 in mac80211 software queuing - the latency drops by (another) order of
-magnitude because now incomming ICMPs are treated as new, bursty flows
-and get fed to the device quickly.
+magnitude because now incoming ICMPs are treated as new, bursty flows
+and get fed to the device quickly.  
 
+{{< figure src="/flent/dql_on_wifi.svg" >}}
  - slow+fast case still sucks but that's expected because DQL hasn't
-been applied per-station
+been applied per-station  
 
+{{< figure src="/flent/dql_on_wifi.svg" >}}
  - sw/fq has lower peak throughput ("veryfast") compared to sw/base
 (this actually proves current - and very young least to say - ath10k
 wake-tx-queue implementation is deficient; ath10k_dql improves it and
-sw/fq+ath10k_dql climbs up to the max throughput over time)
+sw/fq+ath10k_dql climbs up to the max throughput over time)  
 
-To sum things up:
+To sum things up:  
  - DQL might be able to replace the explicit txop queue limiting
-(which requires rate control info)
- - mac80211 fair queuing works!
+(which requires rate control info)  
+ - mac80211 fair queuing works!  
 
