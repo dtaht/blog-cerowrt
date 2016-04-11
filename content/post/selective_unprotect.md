@@ -146,6 +146,8 @@ periodically triggered much like how pie works (codel would work too).
 Having wifi rate control not aim for the perfect rate, but the slightly
 less than perfect (and usually faster) rate that *ensures enough loss to keep the backlog small* seems fairly ideal... but hard.
 
+You can also turn off requests for block acknowledgements on some aggregates.
+
 ## Ack thinning/Stretch acks
 
 There's a well known technique for squeezing more bandwidth out of
