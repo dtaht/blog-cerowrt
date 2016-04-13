@@ -21,8 +21,8 @@ Minstrel's development pre-dates 802.11n aggregates, it pre-dates the aggressive
 in DSP technologies, pre-dates MIMO, and it predates wifi achieving a dynamic range of bandwidths of 1Mbit to over a gigabit. It also completely ignores the congestion
 control problem and pre-dates the advances in queue theory led by [codel](/post/codel_on_wifi). Lastly, it has long been in dire need of an update to match modern conditions with massive numbers of clients and interfering access points.
 
-Still, it's the best darn paper on how one wifi rate controller works I've ever read.  Go read it. I'll wait... (There are several papers it references that are good, too!)
+Still, it's the best darn paper and starting point, on how one wifi rate controller works I've ever read.  Go read it. I'll wait... (There are several papers it references that are good, too!)
 
-My main observation from rereading the paper now is that wifi rate control needs
-to aim for a higher rate and/or less retries to achieve the "right" amount of packet loss, not the "best" rate. By an [upper layer signalling minstrel](/post/selective_unprotect) to do that, when needed, we'd be much better off.
+My main observation from rereading the paper now is that wifi rate control sometimes needs
+to aim for a higher rate and/or less retries to achieve the "right" amount of packet loss, not the "best" rate with no packet loss. By an [upper layer signalling minstrel](/post/selective_unprotect) to do that, when needed, we'd be much better off.
 
