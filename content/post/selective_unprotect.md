@@ -125,7 +125,7 @@ But: Ghu help you if you have TWO routers actually acting this way. I'm
 really tempted to do this experiment just because I don't know of any
 good way to simulate what would happen!
 
-## Third option: Protect/Retry less when overloaded
+## Simplest option: Protect/Retry less when overloaded
 
 Another option is to just stop with the retransmit attempts (almost)
 entirely when your stack is backlogged. Quantum physics will do the rest
@@ -133,7 +133,7 @@ of the work for you. This option is implementable today... in fact it
 was implementable 10 years ago and I thought then that was how we'd fix
 it!
 
-It's not optimal - you have some tricky interactions with rate control,
+It's not optimal - you have some tricky interactions with [rate control](/post/minstrel),
 you will lose some packets you don't want to lose, and - in the case of
 the media or rate control acting perfectly - you still need some way of
 dropping or marking packets further up the queue - but it would help.
