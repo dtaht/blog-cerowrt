@@ -3,8 +3,7 @@ date = "2016-04-22T18:02:58+01:00"
 draft = true
 tags = [ "wifi", "bufferbloat" ]
 title = "802.11e hardware queue selection in wifi"
-description = "What's the right way to use the Voice, video, best effort
-and background queues?"
+description = "What's the right way to use the Voice, video, best effort and background queues?"
 +++
 
 ```
