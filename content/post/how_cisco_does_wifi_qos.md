@@ -41,3 +41,7 @@ they "Now had QoS!"
 
 Those that did "get it" - chortled all the way to the bank. For a while.
 
+QoS itself got such a bad name accompanied by high expectations that we felt
+the need to rename all that was needed to get it "more right" as
+"Smart Queue Management", and to work our asses off on making it
+as easy to configure as possible.
