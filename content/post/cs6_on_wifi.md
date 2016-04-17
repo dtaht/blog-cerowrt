@@ -16,8 +16,8 @@ take me [several](/post/hw_queue_selection_in_wifi) attempts to describe
 the shape of the elephant, and then maybe after I'm done I can go back
 and get it all more right.
 
-{{< quote text="but what I said was not what I meant" cite="Humpty
-Dumpty" src="http://www.authorama.com/files/humpty-dumpty.gif" >}}
+quote text="but what I said was not what I meant" cite="Humpty
+Dumpty" src="http://www.authorama.com/files/humpty-dumpty.gif"
 
 ## What CS6 is used for
 
@@ -35,9 +35,12 @@ For starters...
 - a packet packing problem
 - a queuing problem.
 
-The proposed [dscp to 802.11e mapping standard](http://fixme) currently
-makes no difference between multicast and unicast as to how diffserv
-should be handled.
+The proposed
+[dscp to 802.11e mapping standard](https://tools.ietf.org/html/draft-szigeti-tsvwg-ieee-802-11e-01)
+currently makes no difference between multicast and unicast as to how
+diffserv should be handled. It also has issues with how CS6 and CS7
+should be handled, recommending that all packets marked CS7 be dropped
+at internetwork gateways.
 
 ## CS6 usage
 
@@ -61,6 +64,9 @@ update, for example, and 802.11ac adds the ability to aggregate back
 into VO, but I still lean towards VI for CS6.
 
 ... more text to follow ...
+
+I do wish that we'd got a standard for "sparse" packets into wifi,
+it would have made typical gaming much more plausible.
 
 ## Multicast & PowerSave
 
@@ -141,6 +147,14 @@ on there.
 ## Multicast, reachability, and routing protocols
 
 ... fix me....
+
+Mesh networks typically run their multicast rate at much higher than the
+standard - 12 to 36 mbits - in order to get the loss rate high enough to
+be able to pick "closer" stations.
+
+given how most wifi devices behave, babel in particular should probably
+use CS5 rather than CS6 for unicast to get more stuff into the
+aggregatable VI queue.
 
 ## Towards a better multicast
 
