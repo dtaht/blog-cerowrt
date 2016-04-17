@@ -24,7 +24,7 @@ three of my servers in the cloud - 12ms, 48ms, and 84ms - corresponding to Redwo
 
 For variety I also added in an OSX box for some of the RTT fairness tests.  (I have a bunch of other hackerboards I intend to add to things at some point)
 
-Topology: test driver(dancer) <-> router(prancer) <-> {OSX lion, Linux 4.4 (vixen)}
+Topology: test driver(dancer) <-> router(prancer) <-> {OSX Mavericks, Linux 4.4 (vixen)}
 
 ## Quick notes
 
