@@ -8,7 +8,7 @@ description = "Comparing theoretical results with reality for fq-codel, the next
 
 I just restarted long-rtt testing on
 [cake](http://www.bufferbloat.net/projects/codel/wiki/CakeTechnical)
-after aborting the last series of tests in mid-December late last year, as the codel implementation was broken. It's hard to believe it's already April - Moving myself and the lab back from Sweden took some time, there were other difficulties and [distractions](/tags/wifi), and I only just now have enough of the right (new) pieces assembled to give the latest code for [cake](https://github.com/dtaht) a try.
+after aborting the last series of tests in mid-December late last year, as the codel implementation was broken. It's hard to believe it's already April - Moving myself and the lab back from Sweden took some time, there were other difficulties and [distractions](/tags/wifi), and I only just now have enough of the right (new) pieces assembled to give the [latest code for cake](https://github.com/dtaht/sch_cake) a try.
 
 Here's the [flent](https://flent.org) [test results for cake_vs_everything](/flent/cake_vs_everything). It's simpler to just [git clone the repository](https://github.com/dtaht/blog-cerowrt) and browse the results.
 
@@ -39,11 +39,10 @@ The latency for sparse flows actually *goes down* from idle to busy!
 We didn't actually crack lightspeed here, this is in part - is an
 artifact of linux defering "ping" until the device is more busy.
 
-BUT: I think a lot of people have been misled by reading older rrul
-graphs at slower bandwidths - many of the first fq_codel rrul tests
+BUT: I think a lot of people have been misled by [reading older rrul
+graphs at slower bandwidths or non-ethernet technology](http://burntchrome.blogspot.com/2014/08/new-comcast-speeds-new-cerowrt-sqm.html) - many of the first fq_codel rrul tests
 published had 5mbit up bandwidths, this could incur delay of 5-10ms or
-more on the "sparse" flows. In the fq-codel derived algorithms, there is
-actually *no* delay incurred for flows that are sparse enough to "jump
+more on the "sparse" flows in that test. In the fq-codel derived algorithms, there is actually *no* delay incurred for flows that are sparse enough to "jump
 the queue" - only queue building flows are ever delayed in fq_codel.
 
 Cake builds on this further by having an 8 way set associative hash and
