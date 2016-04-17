@@ -1,0 +1,11 @@
+d@dancer:~/public_html/rtt_fair_mac$ sudo bash
+[sudo] password for d: 
+root@dancer:~/public_html/rtt_fair_mac# modprobe tcp_dctcp
+root@dancer:~/public_html/rtt_fair_mac# modprobe tcp_westwood
+root@dancer:~/public_html/rtt_fair_mac# modprobe tcp_cdg
+root@dancer:~/public_html/rtt_fair_mac# cat /proc/sys/net/ipv4/tcp_allowed_congestion_control 
+cubic reno
+root@dancer:~/public_html/rtt_fair_mac# echo cubic reno dctcp westwood cdg > /proc/sys/net/ipv4/tcp_allowed_congestion_control 
+root@dancer:~/public_html/rtt_fair_mac# modprobe tcp_lp
+root@dancer:~/public_html/rtt_fair_mac# modprobe tcp_hybla
+
