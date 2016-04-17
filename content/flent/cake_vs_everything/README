@@ -1,0 +1,10 @@
+Test Notes:
+
+router_setup.sh shows how to use netem effectively on a single interface,
+while using sqm-scripts effectively on the other interface, thus correctly
+(I hope!) combining delay and aqm into a single box.
+
+test_driver.sh: shows the setup for the range of tests and ips I am using.
+
+Neither are particularly automated at the moment. Flipping bandwidths,
+sqm parameters, etc, are done (tediously) by hand.
