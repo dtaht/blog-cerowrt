@@ -15,7 +15,7 @@ Here's the [flent](https://flent.org) [test results for cake_vs_everything](/fle
 Since the last major set of completed test runs, Linux has gone through
 a few revisions, notably adding the much heralded "sch_fq" tcp scheduler,
 which does packet pacing. In my new lab, I also switched from doing delay in userspace, to doing delay via the "netem" command, as it seems - if used properly -
-netem can be trusted now, when used in conjunction with the sqm-scripts.
+netem can be trusted now, when used in conjunction with the sqm-scripts. Maybe - see last plot below...
 
 ## Emulating Reality
 
