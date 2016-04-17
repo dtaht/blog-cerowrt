@@ -2,7 +2,7 @@
 date = "2016-04-16T18:02:58+01:00"
 draft = false
 tags = [ "bufferbloat" ]
-title = "Cake verses everything"
+title = "Cake versus everything"
 description = "Comparing theoretical results with reality for fq-codel, the next generation"
 +++
 
@@ -10,7 +10,7 @@ I just restarted long-rtt testing on
 [cake](http://www.bufferbloat.net/projects/codel/wiki/CakeTechnical)
 after aborting the last series of tests in mid-December late last year, as the codel implementation was broken. It's hard to believe it's already April - Moving myself and the lab back from Sweden took some time, there were other difficulties and [distractions](/tags/wifi), and I only just now have enough of the right (new) pieces assembled to give the [latest code for cake](https://github.com/dtaht/sch_cake) a try.
 
-Here's the [flent](https://flent.org) [test results for cake_vs_everything](/flent/cake_vs_everything). It's simpler to just [git clone the repository](https://github.com/dtaht/blog-cerowrt) and browse the results.
+Here's the [flent tool's](https://flent.org) [test results for cake_vs_everything](/flent/cake_vs_everything). It's simpler to just [git clone the repository](https://github.com/dtaht/blog-cerowrt) and browse the results.
 
 Since the last major set of completed test runs, Linux has gone through
 a few revisions, notably adding the much heralded "sch_fq" tcp scheduler,
