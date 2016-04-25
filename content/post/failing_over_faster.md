@@ -1,6 +1,6 @@
 +++
-date = "2016-04-16T18:02:58+01:00"
-draft = true
+date = "2016-04-24T18:02:58+01:00"
+draft = false
 tags = [ "routing", "babel" ]
 title = "Failing over faster"
 description = "We are still too far from true ambient connectivity"
