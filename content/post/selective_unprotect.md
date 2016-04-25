@@ -7,7 +7,9 @@ description = "Some alternative approaches for losing more packets in a wifi agg
 +++
 
 NOTE: 802.11 standard readers will think of "protection" as a frame being
-encrypted. Below I am talking about the willingness to lose data.
+encrypted. Below I am talking about the willingness to lose data, and
+I ended up starting to revise this piece based on reading the 802.11n-2012
+specification... sorry for the noise and notes.
 
 For years now I've kept trying to get manufacturers, firmware writers,
 device driver writers and OS makers to find ways to drop a couple
@@ -112,6 +114,8 @@ update: The parameter I am talking about is QosNOack, which is in section
 802.11n adopted this form of framing and it's unknown what happens. See 
 also table 7.4 in the standard.
 
+More notes:
+
 ESOP = end of service period. 7.1.3.5.5 is the Queue size
 
 The Queue Size subfield is an 8-bit field that indicates the amount of buffered traffic for a given TC or TS at the non-AP STA sending this frame.  The Queue Size subfield is present in QoS data frames sent by STAs associated in a BSS with bit 4 of the QoS Control field set to 1.  The AP may use information contained in the Queue Size subfield to determine the TXOP duration assigned to non-AP STA.  The queue size value is the total size, rounded up to the nearest multiple of 256 octets and expressed in units of 256 octets, of all MSDUs buffered at the STA (excluding the MSDU of the present QoS data frame) in the delivery queue used for MSDUs with TID values equal to the value in the TID subfield of this QoS Control
@@ -126,73 +130,27 @@ trigger enabling vs delivery enabling.
 
 The traffic-indication virtual bitmap, maintained by the AP that generates a TIM, consists of 2008 bits, and is organized into 251 octets such that bit number N (0 ≤ N ≤ 2007) in the bitmap corresponds to bit number ( N mod 8) in octet number N / where the low-order bit of each octet is bit number 0, and the high order bit is bit number 7.  Each bit in the traffic-indication virtual bitmap corresponds to traffic buffered for a specific STA within the BSS that the AP is prepared to deliver at the time the Beacon frame is transmitted.  Bit number N is 0 if there are no directed frames buffered for the STA whose Association ID is N .  If any directed frames for that STA are buffered and the AP is prepared to deliver them, bit number N in the traffic- indication virtual bitmap is 1.  A PC may decline to set bits in the TIM for CF-Pollable STAs it does not intend to poll (see 11.2.1.6)
 
+## Last packets first
 
-
-
-
-## Last packets first There's another (crazier) alternative, which I call "last packets first".  The above approach has head of line blocking, and I suspect we'll see a lot more tail loss than head loss in future wireless networks. It's the nature of the beast - the more airtime you use, the more likelihood someone else is going to mess up your transmission.  Say you have 4 packets in flow A, 8 in flow B, 1 in flow C, and 2 in D.  You could ship A4,B8,C1,D2 first in the aggregate, and only protect those for the retransmit phase. TCP acks arriving out of order don't hurt, they just get ignored. (mostly).  TCP data arriving out of order will be compensated for by most modern TCPS. Bittorrent doesn't care at all. It will mess up voip if multiple packets get in an aggregate (unlikely), but video in most videoconferencing protocols should recover just fine.
+There's another (crazier) alternative, which I call "last packets first".  The above approach has head of line blocking, and I suspect we'll see a lot more tail loss than head loss in future wireless networks. It's the nature of the beast - the more airtime you use, the more likelihood someone else is going to mess up your transmission.  Say you have 4 packets in flow A, 8 in flow B, 1 in flow C, and 2 in D.  You could ship A4,B8,C1,D2 first in the aggregate, and only protect those for the retransmit phase. TCP acks arriving out of order don't hurt, they just get ignored. (mostly).  TCP data arriving out of order will be compensated for by most modern TCPS. Bittorrent doesn't care at all. It will mess up voip if multiple packets get in an aggregate (unlikely), but video in most videoconferencing protocols should recover just fine.
 
 But: Ghu help you if you have TWO routers actually acting this way. I'm
 really tempted to do this experiment just because I don't know of any
 good way to simulate what would happen!
 
+More notes:
+
 TPC Report availability?
 
-mean
-data
-rate,
-the
-peak
-data
-rate,
-and
-the
-burst
-size
-are
-the
-parameters
-of
-the
-token
-bucket
-model,
-which
-provides
-standard
-terminology
-for
-describing
-the
-behavior
-of
-a
-traffic
-source.
-The
-token
-bucket
-model
-is
-described
-in
-IETF
-RFC
-2212-1997
-[B19]
-,
-IETF RFC 2215-1997
-[B20]
-, and
-IETF RFC 3290-2002
-[B24]
-.
+The spec seems to require something like htb actually in the device driver
+to regulate access to the vi and vo queues:
+
+mean data rate, the peak data rate, and the burst size are the parameters of the token bucket model, which provides standard terminology for describing the behavior of a traffic source.  The token bucket model is described in IETF RFC 2212-1997 [B19] , IETF RFC 2215-1997 [B20] , and IETF RFC 3290-2002 [B24] .
 
 9.1
 
 The QoS AP announces the EDCA parameters in selected Beacon frames and in all Probe Response and (Re)Association Response frames by the inclusion of the EDCA Parameter Set information element.  If no such element is received, the STAs shall use the default values for the parameters.
 "The management frames shall be sent using the access category AC_VO without being restricted by admission control procedures."
-
 
 The AP may use a different set of EDCA parameters than it advertises to the STAs in its BSS.
 
@@ -202,12 +160,14 @@ MAC-Level acknowledgments The reception of some frames, as described in 9.2.8 , 
 9.6 Multirate support
 Some PHYs have multiple data transfer rate capabilities that allow implementations to perform dynamic rate switching with the objective of improving performance.  The algorithm for performing rate switching is beyond the scope of this standard, but in order to ensure coexistence and interoperability on multirate- capable PHYs, this standard defines a set of rules to be followed by all STAs. 
 
-9.7 violated
+9.7 is violated by most drivers -
 
-dmission control, in general, depends on vendors' implementation of the scheduler, available channel capacity, link conditions, retransmission limits, and the scheduling requirements of a given stream.  All of these criteria affect the admissibility of a given stream.  If the HC has admitted no streams that require
-polling, it may not find it necessary to perform the scheduler or related HC functions.
+"admission control, in general, depends on vendors' implementation of the scheduler, available channel capacity, link conditions, retransmission limits, and the scheduling requirements of a given stream.  All of these criteria affect the admissibility of a given stream.  If the HC has admitted no streams that require
+polling, it may not find it necessary to perform the scheduler or related HC functions."
  
-## Simplest option: Protect/Retry less when overloaded Another option is to just stop with the retransmit attempts (almost) entirely when your stack is backlogged. Quantum physics will do the rest of the work for you. This option is implementable today... in fact it was implementable 10 years ago and I thought then that was how we'd fix it! It's not optimal - you have some tricky interactions with [rate control](/post/minstrel),
+## Simplest option: Protect/Retry less when overloaded
+
+Another option is to just stop with the retransmit attempts (almost) entirely when your stack is backlogged. Quantum physics will do the rest of the work for you. This option is implementable today... in fact it was implementable 10 years ago and I thought then that was how we'd fix it! It's not optimal - you have some tricky interactions with [rate control](/post/minstrel),
 you will lose some packets you don't want to lose, and - in the case of
 the media or rate control acting perfectly - you still need some way of
 dropping or marking packets further up the queue - but it would help.
