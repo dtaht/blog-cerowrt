@@ -7,15 +7,14 @@ description = "Cheaping out for the sake of science"
 +++
 
 The original CeroWrt effort was driven by a 70 dollar piece of hardware.
-The theories and fixes for the Internet as a whole have been rolling out
-worldwide ever since.
+It's fixes for the Internet have been rolling out worldwide ever since.
 
-It's not every day you can make such a difference on such a low budget.
-
-CeroWrt, as a separate router distro - is currently dead - bufferbloat project related fixes and improvements tend to go directly upstream  into several distros without us needing to build and distribute our own. This is a good thing -
+CeroWrt, as a separate router distro - is currently dead - Bufferbloat project related fixes and improvements tend to go directly upstream  into several distros without us needing to build and distribute our own. This is a good thing -
 because [adding fq_codel to wifi](/post/fq_codel_ath10k)- has taken 2+ years of design and architectural work to
 even conceptualize,  and work on that has got to take place on higher end
 systems that are easier to debug.
+
+It's not every day you can make such a difference on a low budget.
 
 Still, that doesn't stop me from being cheap, wherever I can, and I hope
 if I thoroughly document how to build a cheap networking lab, that others
@@ -47,10 +46,16 @@ worked with minimal effort.
 
 ## Tested Hackerboards
 
-### Beaglebone black
+I got into the hackerboard revolution early. Too early. My vision was to
+have a set of small in-home boxes, for basic services (like email),
+network measurement, NAS, and so on. In the first phase of the cerowrt
+project... none ever made it out of the lab.
 
-I was an early adopter of the beaglebone black. I chose it (over the
-raspberry pi) as it seemed, well, heftier, better designed, without
+### Beaglebone Black
+
+The beaglebone black was my first choice of hackerboard in 2012.
+
+I chose it (over the raspberry pi) as it seemed, well, heftier, better designed, without
 parts that stuck out and broke, and capable of handling 100Mbit in
 both directions because the ethernet was hooked up directly to the
 system bus, rather than through USB.
@@ -171,9 +176,9 @@ but filing a few bug reports got the rpi2, rpi3, and odroid C2 fixed. A responsi
 
 ## Summary
 
-My own goal was quite different from other's: I wanted to be
+My own goal was quite different from others: I wanted to be
 able to drive a network fast, and be able to experiment with routing
-protocols, fair queuing and aqm algorithms, on the cheap, while using
+protocols, fair queuing and aqm algorithms, and do it on the cheap, while using
 minimal power and space. 
 
 Where I setting a different goal - say audio or video support - the
