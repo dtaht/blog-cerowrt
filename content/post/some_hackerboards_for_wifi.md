@@ -49,7 +49,7 @@ worked with minimal effort.
 I got into the hackerboard revolution early. Too early. My vision was to
 have a set of small in-home boxes, for basic services (like email),
 network measurement, NAS, and so on. In the first phase of the cerowrt
-project... none ever made it out of the lab.
+project... none ever made it out of the lab. 
 
 ### Beaglebone Black
 
@@ -87,7 +87,6 @@ a slight proportion of the ones that could be done.
 I was totally unable to figure out the flasher enough to flash something
 on it. Maybe it works, maybe it doesn't. It was the most expensive of
 the boards I wanted to try and had a nice cpu on it... it's in a box somewhere...
-
 ### Raspberry Pis
 
 The Pi is simply the best known hackerboard, the board that defined a catagory,
@@ -97,6 +96,13 @@ irons, to go and "make" stuff. That said, I haven't had time to fiddle with
 a single GPIO, yet, on one, I merely want to make the network stack the
 best in the world, and have more early adoptors using that, and wondering
 why their main OS didn't perform as well.
+
+A key bufferbloat problem in nearly all the hackerboards is that they
+run at 100Mbit, along with a 1000 packet fifo network queue - this translates
+lates out to nearly 100ms of delay in the stack itself that is not needed.
+
+The first thing I tried on all these hackerboards was fq_codel, and 
+it worked *great*, cutting induced latencies below 5ms. Someone should go and make that the default qdisc on these....
 
 #### Pi1
 
