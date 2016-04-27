@@ -1,7 +1,7 @@
 +++
 date = "2016-03-30T18:02:58+01:00"
 draft = true
-tags = [ "wifi", "bufferbloat"  ]
+tags = [ "lab", "wifi", "bufferbloat"  ]
 title = "All up testing"
 description = "Finding and fixing real problems, faster"
 +++
@@ -14,6 +14,11 @@ Scientists find it maddening. They want to test each variable in
 isolation, figure it out thoroughly, write a paper, then move on.
 
 The real world does not have many single variable problems. Many
+
+Painstakingly develop a model, and then toss it away for 
+
+The question all up testing tends to answer is - "What is the important
+variable?"
 
 Com,plexity collapse
 
