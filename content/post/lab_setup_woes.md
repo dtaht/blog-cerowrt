@@ -27,7 +27,7 @@ In poking around my configs...
 * Bad idea - what if the ntp pool for openwrt goes down? Hmm.. I think 
 I'll add [a local ntp stratum one server](http://esr.ibiblio.org/?p=7159).
 
-I have dnssec universally enabled, that might have been a cause...
+I have dnssec universally enabled, that might have been a cause... oh, the headaches with bootstrapping time for it we've had!
 
 * I should probably prioritize using ipv6 dns over ipv4 - it saves on 
 nat entries...
@@ -36,11 +36,11 @@ nat entries...
 have to poke into that. It won't be the first time someone successfully
 or even semi-successfully hacked me...
 
-In all the hassles I've had in getting the [new lab](/tags/lab) up, I've been slowly drafting a piece on [All up testing](/post/all_up_testing) that explains
+In all the hassles I've had in getting the [new lab](/tags/lab) up, I've been slowly drafting a piece on [all up testing](/post/all_up_testing) that explains
 my engineering and testing philosophy better... but briefly it boils down
 to: you write the code, you test the code, you write (or follow) the RFC, you push the code upstream to as many places as matter, and then you sit
 and you wait, to see if what you did actually made it into the new
-products, correctly... you sit on the web and watch the early adopters create innovative ways to violate your assumptions - you revise the code and RFC... and then you pretend you are a new user and you test the hell out of them as they emerge out the productization pipeline to apply course corrections until it is *right*.
+products, correctly... you sit on the web and watch the early adopters create innovative ways to violate your assumptions - you revise the code and tests and RFC... and then you pretend you are a new user and you test the hell out of each new product as they emerge out the productization pipeline to apply course corrections until it is *right*.
 
 It is astonishing how fragile some ideas end up being.
 
@@ -53,7 +53,7 @@ new products did GRO extensively and that messed up the codel algorithm slghtly.
 The GRO problem is not horrible, just not ideal - and I am still grumpy in that most that shipped fq_codel in real products never
 bothered to test with the [free test tools we developed](https://flent.org) - or talked to the
 original developers on it on [our open mailing lists](https://lists.bufferbloat.net/listinfo/) - they just assumed
-everything worked, wrote a dumb, fragile script to enable it on the box, instead of the battle tested [sqm script](https://github.com/tohojo/sqm-scripts) we developed - slapped a marketing label on the box - and shipped it.
+everything worked, wrote a dumb, fragile, incomplete script to enable it on the box, instead of the battle tested [sqm script](https://github.com/tohojo/sqm-scripts) we developed - slapped a marketing label on the box - and shipped it.
 
 The guy that developed the first waterbed was smart enough - and kind enough - to give one to the guy that invented it - Robert Heinlein - and I wish more IoT vendors would twig to the amount of free QA they'd get by letting someone in on their
 new product - before it shipped - that had written some of the code for it.
