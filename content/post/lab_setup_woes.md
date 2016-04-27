@@ -12,10 +12,10 @@ I could ping 8.8.8.8, but attempts to use that as name service didn't work
 from anywhere in the network.
 
 I had *zero* idea wtf was going on. I rebooted everything. The backup
-router did not supply a route to itself via babel (although it has a ssh key
+router did not supply a route to itself via babel. (although it has a ssh key
 on it from the master server, I couldn't get to it without that route)
 
-I rebooted everything again. I twiddled with dns everywhere. After an hour of fiddling... things started to work. 
+I rebooted everything again... I twiddled with dns everywhere. After an hour of fiddling... and for no apparent reason... things started to work. 
 
 Why did it go to hell in the first place? No freaking idea. In retrospect
 I should have done a bit more diagnostics (maybe we had a power flicker
@@ -52,8 +52,8 @@ new products did GRO extensively and that messed up the codel algorithm slghtly.
 
 The GRO problem is not horrible, just not ideal - and I am still grumpy in that most that shipped fq_codel in real products never
 bothered to test with the [free test tools we developed](https://flent.org) - or talked to the
-original developers on it on our open mailing lists - they just assumed
-everything worked, slapped a marketing label on the box - and shipped it.
+original developers on it on [our open mailing lists](https://lists.bufferbloat.net/listinfo/) - they just assumed
+everything worked, wrote a dumb, fragile script to enable it on the box, instead of the battle tested [sqm script](https://github.com/tohojo/sqm-scripts) we developed - slapped a marketing label on the box - and shipped it.
 
 The guy that developed the first waterbed was smart enough - and kind enough - to give one to the guy that invented it - Robert Heinlein - and I wish more IoT vendors would twig to the amount of free QA they'd get by letting someone in on their
 new product - before it shipped - that had written some of the code for it.
@@ -66,7 +66,7 @@ and I can go back to fixing each known remaining problem, which
 include the [linksys 1200ac misbehaving *badly* at GigE](/post/1200ac_gige_weirdness), the [ath10k doing
 weird things in powersave](/post/poking_at_powersave), all the usb wifi
 sticks behaving badly in general, and trying to get a stable lab configuration
-that will let me consistently explore applying fq_codel to wifi.
+that will let me consistently explore [applying fq_codel to wifi](/tags/wifi).
 
 I have no idea how normal people build working networks. But I break
 these things because, well, someone has to sort the bugs out. I wish
