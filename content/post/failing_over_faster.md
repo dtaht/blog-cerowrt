@@ -18,6 +18,17 @@ I've switched to how things were done "in the real world" - And I'd get up from 
 
 At the moment, I am testing the latest babel daemon (what will become 1.8) and have a bunch of links up.  I was testing multiple routes through the middle of the network (not the philosophical host mobility thing above), where I'd hope for better behavior while there is load.
 
+The topology looks like this:
+
+```
+test server - S			 Wifi backup link
+              W  - odroid C2 -    /
+	      I		       switch - test client
+	      T  - apu2      -
+	    / C
+wifi backup   H
+```
+
 So what I get currently from trying to do failover in the middle of the network right now, using the -l option and the supplied patch, is that usually the failover is not quite quick enough, and 1 or more connections fails like this: (using the flent rrul test here)
 
 ```
@@ -30,7 +41,7 @@ Program output:
 
 ```
 
-{{< figure src="/flent/failing_over_faster/no_backup_route_recovery.svg" >}}
+{{< figure src="/flent/failing_over_faster/no_backup_route_recovery.svg" link="/flent/failing_over_faster/no_backup_route_recovery.svg" >}}
 
 The first failover kills the download stream, the wifi failover (T+20) survives
 the change, with very low throughput and horrific (non-as-yet-fq_codeled) latency (see the ping), then it finds
@@ -62,7 +73,7 @@ So I got a mildly better result by installing a static backup link, like this:
 
 for which the traffic survives the ifconfig usbnet0 down event better.
 
-{{< figure src="/flent/failing_over_faster/network_behavior_with_backup_route_installed.svg" >}}
+{{< figure src="/flent/failing_over_faster/network_behavior_with_backup_route_installed.svg" link="/flent/failing_over_faster/network_behavior_with_backup_route_installed.svg" >}}
 
 I imagine that putting in the "3 best routes" into the kernel RIB is not something most meshy daemons do?
 
@@ -79,14 +90,6 @@ Everything has something fq_codel derived on it - short queues being
 a good thing particularly if you want to quickly recover from a route
 flap.
 
-```
-test server - S			 Wifi backup link
-              W  - odroid C2 -    /
-	      I		       switch - test client
-	      T  - apu2      -
-	    / C
-wifi backup   H
-```
 
 ```
 root@c2:~# sleep 90; ifconfig usbnet- down; sleep 50; ifconfig usbnet0 up
