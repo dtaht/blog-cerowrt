@@ -58,6 +58,14 @@ everything worked, wrote a dumb, fragile, incomplete script to enable it on the 
 The guy that developed the first waterbed was smart enough - and kind enough - to give one to the guy that invented it - Robert Heinlein - and I wish more IoT vendors would twig to the amount of free QA they'd get by letting someone in on their
 new product - before it shipped - that had written some of the code for it.
 
+The UBNT folk co-operated and collaborated with their user community and they have a [first rate shaper/fq_codel implementation/gui](http://community.ubnt.com/t5/EdgeMAX-Updates-Blog/EdgeMAX-EdgeRouter-software-release-v1-8-0/ba-p/1490756) now in versions 1.7 and 1.8 of their firmware for all their [edgerouter products](http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=edgerouter).
+
+The [opnsense folk, also](https://github.com/opnsense/core/issues/505) collaborate heavily.
+
+Why nobody else? What's so hard with engaging the experts and authors? Our names and email addresses are in the code... we care... we want to see this stuff used... properly. We want to know of bugs and other issues....
+
+Anyway...
+
 As for what went wrong this morning? Well, I am testing all new gear, 
 trunk code for openwrt, the latest babeld, and a mixture of kernels on
 various platforms (pi2,pi3,c2,x86) ranging in age from days old to 4
