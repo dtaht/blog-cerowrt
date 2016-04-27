@@ -12,10 +12,10 @@ I could ping 8.8.8.8, but attempts to use that as name service didn't work
 from anywhere in the network.
 
 I had *zero* idea wtf was going on. I rebooted everything. The backup
-router did not supply a route to itself via babel (and it has a ssh key
-on it from the master server, but it couldn't get to it without that route)
+router did not supply a route to itself via babel (although it has a ssh key
+on it from the master server, I couldn't get to it without that route)
 
-I rebooted everything again. I twiddled with dns everywhere. After a few minutes, things started to work. 
+I rebooted everything again. I twiddled with dns everywhere. After an hour of fiddling... things started to work. 
 
 Why did it go to hell in the first place? No freaking idea. In retrospect
 I should have done a bit more diagnostics (maybe we had a power flicker
@@ -27,6 +27,8 @@ In poking around my configs...
 * Bad idea - what if the ntp pool for openwrt goes down? Hmm.. I think 
 I'll add [a local ntp stratum one server](http://esr.ibiblio.org/?p=7159).
 
+I have dnssec universally enabled, that might have been a cause...
+
 * I should probably prioritize using ipv6 dns over ipv4 - it saves on 
 nat entries...
 
@@ -34,8 +36,7 @@ nat entries...
 have to poke into that. It won't be the first time someone successfully
 or even semi-successfully hacked me...
 
-In all the hassles I've had in getting the [new lab](/tags/lab) up, I've been slowly
-drafting a piece on [All up testing](/post/all_up_testing) that explains
+In all the hassles I've had in getting the [new lab](/tags/lab) up, I've been slowly drafting a piece on [All up testing](/post/all_up_testing) that explains
 my engineering and testing philosophy better... but briefly it boils down
 to: you write the code, you test the code, you write (or follow) the RFC, you push the code upstream to as many places as matter, and then you sit
 and you wait, to see if what you did actually made it into the new
@@ -62,7 +63,7 @@ trunk code for openwrt, the latest babeld, and a mixture of kernels on
 various platforms (pi2,pi3,c2,x86) ranging in age from days old to 4
 years old. Damned if I know what went wrong! I'm just glad it recovered
 and I can go back to fixing each known remaining problem, which
-include the linksys 1200ac misbehaving *badly* at GigE, the [ath10k doing
+include the [linksys 1200ac misbehaving *badly* at GigE](/post/1200ac_gige_weirdness), the [ath10k doing
 weird things in powersave](/post/poking_at_powersave), all the usb wifi
 sticks behaving badly in general, and trying to get a stable lab configuration
 that will let me consistently explore applying fq_codel to wifi.
@@ -71,5 +72,4 @@ I have no idea how normal people build working networks. But I break
 these things because, well, someone has to sort the bugs out. I wish
 it paid better. I wish I had an AI assistant for diagnostics.
 
-My thanks to [my gf]() who was perfectly happy to let me sleep in this morning...  because she could still use the internet on her phone, over 3G. And she
-made a huge pot of coffee, because she knew I'd be grumpy without connectivity.
+My thanks to [my gf](https://www.instagram.com/om_lorna/) who was perfectly happy to let me sleep in this morning...  because she could still use the internet on her phone, over 3G. And she made a huge pot of coffee, because she knew I'd be grumpy without connectivity.
