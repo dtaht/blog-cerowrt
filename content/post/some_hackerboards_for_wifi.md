@@ -10,7 +10,7 @@ The original CeroWrt effort was built on a 70 dollar piece of hardware.
 Fixes for the whole Internet have been rolling out worldwide ever since.
 
 CeroWrt, as a separate router distro - is currently dead - Bufferbloat project related fixes and improvements tend to go directly upstream  into several distros without us needing to build and distribute our own. This is a good thing -
-because [adding fq_codel to wifi](/post/fq_codel_ath10k)- has taken 2+ years of design and architectural work to
+because [adding fq_codel to wifi](/post/fq_codel_on_ath10k)- has taken 2+ years of design and architectural work to
 even conceptualize,  and work on that has got to take place on higher end
 systems that are easier to debug.
 
