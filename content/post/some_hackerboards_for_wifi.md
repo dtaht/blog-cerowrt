@@ -1,7 +1,7 @@
 +++
 date = "2016-04-24T22:02:58+01:00"
 draft = false
-tags = [ "wifi", "bufferbloat" ]
+tags = [ "lab", "wifi", "bufferbloat" ]
 title = "Some hackerboards for benchmarking networks"
 description = "Cheaping out for the sake of science"
 +++
@@ -21,11 +21,13 @@ if I thoroughly document how to build a cheap networking lab, that others
 will follow, and help explore interesting problems in wired, wireless, and
 home routing and network naming services.
 
-So - this is about the 7th lab I've designed in 5 years - this time:
+So - this is about the [7th lab](/tags/lab) I've designed in 5 years - this time:
 
-I'd like to be testing the latest outputs of the homenet working group,
-babeld - basically functionality that the cerowrt project enabled that
-also required some host support, dncp, and the mdns-proxy.
+I'd like to be testing the latest outputs of the [homenet working group](https://tools.ietf.org/wg/homenet/), basically functionality that the cerowrt project enabled that also required some host and router support.
+
+* babeld
+* dncp
+* mdns-proxy
 
 A secondary goal is to get on top of the latest generation of hardware
 and make sure our requirements - debloating, wifi, kernel support for
@@ -36,7 +38,7 @@ default.
 gear is a matter of reading a lot of web pages and fiddling, and I'm at
 the stage in life where I'd like stuff to "just work", but oh, well.)
 
-Lastly, (and most importantly) I wanted a set of devices to drive various loads on the wifi/fq_codel testbed. What I used to use was old laptops or spare routers I had lying around, but given that I have severe power and space
+Lastly, (and most importantly) I wanted a set of devices to drive various loads on the wifi/fq_codel testbed. What I used to use was old laptops or spare routers I had lying around, but given that I (always) have severe power and space
 constraints it seemed logical to investigate using the latest generation
 of hackerboards - small arm based boxes like the rasberry pi - to see if
 they were up to the job.
@@ -49,31 +51,36 @@ worked with minimal effort.
 I got into the hackerboard revolution early. Too early. My vision was to
 have a set of small in-home boxes, for basic services (like email),
 network measurement, NAS, and so on. In the first phase of the cerowrt
-project... none ever made it out of the lab. 
+project... the few that made it out of the lab failed in the field.
+
+A key bufferbloat problem in nearly all the hackerboards is that they
+run at 100Mbit, along with a 1000 packet fifo network queue - this translates
+lates out to nearly 100ms of delay in the stack itself that can be eliminated.
+
+The first thing I tried on all these hackerboards was fq_codel, and 
+it worked *great* on most...  cutting induced latencies below 5ms. Someone should go and make that the default qdisc on these....
 
 ### Beaglebone Black
 
 The beaglebone black was my first choice of hackerboard in 2012.
 
-I chose it (over the raspberry pi) as it seemed, well, heftier, better designed, without
-parts that stuck out and broke, and capable of handling 100Mbit in
+I chose it (over the raspberry pi) as it seemed, well, heftier, better designed, without parts that stuck out and broke, and capable of handling 100Mbit in
 both directions because the ethernet was hooked up directly to the
 system bus, rather than through USB.
 
-I did the port of BQL to it, and [it behaved really well](http://snapon.lab.bufferbloat.net/~d/beagle_bql/bql_makes_a_difference.png). However I was
-perpetually rebooting them, after a few days, or weeks, or months.
+I did the port of BQL to it, and it behaved really well
 
-I had a few cases where the SD card fried completely, also. 
+{{< figure src="http://snapon.lab.bufferbloat.net/~d/beagle_bql/bql_makes_a_difference.png" >}}
+
+However I was perpetually rebooting them, after a few days, or weeks, or months.  I had a few cases where the SD card fried completely, also.
 
 Kernel development on that platform has continued, so I figured that
 by now they'd become stable, and I'd become cautious enough about getting
 genuine SD cards out of amazon to maybe get something that lasted.
 
-But, foolishly, this time, I thought I'd try minix on it.
+But, foolishly, this time, I thought I'd try [minix](http://wiki.minix3.org/doku.php?id=developersguide:minixonarm) on it rather than debian.
 
-I flashed a card, it failed to boot,
-and I moved onto other problems. It still seems like a viable board
-to be using, but it wasn't as sexy as the new stuff.
+I flashed a card, it failed to boot.  I moved onto other problems. The beaglebone still seems like a viable board to be using, but it wasn't as sexy as the new stuff.
 
 I still think bringing up minix would be *cool*. And the estimate
 I did of [how many hours it would take to add BQL to everything](https://lists.bufferbloat.net/pipermail/bloat/2014-June/001980.html), still
@@ -82,27 +89,22 @@ holds. It would not take that much to make the world that much less latent.
 Sadly the number of BQL enabled drivers in the linux kernel remains 
 a slight proportion of the ones that could be done.
 
-### can't even remember the name.
+### [firefly RK3288](http://wiki.t-firefly.com/index.php/Firefly-RK3288/en)
 
 I was totally unable to figure out the flasher enough to flash something
 on it. Maybe it works, maybe it doesn't. It was the most expensive of
-the boards I wanted to try and had a nice cpu on it... it's in a box somewhere...
-### Raspberry Pis
+the boards I wanted to try and had a nice cpu on it and an integral wifi
+chip...
 
-The Pi is simply the best known hackerboard, the board that defined a catagory,
-the board that showed the world there was more to computing than shiny 
+### [Raspberry Pis](https://www.raspberrypi.org/)
+
+The Pi is simply the best known hackerboard, the board that defined the catagory, the board that showed the world there was more to computing than shiny 
 tablets, and I love what it's done to get more hands in there, with soldering
 irons, to go and "make" stuff. That said, I haven't had time to fiddle with
 a single GPIO, yet, on one, I merely want to make the network stack the
 best in the world, and have more early adoptors using that, and wondering
 why their main OS didn't perform as well.
 
-A key bufferbloat problem in nearly all the hackerboards is that they
-run at 100Mbit, along with a 1000 packet fifo network queue - this translates
-lates out to nearly 100ms of delay in the stack itself that is not needed.
-
-The first thing I tried on all these hackerboards was fq_codel, and 
-it worked *great*, cutting induced latencies below 5ms. Someone should go and make that the default qdisc on these....
 
 #### Pi1
 
@@ -112,7 +114,10 @@ slot. I am grateful to the pi's existence, however - it in particular made
 armhf (hard float) a viable concept across all of linux. Having spent years working on arms with soft floating point, and being frustrated at the inefficiencies of the EABI (a better soft floating point) - hard float was a major step forward, that was rapidly adopted across the arm-using industry.
 
 You don't need floating point, until you *need* it. That said, I no longer
-use any pi's in my testbed, I broke too many of the sd card slots.
+use any pi1's in my testbed, I broke too many of the sd card slots.
+
+I skipped the next generation of pi which fixed most of that. Then the pi2
+came out.
 
 #### Pi2
 
@@ -169,16 +174,44 @@ about yocto to do something useful with it.
 
 I wish there was, at least, some debian support for it.
 
+### [Adapteva Parallella](http://parallella.org/)
+
+Needing a fan and a case and a difficult load of linux, these are back in a box somewhere. I like this board a lot but at double the cost of the other boards,
+for my purposes it's mostly out of the running.
+ 
+### [OneNetSwitch](http://www.meshsr.com/)
+
+I had (and still retain) great hope for this project, so much so that I backed
+it on kickstarter, and I started learning the vivado design tool and chisel
+language (great fun) and exploring things like the soft risc-v co-processor...
+
+... but I ran out of time for it and getting to critical mass from version .1
+is taking a long time.
+
+What I'd hoped for was a community as large, or larger than [netfpga.org](http://netfpga.org)'s to appear for it, to get to where we could finally write the logic
+to get fq_codel into switch hardware (where it belongs). We have existence
+proofs already in verilog for both DRR and aqm technologies, this seemed
+like an ideal platform to go to the next level. The design I have for it
+looks like it will work with a 3 stage packet pipeline.
+
+Lately some interesting SDR work has appeared elsewhere in [Vector Packet Processing](https://fd.io/technology) which (someone!) working on would have more immediate benefit. We need this stuff to work on that...
+
+I spread out my 8 onenetswitches boards around the world to people that might have been able to make a dent in these problems, and haven't got back to it.
+
 ## Random Thoughts
 
 Looking at the plethora of power supplies on the power strip, I can't help
 but want some sort of USB based power strip with remote power control to
-control them. Kind of like a digiloggers. I'd save 6 bucks on power
-supplies AND get something I could control remotely to reboot stuff
-with.
+control them. Kind of like a [digiloggers web power switch](http://www.digital-loggers.com/lpc.html). I'd save 6 bucks on power supplies AND get something I could control remotely to reboot stuff with. I *may* switch to using a high powered
+usb3 hub, but I don't know of any that also have a control to cycle the power
+on each port. It would be cool to also use a usb gadget interface to add another
+ethenet port to the devices that support it (beaglebone does, don't know 
+about the others).
 
 Issues along the way included: IPV6_SUBTREES was not in most of the kernels -
-but filing a few bug reports got the rpi2, rpi3, and odroid C2 fixed. A responsive community is very helpful for any given hackerboard.
+but filing a few bug reports got the rpi2, rpi3, and odroid C2 fixed.
+
+A responsive community is very helpful for any given hackerboard.
 
 ## Summary
 
