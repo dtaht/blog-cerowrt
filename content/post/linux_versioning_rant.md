@@ -1,19 +1,22 @@
 +++
-date = "2016-05-01T01:02:58+01:00"
-draft = true
+date = "2016-05-01T12:02:58+01:00"
+draft = false
 tags = [ "wifi", "bufferbloat" ]
-title = "Dear Academia: please document your patches and kernel versions"
-description = "As unlike the physical world, networking has few real constants"
+title = "Network Academia: Please document your patches and kernel versions in your papers"
+description = "As, unlike the physical world, networking has few real constants, and lots of bugs."
 +++
 
-This is taken, almost verbatim, from a rant in 2013
-[on linux versioning](https://lists.bufferbloat.net/pipermail/bloat/2013-November/001735.html)
+This is taken, almost verbatim, from a rant of mine in 2013
+[on linux versioning](https://lists.bufferbloat.net/pipermail/bloat/2013-November/001735.html) .
 
-Honestly, if every academic paper on networking published the exact
+I will work on it at some point to reduce the "rantyness" of it...
+
+But: honestly, if every academic paper on networking published the exact
 linux kernel, and a git tree to it, it would be a better world. I think
-this rant had useful effects when I first wrote it, but I just read (and
-rejected)a bunch of papers this week that did not document their work
-thoroughly enough.
+this rant had useful effects when I first wrote it, but I just read
+(may, 2015) - (and
+rejected - and you know who you are) a bunch of papers this week that
+did not document their work thoroughly enough.
 
 ...
 
@@ -27,7 +30,7 @@ Linux.
 
 The "X" is the major version number. It's only changed 4 times. "Y",
 is the minor version number. These come out roughly quarterly and
-consist of new development of "features". "Z" are critical patches
+consist of new development of "features". The "Z" is critical patches
 backported from newer releases. -Q is usually the vendor's kernel
 build number which often contains many more patches.
 
@@ -44,7 +47,7 @@ Periodically a
 is picked and receives updates for as long as someone is funded to do
 it.
 
-*the only things that enter into a long term stable release* are fixes
+*the only things that enters into a long term stable release* are fixes
 for security bugs, crash bugs, and truly egregious bugs that can be
 somewhat easily fixed. "Features", don't.
 
@@ -109,7 +112,7 @@ Date:   Wed May 2 02:28:41 2012 +0000
     source.
 
 commit b713f6c7d317c136f03c132203d0900f4a0de084
-Author: Yuchung Cheng <ycheng at google.com>
+Author: Yuchung Cheng <ycheng AT google.com>
 Date:   Mon Apr 30 06:00:18 2012 +0000
 
     tcp: fix infinite cwnd in tcp_complete_cwr()
