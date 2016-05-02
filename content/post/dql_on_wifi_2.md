@@ -8,7 +8,7 @@ author = "Michal Kazior"
 +++
 
 This is the 3rd part of a series exploring how to go about adding
-fq_codel to wifi. This is the
+fq_codel to wifi. This is the now obsolete
 [fq_codel_on_wifi v3 patchset](https://lists.bufferbloat.net/pipermail/codel/2016-April/002165.html),
 exploring the interactions between DQL, FQ, and FQ_CODEL on the
 [ath10k wifi driver](/tags/ath10k).
@@ -43,24 +43,25 @@ vm0 ip netns exec veth flent rtt_fair_up -H 192.168.99.2 -H 192.168.99.2
 $cherry_names($k)^'-'^$names(`{expr $j + 1}) } }
 ```
 
-## Results
+## Baseline results
 
-{{< figure src="/flent/2016-04-12-flent-fqmac-ath10k-dql/normal-base.svg" >}}
+{{< figure src="/flent/2016-04-12-flent-fqmac-ath10k-dql/normal-base.svg" title="Todays normal, terrible baseline wifi performance at low rates">}}
 
-{{< figure src="/flent/2016-04-12-flent-fqmac-ath10k-dql/normal-fq.svg" >}}
+{{< figure src="/flent/2016-04-12-flent-fqmac-ath10k-dql/normal-fqcodel.svg" title="fq-codel at qdisc layer accomplishes nothing" >}}
 
-{{< figure src="/flent/2016-04-12-flent-fqmac-ath10k-dql/dql-base.svg" >}}
+{{< figure src="/flent/2016-04-12-flent-fqmac-ath10k-dql/normal-taildrop.svg" title="Essentially indistinguishable from a fifo">}}
 
-{{< figure src="/flent/2016-04-12-flent-fqmac-ath10k-dql/dql-fq.svg" >}}
+{{< figure src="/flent/2016-04-12-flent-fqmac-ath10k-dql/normal-fq.svg" title="FQ by itself is no help with an uncontrolled queue under it, either.">}}
 
-{{< figure src="/flent/2016-04-12-flent-fqmac-ath10k-dql/dql-fqcodel.svg" >}}
+{{< figure src="/flent/2016-04-12-flent-fqmac-ath10k-dql/dql-base.svg" title="DQL's default estimator doesn't figure out the right buffersize" >}}
 
-{{< figure src="/flent/2016-04-12-flent-fqmac-ath10k-dql/dql-taildrop.svg" >}}
+## Patch series results
 
-{{< figure src="/flent/2016-04-12-flent-fqmac-ath10k-dql/normal-fqcodel.svg" >}}
+{{< figure src="/flent/2016-04-12-flent-fqmac-ath10k-dql/dql-taildrop.svg" title="Getting a decent estimate from DQL cuts the latency a lot" >}}
 
-{{< figure src="/flent/2016-04-12-flent-fqmac-ath10k-dql/normal-taildrop.svg" >}}
+{{< figure src="/flent/2016-04-12-flent-fqmac-ath10k-dql/dql-fq.svg" title="DQL+FQ gets the baseline delay under control">}}
 
+{{< figure src="/flent/2016-04-12-flent-fqmac-ath10k-dql/dql-fqcodel.svg" title="DQL w/fq_codel at the mac80211 layer takes it in for the score!" >}}
 
 ## Notes
 
@@ -75,4 +76,9 @@ $cherry_names($k)^'-'^$names(`{expr $j + 1}) } }
 - CoDel visibly fixes TCP in `dql-fqcodel` :)
 
 - "dql" plots compared to "normal" prove the importance of keeping tx
-  queue at minimum fill level with regard to link speed/quality
+  queue at minimum fill level with regard to link speed/quality...
+  at low speeds. [Higher speeds may be a problem](/post/dql_on_wifi), as yet.
+  (dtaht) doesn't agree (yet) that basic DQL is "good enough" and that some
+  integration with wifi rate control would be much better.
+
+See here for more posts on [fq_codel for ath10k](/tags/ath10k/).
