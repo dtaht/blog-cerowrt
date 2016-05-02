@@ -13,7 +13,7 @@ several talks but have realized it needs a talk all to itself.
 
 This is NOT a piece comprehensively discussing 802.11e. It's going to
 take me [several](/post/hw_queue_selection_in_wifi) attempts to describe
-the shape of the elephant, and then maybe after I'm done I can go back
+the shape of that elephant, and then maybe after I'm done I can go back
 and get it all more right.
 
 quote text="but what I said was not what I meant" cite="Humpty
