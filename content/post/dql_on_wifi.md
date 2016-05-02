@@ -7,7 +7,14 @@ description = "Can the dynamic queue limits infrastructure in linux be adapted t
 author = "Michal Kazior"
 +++
 
-[This patch](https://www.mail-archive.com/linux-wireless@vger.kernel.org/msg21594.html) implements a very naive dynamic queue limits on the flat HTT Tx in the ath10k driver.
+[This patch](https://www.mail-archive.com/linux-wireless@vger.kernel.org/msg21594.html)
+implements a very naive dynamic queue limits on the flat HTT Tx in the
+ath10k driver. Some information on
+[how DQL works is here](https://lwn.net/Articles/469651/). It is
+currently used effectively as part of [BQL](https://lwn.net/Articles/454390/) for many ethernet, not
+wifi, drivers.
+
+...
 
 In some of my tests (using flent) it seems to reduce induced latency by orders of magnitude (e.g. when enforcing 6mbps tx rates 2500ms -> 150ms). But at the same time it introduces TCP throughput buildup over time (instead of immediate bump to max). More importantly I didn't observe it to make things much worse (yet).
 
@@ -17,6 +24,7 @@ Here's the
 [flent data for dql on wifi experiment]( http://kazikcz.github.io/dl/2016-04-01-flent-ath10k-dql.tar.gz) if you would like to poke around the dataset.
 
 Here's a short description what-is-what test naming:
+```
 - sw/fq contains only txq/flow stuff (no scheduling, no txop queue limits)
 - sw/ath10k_dql contains only ath10k patch which applies DQL to driver-firmware tx queue naively
 - sw/fq+ath10k_dql is obvious
@@ -29,12 +37,13 @@ Here's a short description what-is-what test naming:
 - "rate6m" uses fixed-tx-rate at 6mbps
 - the test uses QCA9880 w/ 10.1.467
 - no rrul tests, sorry Dave! :)
+```
+*april 11, note* - I am in progress in regenerating the graphs, excuse
+the broken links below. The [original plots can be found here](http://imgur.com/a/TnvbQ)
 
-*april 11, note* - I am in progress in regenerating the graphs, excuse the broken links below.
-
-[Dave commented](/fixme) that "testing with rrul is pointless as yet. Although
-interesting to have as a baseline, [rrul](/fixme) will end up stressing out the unchanged
-wifi card's driver more than what you are actually testing".
+Dave commented that "testing with rrul is pointless as yet. Although
+interesting to have as a baseline, [rrul](http://www.bufferbloat.net/projects/codel/wiki/RRUL_Rogues_Gallery) will end up stressing
+out the unchanged wifi card's driver more than what you are actually testing".
 
 ## Observations / conclusions:
 
@@ -42,7 +51,7 @@ wifi card's driver more than what you are actually testing".
 
  - DQL builds up throughput slowly on "veryfast"; in some tests it
 doesn't get to reach peak (roughly 210mbps average) because the test
-is too short
+is *too short*.
 
 {{< figure src="/flent/dql_on_wifi.svg" >}}
 
@@ -57,18 +66,7 @@ performs worse)
 sw/base (1800ms -> 160ms) can be explained by the fact that txq AC
 limit is 256 and since all TCP streams run on BE (and fq_codel as the
 qdisc) the induced txq latency is
-$ bandwidth \times delay \times \sqrt(flows) + {(dark buffers) \over
-(luck * kluges)} $
-wtf
 $ 122ms = 256 \times {(1500 \over {(6 \times 1024 \times 1024 \over 8)) \over 4)} $
-
-WTF2
-
-`$ ~122ms = {256 \times 1500 \over ( {(6 \times 1024 \times 1024) \over
-8} }$`
-
-$ {1500 \over {(6 \times 1024)} $
-
 
 which is pretty close to the test data (the formula ignores
 MAC overhead, so the latency in practice is larger). Once you consider
