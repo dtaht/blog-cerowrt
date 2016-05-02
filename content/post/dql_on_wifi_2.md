@@ -7,7 +7,7 @@ description = "Can the dynamic queue limits infrastructure in linux be adapted t
 author = "Michal Kazior"
 +++
 
-This is the 3rd part of a series exploring how to go about adding
+This is the 3rd part of [a series](/tags/ath10k) exploring how to go about adding
 fq_codel to wifi. This is the now obsolete
 [fq_codel_on_wifi v3 patchset](https://lists.bufferbloat.net/pipermail/codel/2016-April/002165.html),
 exploring the interactions between DQL, FQ, and FQ_CODEL on the
