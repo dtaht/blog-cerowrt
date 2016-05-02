@@ -85,8 +85,7 @@ See here for more posts on [fq_codel for ath10k](/tags/ath10k/).
 
 And for those that like to see their results in a bar chart:
 
-{{< figure src="/flent/2016-04-12-flent-fqmac-ath10k-dql/6mbit_bar_compare.svg
-" title="6Mbit results compared across all patches" >}}
+{{< figure src="/flent/2016-04-12-flent-fqmac-ath10k-dql/6mbit_bar_compare.svg" title="6Mbit results compared across all patches" >}}
 
 In this case I inverted the latency number so better results are "up and to the right". I should probably have switched to a log scale!
 
