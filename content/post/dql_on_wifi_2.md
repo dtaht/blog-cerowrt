@@ -15,7 +15,7 @@ exploring the interactions between DQL, FQ, and FQ_CODEL on the
 
 ## Test Setup
 
-- 1x qca988x 10.1.467 as AP limited to 6mbps via `iw set bitrates`
+- 1x qca988x firmware 10.1.467 as AP limited to *6mbps* via `iw set bitrates`
 - 2x qca9377 as clients
 - "dql" plot title keyword means the
   [ath10k dql RFC](http://lists.infradead.org/pipermail/ath10k/2016-March/007143.html)
@@ -57,9 +57,9 @@ $cherry_names($k)^'-'^$names(`{expr $j + 1}) } }
 
 ## Patch series results
 
-{{< figure src="/flent/2016-04-12-flent-fqmac-ath10k-dql/dql-taildrop.svg" title="Getting a decent estimate from DQL cuts the latency a lot" >}}
+{{< figure src="/flent/2016-04-12-flent-fqmac-ath10k-dql/dql-taildrop.svg" title="Getting a decent estimate from DQL cuts the latency a lot even for drop tail" >}}
 
-{{< figure src="/flent/2016-04-12-flent-fqmac-ath10k-dql/dql-fq.svg" title="DQL+FQ gets the baseline delay under control">}}
+{{< figure src="/flent/2016-04-12-flent-fqmac-ath10k-dql/dql-fq.svg" title="DQL+FQ shows per flow baseline delay under control">}}
 
 {{< figure src="/flent/2016-04-12-flent-fqmac-ath10k-dql/dql-fqcodel.svg" title="DQL w/fq_codel at the mac80211 layer takes it in for the score!" >}}
 
@@ -79,6 +79,6 @@ $cherry_names($k)^'-'^$names(`{expr $j + 1}) } }
   queue at minimum fill level with regard to link speed/quality...
   at low speeds. [Higher speeds may be a problem](/post/dql_on_wifi), as yet.
   (dtaht) doesn't agree (yet) that basic DQL is "good enough" and that some
-  integration with wifi rate control would be much better.
+  integration with wifi rate control would be much better. (and michal counters with that many drivers do not have any rate control information visible)
 
 See here for more posts on [fq_codel for ath10k](/tags/ath10k/).
