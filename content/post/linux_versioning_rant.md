@@ -9,20 +9,14 @@ description = "As, unlike the physical world, networking has few real constants,
 This is taken, almost verbatim, from a rant of mine in 2013
 [on linux versioning](https://lists.bufferbloat.net/pipermail/bloat/2013-November/001735.html) .
 
-I will work on it at some point to reduce the "rantyness" of it...
 
-But: honestly, if every academic paper on networking published the exact
+Honestly, if every academic paper on networking published the exact
 linux kernel, and a git tree to it, it would be a better world. I think
 this rant had useful effects when I first wrote it, but I just read
-(may, 2015) - (and
-rejected - and you know who you are) a bunch of papers this week that
+(may, 2015) - (and rejected - and you know who you are) a bunch of papers this week that
 did not document their work thoroughly enough.
 
 ...
-
-I am in the process of trying to reproduce the recent rite papers on
-immediate congestion notification and the iccrg ARED work and need
-to explain something to researchers so that I don't have to work so hard.
 
 Linux kernel releases are numbered X.Y.Z-Q. All kernel versions
 contain bugs. Linux 3.2.0 was, IMHO, the nadir of the network stack in
@@ -47,11 +41,11 @@ Periodically a
 is picked and receives updates for as long as someone is funded to do
 it.
 
-*the only things that enters into a long term stable release* are fixes
+*The only things that enter into a long term stable release* are fixes
 for security bugs, crash bugs, and truly egregious bugs that can be
 somewhat easily fixed. "Features", don't.
 
-The rest of the development goes into X.Y+1.
+The rest of the new development goes into X.Y+1.
 
 (Sane people never run a X.Y.0 release on hardware/data they care about.)
 
@@ -65,11 +59,11 @@ mostly qualified as "features". Several in fact have been in such
 continuous development that I'd not want to generalize from fq_codel in
 3.5 vs what's in 3.8 now, as one example.
 
-So it's my hope that folk will try to follow more closely the X.Y series
-of kernels rather than the 3.2.Z series of kernels in the future. I'm
-very happy with what happened in the 3.12 series in particular and
-look forward to work against it in the near future. The 3.13 work is
-just beginning, too.
+So it's my hope that network researchers will try to follow more closely
+the X.Y series of Linux kernels rather than the 3.2.Z series of kernels in the
+future. I'm very happy with what happened in the 3.12 series in
+particular and look forward to work against it in the near future. The
+3.13 work is just beginning, too.
 
 In the hope that the showing the mechanics of researching what fixes
 did land in an old stable release would help on future papers,
