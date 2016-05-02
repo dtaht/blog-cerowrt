@@ -1,7 +1,7 @@
 +++
 date = "2016-05-01T12:02:58+01:00"
 draft = false
-tags = [ "wifi", "bufferbloat" ]
+tags = [ "papers", "bufferbloat" ]
 title = "Network Academia: Please document your patches and kernel versions in your papers"
 description = "As, unlike the physical world, networking has few real constants, and lots of bugs."
 +++
