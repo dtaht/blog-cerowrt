@@ -91,3 +91,5 @@ To sum things up:
  - DQL might be able to replace the explicit txop queue limiting
 (which requires rate control info)
  - mac80211 fair queuing works!
+
+[Let's look closer](/post/dql_on_wifi_2) at the effects of each part of the patch - dql, fq, and fq_codel.
