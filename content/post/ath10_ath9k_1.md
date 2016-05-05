@@ -11,7 +11,7 @@ to an ath10k also with michal's [latest fq_codel patches](/tags/ath10k). Merely 
 
 To me, this was the exciting bit! How *good could wifi get* with both sides fq_codeled? How many more bugs could there be? Plenty.
 
-First up I'd wanted to use IBSS mode and a few other features that Candelatech had long been producing in their custom build of QCA's ath10k firmware - it has many bugs removed and multiple useful features added. I thought I'd start by testing that, then move to their later firmware and then to the mainline with this series of tests. Then move to ath10k to ath10k, and try other rates.
+First up I'd wanted to use IBSS mode and a few other features that Candelatech had long been producing in their custom build of QCA's ath10k firmware - it has many bugs removed and multiple useful features added. I thought I'd start by testing that, then move to the mainline with this series of tests. Then move to ath10k to ath10k, and try other rates.
 
 Well, I broke their 10.2.X release earlier today and had to revert to testing their 10.1.X release. They were *very* helpful in trying to debug it...
 
@@ -33,13 +33,13 @@ I was told current kernels have issues with single cubic flows cracking 30Mbits.
 *Multiple* flows did really, really well, about 105Mbit of throughput and 30ms
 latency.
 
-{{< figure src="/flent/ct-10.1/cubic_burp.svg" title="cubic burp" >}}
+{{< figure src="/flent/ct-10.1/cubic_burp.svg" title="Cubic Burp" >}}
 
 I need to repeat the test as there was a catastrophic fall in cubic througput partially through the test. Interference? noise? An interrelationship between acks and latency? The new AMDSU code acking up?
 
 {{< figure src="/flent/ct-10.1/cs6boom.svg" title="The diffserv CS5 (VI queue) and CS6 (VO queue) tests were horrible " >}}
 
-The link totally lost sync and I had to manually restart. It probably was babel retracting the route - or so I thought - but might have been some other bug [involving losing track of what packets needed to be retransmitted](/fixme). The VI and VO queues are terribly undertested in production hardware, which is too bad - although mapping CS6 (network control) into the VO queue is a terrible idea (even if it is multicast, it still gets stacked up behind other traffic, currently), and the VI queue has some properties I really like - it enforces short TXOPS AND also grabs the media more rapidly than standard traffic does. IF VO worked right, it would give us an easy way to test how short txops would work better.
+The link totally lost sync and I had to manually restart. It probably was babel retracting the route - or so I thought - but might have been some other bug [involving losing track of what packets needed to be retransmitted](/fixme). The VI and VO queues are terribly undertested in production hardware, which is too bad - although mapping CS6 (network control) into the VO queue is a terrible idea (even if it is multicast, it still gets stacked up behind other traffic, currently), and the VI queue has some properties I really like - it enforces short TXOPs AND also grabs the media more rapidly than standard traffic does. IF VI worked right, it would give us an easy way to test how short TXOPs could work better.
 
 {{< figure src="/flent/ct-10.1/CS1_behaving_badly.svg" title="CS1 also exhibits bad behavior, starving out one flow completely for a long time." >}}
 
@@ -104,4 +104,8 @@ flent -l 300 --swap-up-down $S2 --test-parameter=dscp=CS0,CS0 -t "$T-$i-down-lon
 ```
 
 I'm going to run a [test of the factory firmware](/post/ath10k_ath9k_2) overnight, disabling the
-gnarly CS1,CS5,CS6 tests until I can watch over them.
+gnarly CS1,CS5,CS6 tests until I can watch over them..
+
+Then I need to go back to a stable baseline, no patches at all, with
+the default kernels and firmware. I could be delusional, fooling myself - 
+achieving less throughput than what can be achieved with normal kernels....
