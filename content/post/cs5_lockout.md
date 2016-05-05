@@ -16,7 +16,7 @@ I was showing. I'm still not going to do that here, I'm going to show a
 "new" bug that happens merely when trying to use 4 flows through the
 802.11e VI queue.
 
-{{< figure src="/flent/cs5lockout/cs5.png" title="60 seconds locked out">}}
+{{< figure src="/flent/cs5lockout/cs5.png" title="120 seconds locked out">}}
 
 This test is supposed to start all 4 flows *simultaneously*. Instead
 they start, then 3 get locked out with the VI queue in use. (the
@@ -36,7 +36,7 @@ on, rather than subject it to the same range of tests the best effort
 (CS0 queue) gets.
 
 The loss in throughput and increase in latency periodically every 2
-minutes is also interesting in the CS0 plot. Beacon? Scan? ??
+minutes is also interesting in the CS0 plot. Beacon? Scan? Related??
 
 (All of these tests are a reminder that other factors can mess up short
 duration tests, and while a 40 or 60 second test is often "good enough",
