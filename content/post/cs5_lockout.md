@@ -1,6 +1,6 @@
 +++
 date = "2016-05-05T10:02:58+01:00"
-draft = true
+draft = false
 tags = [ "wifi", "ath10k" ]
 title = "Turning on wifi QoS often creates worse QoS"
 description = "Lies, damn lies... and QoS"
