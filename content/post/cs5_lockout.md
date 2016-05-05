@@ -44,7 +44,7 @@ we should always do something for 6-10 minutes to make sure we are
 getting consistent results. As for shooting myself in the foot, for
 example, I just did a whole bunch of tests that were 5 minutes long,
 that would not quite catch this period, most of the time. I am now bumping up my
-more exaustive tests to 10 minutes, universally.)
+more exhaustive tests to 10 minutes, universally.)
 
 ...
 
@@ -65,7 +65,11 @@ My theory here is that the rate controller or something else is not
 calculating the size of the VI TXOP properly.
 
 I've seen behavior like this before, elsewhere. It could also very well
-be [the ath9k on the other side acting up](https://lists.bufferbloat.net/pipermail/make-wifi-fast/2016-April/000506.html), too...
+be [the ath9k on the other side getting out of sync](https://lists.bufferbloat.net/pipermail/make-wifi-fast/2016-April/000506.html), too...
 
 I'm going to run a [test of the factory firmware](/post/ath10k_ath9k_2) overnight, disabling the
 gnarly CS1,CS5,CS6 tests until I can watch over them..
+
+This test series [started here](/post/ath10k_ath9k_1). Test result data for
+this run is [here](/post/flent/cs5_lockout/). The overall thrust of what
+we're tackling is [here](/tags/ath10k).
