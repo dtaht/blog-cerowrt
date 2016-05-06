@@ -52,7 +52,7 @@ latency.
 {{< figure src="/flent/ct-10.1/cubic_burp.svg" title="Cubic Burp" >}}
 
 I need to repeat the test as there was a catastrophic fall in cubic
-througput partially through the test. Interference? noise? An
+througput partially through the test. Interference? noise? Multicast? An
 interrelationship between acks and latency? The new AMDSU code acking
 up? Scans?
 
@@ -71,7 +71,7 @@ enforces short TXOPs AND also grabs the media more rapidly than standard
 traffic does. IF VI worked right, it would give us an easy way to test
 how short TXOPs could work better.
 
-{{< figure src="/flent/ct-10.1/CS1_behaving_badly.svg" title="CS1 also exhibits bad behavior, starving out one flow completely for a long time." >}}
+{{< figure src="/flent/ct-10.1/CS1_behaving_badly.svg" title="CS1 also exhibits bad behavior, starving out three flows completely for a long time." >}}
 
 People have often asked me about enabling QoS (802.11e "WMM" mode) or
 not, and it is generally a good idea on most wifi hardware to just leave
@@ -80,7 +80,7 @@ glutton for punishment, and with such an easily reproducible test case,
 perhaps I'll find someone that can make it better. Too bad it ships on
 most devices, "on", and
 [dscp to 802.11e queue mappings is in the process of being formally standardized](https://tools.ietf.org/html/draft-szigeti-tsvwg-ieee-802-11e-01),
-and there being some uptake for videoconferencing specific markings in
+and there is some uptake for videoconferencing specific markings in
 the webrtc working group.
 
 NOTE: I later ran some longer tests against the CS5 queue
@@ -89,7 +89,7 @@ of throughput loss on CS0 I did not see on the shorter tests except as
 "odd" results above.
 
 As for sch_fq vs fq_codel on the hosts? Too early to tell. I'd like to
-believe it was better, but this is well within error bars. And there
+believe it was better, but this is [well within my mental error bars](https://lists.bufferbloat.net/pipermail/make-wifi-fast/2016-May/000613.html). And there
 were other problems elsewhere. Wifi data is NOISY! (And we are here
 today, to just break as many things as fast as we can to get caught up
 on current developments). It does look like the odroid c2 is good to

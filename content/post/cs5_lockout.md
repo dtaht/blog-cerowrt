@@ -6,7 +6,7 @@ title = "Turning on wifi QoS often creates worse QoS"
 description = "Lies, damn lies... and QoS"
 +++
 
-When I [specified](/fixme) the [flent](https://flent.org) [rrul test](/fixme) - I designed it to break
+When I [specified](https://github.com/dtaht/deBloat/blob/master/spec/rrule.doc?raw=true) the [flent](https://flent.org) [rrul test](/fixme) - I designed it to break
 everything I knew *then* was wrong in wifi. In particular, it breaks
 most 802.11e QoS implementations, thoroughly. For four years now, in
 nearly every presentation, I kept showing graphs showing the horrific
@@ -16,7 +16,7 @@ I was showing. I'm still not going to do that here, I'm going to show a
 "new" bug that happens merely when trying to use 4 flows through the
 802.11e VI queue.
 
-{{< figure src="/flent/cs5lockout/cs5.png" title="120 seconds locked out">}}
+{{< figure src="/flent/cs5lockout/cs5.png" title="Flows locked out for minutes">}}
 
 This test is supposed to start all 4 flows *simultaneously*. Instead
 they start, then 3 get locked out with the VI queue in use. (the
@@ -31,12 +31,12 @@ would have noticed and fixed it!
 {{< figure src="/flent/cs5lockout/cs0.png" title="CS0 (best effort) behavior is sane" >}}
 
 I surmise that most test tools that try setting the TOS bits on wifi
-send one flow through it, verify that the right queue was used, and move
-on, rather than subject it to the same range of tests the best effort
-(CS0 queue) gets.
+send only one flow through it (rather than 4 or more), and verify that
+the right queue was used, and move on, rather than subject it to the
+same range of tests the best effort (CS0 queue) gets.
 
 The loss in throughput and increase in latency periodically every 2
-minutes is also interesting in the CS0 plot. Beacon? Scan? Related??
+minutes is also interesting in the CS0 plot. Beacon? Scan? Multicast? Related??
 
 (All of these tests are a reminder that other factors can mess up short
 duration tests, and while a 40 or 60 second test is often "good enough",
@@ -70,6 +70,6 @@ be [the ath9k on the other side getting out of sync](https://lists.bufferbloat.n
 I'm going to run a [test of the factory firmware](/post/ath10k_ath9k_2) overnight, disabling the
 gnarly CS1,CS5,CS6 tests until I can watch over them..
 
-This test series [started here](/post/ath10k_ath9k_1). Test result data for
+This test series [started here](/post/ath10_ath9k_1/). Test result data for
 this run is [here](/post/flent/cs5_lockout/). The overall thrust of what
 we're tackling is [here](/tags/ath10k).
