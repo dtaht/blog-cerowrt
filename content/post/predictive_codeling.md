@@ -1,7 +1,7 @@
 +++
-date = "2012-03-30T18:02:58+01:00"
-draft = true
-tags = [ "wifi", "bufferbloat" ]
+date = "2016-05-05T17:02:58+01:00"
+draft = false
+tags = [ "wifi", "bufferbloat", "codel", "multicast" ]
 title = "Predictive coddling"
 description = "Because, sometimes, you know when the wifi is going to burp..."
 +++
