@@ -1,9 +1,9 @@
 +++
 date = "2016-05-05T23:02:58+01:00"
 draft = false
-tags = [ "wifi", "bufferbloat", "boards" ]
+tags = [ "wifi", "bufferbloat", "lab" ]
 title = "IoT wifi on the 'C.H.I.P.'"
-description = "Wifi on absolutely everything, even stuff that costs 9 bucks"
+description = "Wifi is going on absolutely everything, even stuff that costs 9 bucks"
 +++
 
 A guy from the [C.H.I.P](http://getchip.com) 9 dollar computer effort
@@ -51,24 +51,29 @@ is typically not going to be sending tons of data
 [unless it's taken over by a spammer](https://mjg59.dreamwidth.org/40397.html)!
 
 But: Other IoT use cases - like flying a drone with a wifi camera on
-it - or using a [petcam](/fixme) could be far more demanding.
+it - or using a [petcam](https://plus.google.com/u/0/107942175615993706558/posts/cabjsACZcFp) could be far more demanding.
 
-The test results of the chip's wifi are *remarkably good*. With one
+The test results of the chip's wifi were *remarkably good*. With one
 located about 15 feet from the AP...
 
 ## Tuned for 20Mbits?
 
-{{< figure src="/flent/chip/mindblowingly_good_unexplainable_result.svg"  title="mindblowinglyg good unexplainable result">}}
+{{< figure src="/flent/chip/mindblowingly_good_unexplainable_result.svg"  title="mindblowingly good unexplainable result">}}
 
-{{< figure src="/flent/chip/irreproducable.svg"  title="mindblowingly good unexplainable result">}}
+Wow. 30ms latency at 20mbits. That's the wireless-g performance I
+remember! On n!
+
+{{< figure src="/flent/chip/notreproduced.svg"  title="Kind of expected lower bandwidth-un-fq-codeled result">}}
 
 The only thing I can think of is that the driver on the chip is tuned to
 give a good result at 20Mbits, only, and nobody has tried to push it
-far, far faster than that.
+far, far faster than that with the corresponding lossage of low speed latency.
 
 I am extremely tempted to sink some time into improving the realtek this chip as sprinkling a
-dozen around the [SFlab](/tags/sflab) won't break my budget. Unfortunately the kernel for
-it lacks tc and [IPV6_SUBTREES support](/fixme), presently. (I'd rather skip tc
+dozen around the [SFlab](/tags/lab) won't break my budget. Unfortunately the kernel for
+the chip lacks tc and
+[IPV6_SUBTREES support](https://bbs.nextthing.co/t/ipv6-subtrees-is-helpful-for-source-specific-routing-ietf-homenet/3762),
+presently. (I could just skip tc, hard code in fq_codel elsewhere,
 and just move the fq_codel layer into mac80211) They have a lot of
 market motivation to make their wifi the best possible within their
 constraints, so I hope to lure some folk in over there to make it so.
