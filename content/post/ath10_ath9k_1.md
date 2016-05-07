@@ -5,7 +5,7 @@ tags = [ "wifi", "ath10k" ]
 title = "Sanity testing all the wifi pieces makes for slow progress"
 description = "So many things are borken in wifi!"
 +++
-
+3
 I am attempting to do [all up testing](/post/all_up_testing) on the
 [make-wifi-fast](/tags/wifi) pieces we've assembled so far. I'm using a
 Nuc configured with an ath9k chip with Tim Shepard's fq_codel patches...
