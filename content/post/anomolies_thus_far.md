@@ -6,18 +6,17 @@ title = "Anomalies on wifi"
 description = "On trying not to delude myself, or others..."
 +++
 
-[All month](/tags/bufferbloat), I've been evaluating all-new hardware
-for the [sflab](/tags/lab), and I was blind-sided by
+[All quarter](/tags/bufferbloat), I've been evaluating all-new hardware
+for the [sflab](/tags/lab). I was blind-sided by
 [Michal Kazor](/authors/fixme) actually producing a set of
-[patches that worked](/post/fixme),
+[patches that worked](/post/fq_codel_on_ath10k) at the right layer,
 [on hardware I didn't have](/tags/ath10k), and I've had to scramble to
-duplicate them. The results were (mostly) beautiful - and I allowed
-myself to [believe](/post/fixme) [all](/post/fixme)
-[the good ones](/post/fixme)... but... after the excitement of actually
-getting a variety of tests last week done died down however, it was time
-to tear apart the anomalies this weekend.
-
-Note: This post isn't finished yet, I have a ton of links to add and graphs.
+duplicate them on that hardware. The results were (mostly) beautiful -
+and I allowed myself to [believe](/post/fq_codel_on_ath10) [all](/post/ath10_ath9k_1)
+[the good ones](/post/)... and not [all](post/cs5_lockout/) of
+[the](/post/ath10_ath9k_1/) [bad](ath10_ath9k_2) but... after the
+excitement of actually getting a variety of tests last week done died
+down however, it was time to tear apart the anomalies this weekend.
 
 ## Wifi Powersave
 
@@ -121,11 +120,11 @@ Flent has a long standing problem with not counting the measurement flows, nor t
 as part of the result. The size of the measurement flow *matters* at low
 rtts or in comparisons with higher rtts.
 
-Early results indicated dql's estimator takes too long - order 10s of
+Early results indicated [dql's estimator takes too long](/post/dql_on_wifi) - order 10s of
 seconds - to find the right size at higher bandwidths.
 
-This was in stark contrast to an earlier patch set that actually did
-better in the first startup of a flow - what was done differently there?
+This was [in stark contrast to an earlier patch set](/post/fq_codel_on_ath10k) that actually did
+better in the first startup of a flow at higher rates - what was done differently there?
 
 ## CPU over-usage
 
@@ -183,7 +182,7 @@ Wifi APs MUST try to provide a modicum of service to all stations in
 minimum time. They don't.
 
 [Candelatech's tests](/fixme) showed 4 seconds to service each of 64 stations. Even if you assume it's
-6ms of backlog per station and 4 RTTs that still seems way out of wack.
+6ms of backlog per station and 4 RTTs that still seems way out of whack.
 
 In fact stations that have not asked for service in a while should get a
 disproportionate number of slices in order to get into flow balance with
@@ -193,7 +192,7 @@ the others. Most of the time, on, for example, web traffic, that station will th
 ## Better show what better congestion control means
 
 In one string of the "good" tests, I'd forgotten completely that there
-was a test running, and went off surfing the web and my gf also started
+was a test running, and went off surfing the web... and my gf also started
 watching netflix on an AP on the same channel at one point... and the
 low latency and congestion control was so good *I didn't notice the
 tests were running*. :)
@@ -228,13 +227,17 @@ but we have a long way to go as yet.
 
 # Summmary
 
-we're showing that we can reduce queue-ing latency on wifi by 100ms or
-more at 100mbits/sec. In fact, we can hold it to 20ms at 6,100, or
-300mbits, in the testing so far.
+We're showing that we can reduce queue-ing latency on wifi by [100ms or
+more at 100mbits/sec](/post/ath10_ath9k_1). In fact, we can hold it to [20ms at
+6mbits](fq_codel_on_ath10k/),at [100mbits](/post/ath10_ath9k_1), or
+[300mbits](/flent/osx-qca-10.2-fqmac35-codel-5), in the testing so far.
 
-I think it is important to try everything possible to get it below 2ms, at the relevant cost
-in throughput, in order to vastly improve inter-station service times.
-Only way I know how to get there is with carefully managing all txops,
-transmit and receive, with something like
+I think it is important to try everything possible to get it below 2ms,
+at the relevant cost in throughput, in order to vastly improve
+inter-station service times and make gaming and videoconferencing a more
+pleasant experience on wifi. Only way I know how to get there is with
+carefully managing all txops, transmit and receive, with something like
 [airtime deficit round robin](/post/airtime_deficit_round_robin) and
 per-station scheduling.
+
+Why? [Because once you have bad latency, you're stuck with it](https://www.internetsociety.org/blog/2012/11/its-still-latency-stupid).
