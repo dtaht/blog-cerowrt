@@ -26,7 +26,7 @@ universally is a good idea for testing - but powersave on or off had a
 massive difference in bandwidth shown on
 [this test](/post/poking_at_powersave):
 
-{{< figure src="flent/wifi_powersave/symmetry2.svg"> }}
+{{< figure src="/flent/wifi_powersave/symmetry2.svg" >}}
 
 and thus needs to be considered as a problem to be solved in the real world.
 
@@ -58,12 +58,13 @@ didn't have those *at all*.
 Later on I observed the "accounts-daemon" process eating 100% of CPU for
 long periods, periodically, on several of the Linux based test targets.
 I'll have to go and disable that, but next time I plan to also be taking
-some aircaps to "hear" what's going on in the air, also. Sure looks like
-spikes on the AP side, tho:
+some aircaps to "hear" what's going on in the air, also. It sure looks like
+spikes on the AP side, though:
 
-{{< src=/flent/osx-qca-10.2-fqmac35-codel-5/beaconsorchannelscaneor.svg" >}}
+{{< figure src="/flent/osx-qca-10.2-fqmac35-codel-5/beaconsorchannelscaneor.svg" >}}
 
-Furthermore the baseline tests had a periodic spike in latency, not a decline.
+Furthermore the baseline tests had a periodic spike in latency, not a
+decline in bandwidth.
 
 ## How much room is there in a TXOP?
 
@@ -215,9 +216,9 @@ the others. Most of the time, on, for example, web traffic, that station will th
 
 In one string of the "good" tests, I'd forgotten completely that there
 was a test running, and went off surfing the web... and my gf also started
-watching netflix on an AP on the same channel at one point... and the
+watching Netflix on an AP on the same channel at one point... and the
 low latency and congestion control was so good *I didn't notice the
-tests were running*. :)
+tests were running*. (and neither did she!) :)
 
 While these random events are hard to test for - they are great examples
 of typical usage of wifi, and should get incorporated into more tests.
@@ -247,7 +248,7 @@ but we have a long way to go as yet.
 * disable powersave
 * DON'T use wmmm in future tests
 
-# Summmary
+# Summary
 
 We're showing that we can reduce queue-ing latency on wifi by [100ms or
 more at 100mbits/sec](/post/ath10_ath9k_1). In fact, we can hold it to [20ms at
