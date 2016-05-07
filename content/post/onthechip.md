@@ -88,6 +88,5 @@ It turns out that I could compile on a pi2 and the binaries "jsut
 worked" on the - so that saves me on qemu.
 
 The chip has an absolute surplus of computing power, and applying a
-little of that to make for better wifi seems like a good idea. Nearly
-all of the wifi products targeted at IoT could use the best wifi stack
-possible.
+little of that to make for better wifi seems like a good idea. All of the wifi products targeted at IoT could use the best wifi stack
+possible. I wish more people were working on [fixing wifi](/tags/wifi).

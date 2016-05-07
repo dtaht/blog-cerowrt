@@ -8,7 +8,7 @@ description = "On trying not to delude myself, or others..."
 
 [All quarter](/tags/bufferbloat), I've been evaluating all-new hardware
 for the [sflab](/tags/lab). I was blind-sided by
-[Michal Kazor](/authors/fixme) actually producing a set of
+[Michal Kazior](/author/Michal%20Kazior) actually producing a set of
 [patches that worked](/post/fq_codel_on_ath10k) at the right layer,
 [on hardware I didn't have](/tags/ath10k), and I've had to scramble to
 duplicate them on that hardware. The results were (mostly) beautiful -
@@ -23,30 +23,45 @@ down however, it was time to tear apart the anomalies this weekend.
 Powersaving messes up the plots and estimates as you'll see spikes in
 the 120ms-1second range at the start or end of the test. Turning it off
 universally is a good idea for testing - but powersave on or off had a
-massive difference in bandwidth shown on [this test](/post/poking_at_powersave), and
-thus needs to be considered as a problem to be solved in the real world.
+massive difference in bandwidth shown on
+[this test](/post/poking_at_powersave):
 
-{{< figure src="/flent/powersave/banddiff.svg" >}}
+{{< figure src="flent/wifi_powersave/symmetry2.svg"> }}
 
-And:
+and thus needs to be considered as a problem to be solved in the real world.
 
-On the other hand, sometimes those latency spikes are real.
+And: On the other hand, sometimes those latency spikes are real.
 
-{{< figure src="/fixme" >}}
+{{< figure src="/flent/chip/reallatencyspike_probably.svg" >}}
 
 I'm pretty sure, at this bandwidth, that the 2 second spike at this RTT
 is an artifact of slow start going wildly out of control at the default
-buffer size on the chip.
+buffer size on the host.
+
+I really hate what these spikes do to the automatic graph smoothing
+algorithms in [flent](https://flent.org)... but I'd hate it even worse
+if they were smoothed out entirely, as other researchers do. In
+networking, and in wifi, especially, the anomalies are important! It's
+the edge cases that matter.
 
 ## Periodic Bumps may have been a bug
 
 I assumed the
-[120s bumps in throughput here](/post/predictive_codelling) were related
+[120s period bumps in throughput here](/post/predictive_codeling) were related
 to a channel scan on the Linux hardware I was using.
 
-I was wrong. The [OSX results](/flent/osx-qca-10.2-fqmac35-codel-5)
-didn't have that. Later on I observed a process eating 100% of cpu for
+I was wrong. The [OSX upload results](/flent/osx-qca-10.2-fqmac35-codel-5)
+didn't have those *at all*.
+
+{{< figure src="/flent/osx-qca-10.2-fqmac35-codel-5/noosxspikesupload.svg" >}}
+
+Later on I observed the "accounts-daemon" process eating 100% of CPU for
 long periods, periodically, on several of the Linux based test targets.
+I'll have to go and disable that, but next time I plan to also be taking
+some aircaps to "hear" what's going on in the air, also. Sure looks like
+spikes on the AP side, tho:
+
+{{< src=/flent/osx-qca-10.2-fqmac35-codel-5/beaconsorchannelscaneor.svg" >}}
 
 Furthermore the baseline tests had a periodic spike in latency, not a decline.
 
@@ -149,6 +164,9 @@ osx box out-competed the Linux one so much. Yet. A simple test, first
 reducing the max txop from 5.7ms to 5,4,3,2,1,and as low as it can go,
 for each technology, would be helpful.
 
+I'd hoped to merely stress out the VI queue to get 1ms timings. No such
+luck.
+
 ## [802.11e was broken on the ath10k 10.1 firmware](/post/cs5_lockout)
 
 It worked semi-ok on the [10.2 firmware](/flent/qca-10.2), but still borken.
@@ -158,8 +176,10 @@ It worked semi-ok on the [10.2 firmware](/flent/qca-10.2), but still borken.
 A tester hit a major problem with udp floods going from 800mbit to
 30mbit.
 
-I've never hit that limit - unable to crack 300mbit in the general case-
-nor in my universe - had I thought much about the impact of massively
+I've never hit that limit - I'm unable to crack 300mbit in the general
+case.
+
+Nor: in my universe - had I thought much about the impact of massively
 in-elastic traffic (mae culpa) on these algorithms.
 
 We've come up with some ways to make
@@ -181,8 +201,10 @@ iperf3 with no -l does - and that result was fascinating
 Wifi APs MUST try to provide a modicum of service to all stations in
 minimum time. They don't.
 
-[Candelatech's tests](/fixme) showed 4 seconds to service each of 64 stations. Even if you assume it's
-6ms of backlog per station and 4 RTTs that still seems way out of whack.
+[Candelatech's tests on the original drivers](http://www.candelatech.com/examples/ventana/ventana-tcp-codel-dl_1462569548/)
+showed 4-10 seconds to service each of 64 active stations. Even if you
+assume it's 6ms of backlog per station and 4 RTTs that still seems way
+out of whack.
 
 In fact stations that have not asked for service in a while should get a
 disproportionate number of slices in order to get into flow balance with
