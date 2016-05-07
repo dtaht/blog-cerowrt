@@ -75,3 +75,38 @@ Out what the other guy did.
 I had a goal - no more priority 1 or 2 bugs - before we could declare
 cerowrt stable. Fixing the last bug took 8 months, and a lot of hair,
 and money I didn't have. 
+
+All up testing.
+
+Well, bugs.
+
+But, what's this? only 50Mbit's up for the competing flow, leaving
+approximately 85% of the capacity unused in that direction.
+
+Divide by two and start again.
+
+Is it the new algorithms? No, cake is outpeforming fq_codel here.
+
+Is it CPU? Well, we peak at about 30% of cpu on a quad core system. That's
+a throughput measure - context switches are the bigger problem on interrupt
+handling and few focus on that. One of the reasons why arm (was) a bigger
+success on devices is that older versions had a short pipeline and could
+context switch much faster than intel could. 
+
+Is it the device driver? Are we out of some critical resource?
+
+Is it a bug elsewhere?
+
+have a single thread rx/tx cleanup ring. This causes all sorts of oddities,
+- it made sense when we were using single cores btw - but it would be generally
+better to clean up tx and rx separately now that multi-cores are more common.
+
+That said, more than one manufacturer only uses one interrupt for tx/rx so
+you can't do that either.
+
+Cake and netem only have a single soft irq for scheduling it.
+
+It's one thing to have something that performs better, another thing however if it
+uses up too much cpu to actually deploy. 
+
+
