@@ -60,18 +60,20 @@ located about 15 feet from the AP...
 
 {{< figure src="/flent/chip/mindblowingly_good_unexplainable_result.svg"  title="mindblowingly good unexplainable result">}}
 
-Wow. 30ms latency at 20mbits. That's the wireless-g performance I
-remember! On n!
+Wow. 30ms and *flat* latency at 20mbits. That's the wireless-g performance I
+remember! On 802.11n! The size of two fingers!
 
 {{< figure src="/flent/chip/notreproduced.svg"  title="Kind of expected lower bandwidth-un-fq-codeled result">}}
 
 The only thing I can think of is that the driver on the chip is tuned to
-give a good result at 20Mbits, only, and nobody has tried to push it
-far, far faster than that with the corresponding lossage of low speed latency.
+give a good result at 20Mbits, and nobody has tried to push it
+far, far faster than that with the corresponding lossage of low speed
+latency, because the chip can't do that.
 
-I am extremely tempted to sink some time into improving the realtek this chip as sprinkling a
+I am extremely tempted to sink some time into improving the driver on
+this device, as sprinkling a
 dozen around the [SFlab](/tags/lab) won't break my budget. Unfortunately the kernel for
-the chip lacks tc and
+the chip current lacks tc and
 [IPV6_SUBTREES support](https://bbs.nextthing.co/t/ipv6-subtrees-is-helpful-for-source-specific-routing-ietf-homenet/3762),
 presently. (I could just skip tc, hard code in fq_codel elsewhere,
 and just move the fq_codel layer into mac80211) They have a lot of
