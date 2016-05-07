@@ -21,10 +21,9 @@ down however, it was time to tear apart the anomalies this weekend.
 ## Wifi Powersave
 
 Powersaving messes up the plots and estimates as you'll see spikes in
-the 120ms-1second range at the start or end of the test. Turning it off
+the 120ms - 1 second range at the start or end of the test. Turning it off
 universally is a good idea for testing - but powersave on or off had a
-massive difference in bandwidth shown on
-[this test](/post/poking_at_powersave):
+massive difference in bandwidth shown on [this test](/post/poking_at_powersave):
 
 {{< figure src="/flent/wifi_powersave/symmetry2.svg" >}}
 
@@ -41,8 +40,8 @@ buffer size on the host.
 I really hate what these spikes do to the automatic graph smoothing
 algorithms in [flent](https://flent.org)... but I'd hate it even worse
 if they were smoothed out entirely, as other researchers do. In
-networking, and in wifi, especially, the anomalies are important! It's
-the edge cases that matter.
+networking, and in wifi, especially, [the anomalies are important](/post/talks/engineering/)! It's
+[the edge cases](/post/talks/engineering/) that are the most interesting.
 
 ## Periodic Bumps may have been a bug
 
