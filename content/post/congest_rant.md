@@ -1,6 +1,6 @@
 +++
 date = "2016-04-07T22:02:58+01:00"
-draft = false
+draft = true
 tags = [ "wifi", "bufferbloat" ]
 title = "Legalizing congestion control"
 description = "I wish I had a magic wand to make bufferbloat go away"
