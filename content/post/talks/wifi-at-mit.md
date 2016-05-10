@@ -10,3 +10,7 @@ The first wifi specific talk [Dave Taht](http://the-edge.taht.net) gave on
 wifi's issues, (at MIT):
 
 {{< youtube Wksh2DPHCDI>}}
+
+While still a good talk, that gives a lot of insight into the genesis
+of the rrul test suite AND my history with wifi going back to the 90s,
+I wish more folk were paying attention to [make-wifi-fast](/tags/talks).
