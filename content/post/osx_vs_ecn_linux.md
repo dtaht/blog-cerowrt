@@ -24,5 +24,15 @@ up via wifi and that's not what we're testing here.
 
 What's wrong with osx?
 
-
 {{< figure src="/flent/cake_vs_everything/osx_vs_ecn_issue.svg" >}}
+
+
+Thanks for calling today.
+
+Here’s my presentation from last summer’s Apple Developer Conference:
+
+<https://developer.apple.com/videos/wwdc/2015/?id=719>
+
+Skip the first 15 minutes about IPv6, and you’ll get to my part where I talk about reducing networking delays using Smart Queueing, ECN, TCP_NOTSENT_LOWAT, and TFO. There are some interesting graphs showing how smart queueing (like CODEL) and ECN reduce delays and improve interactivity for things like streaming video.
+
+Also do a Google search for Bufferbloat.

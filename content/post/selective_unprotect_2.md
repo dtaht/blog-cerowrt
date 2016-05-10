@@ -6,6 +6,21 @@ title = "Selective unprotect seems feasible"
 description = "Some alternative approaches for losing more packets in a wifi aggregate when needed..."
 +++
 
+Note: Admission control doesn't work in hostapd
+
+https://wireless.wiki.kernel.org/en/users/documentation/hostapd
+
+dmission Control Mandatory (ACM) can be used to limit access to higher priority ACs for traffic control if admission control were implemented but it is not implemented in hostapd today. ACM can be enabled for the 4 ACs but should be disabled by default in hostapd.conf
+
+wmm_ac_bk_acm=0
+wmm_ac_be_acm=0
+wmm_ac_vi_acm=0
+wmm_ac_vo_acm=0
+
+ACM should be disabled by default. In mac80211 we have a work around to deal with strange access points that have been configured all ACs to require admission control to transmit frames using AC_BK. Setting all ACs to require admission control would be very strange configuration and that should never be used.
+
+There is no point in setting wmm_ac_[option]_acm=1 with any mac80211-based driver since they do not support admission control anyway. The only use for this with a driver that does not support admission control is for testing purposes. 
+
 Going back the the [/post/selective_unprotect) idea, I spent the week
 reading the 802.11 standards from cover to cover. 802.11-2002 is a 2793 page document... so it took a while.
 

@@ -6,6 +6,11 @@ title = "Anomolies with network offloads"
 description = "Packet processing at high speeds is hard with modern OSes"
 +++
 
+pcengines
+
+## shaping starts dropping at the rx path
+
+
 There are three sorts of anomolies
 
 Dumps 64k into the network at Gigabit
