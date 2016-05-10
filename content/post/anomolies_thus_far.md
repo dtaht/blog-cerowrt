@@ -139,7 +139,10 @@ Early results indicated [dql's estimator takes too long](/post/dql_on_wifi) - or
 seconds - to find the right size at higher bandwidths.
 
 This was [in stark contrast to an earlier patch set](/post/fq_codel_on_ath10k) that actually did
-better in the first startup of a flow at higher rates - what was done differently there?
+better in the first startup of a flow at higher rates - what was done differently there? That
+patch used *rate control statistics* to get it's capacity estimate, which the author had to fake as
+the ath10k has no easily available ones. The ath9k, and many other drivers, use minstrel, to get these
+would be easy - there's life in 802.11n yet!
 
 ## CPU over-usage
 
@@ -251,7 +254,7 @@ but we have a long way to go as yet.
 
 We're showing that we can reduce queue-ing latency on wifi by [100ms or
 more at 100mbits/sec](/post/ath10_ath9k_1). In fact, we can hold it to [20ms at
-6mbits](fq_codel_on_ath10k/),at [100mbits](/post/ath10_ath9k_1), or
+6mbits](/post/fq_codel_on_ath10k/),at [100mbits](/post/ath10_ath9k_1), or
 [300mbits](/flent/osx-qca-10.2-fqmac35-codel-5), in the testing so far.
 
 I think it is important to try everything possible to get it below 2ms,
