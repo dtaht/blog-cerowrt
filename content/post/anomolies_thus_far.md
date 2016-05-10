@@ -139,10 +139,10 @@ Early results indicated [dql's estimator takes too long](/post/dql_on_wifi) - or
 seconds - to find the right size at higher bandwidths.
 
 This was [in stark contrast to an earlier patch set](/post/fq_codel_on_ath10k) that actually did
-better in the first startup of a flow at higher rates - what was done differently there? That
-patch used *rate control statistics* to get it's capacity estimate, which the author had to fake as
-the ath10k has no easily available ones. The ath9k, and many other drivers, use minstrel, to get these
-would be easy - there's life in 802.11n yet!
+better in the first startup of a flow at higher rates - what was done differently there? [That
+patch](/post/fq_codel_for_ath10k) used *rate control statistics* to get it's capacity estimate, which the author had to fake as
+the ath10k has no easily available ones. The ath9k, and many other drivers, could use [minstrel](/post/minstrel)'s comprehensive statistics. To get these
+into the fq_codel implementation for wifi would be easy - there's life in 802.11n yet!
 
 ## CPU over-usage
 
@@ -167,8 +167,8 @@ osx box out-competed the Linux one so much. Yet. A simple test, first
 reducing the max txop from 5.7ms to 5,4,3,2,1,and as low as it can go,
 for each technology, would be helpful.
 
-I'd hoped to merely stress out the VI queue to get 1ms timings. No such
-luck.
+I'd hoped to merely stress out the VI queue to get 1ms timings. [No such
+luck](/post/cs5_lockout).
 
 ## [802.11e was broken on the ath10k 10.1 firmware](/post/cs5_lockout)
 
