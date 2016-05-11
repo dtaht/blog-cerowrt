@@ -9,12 +9,12 @@ description = "On trying not to delude myself, or others..."
 [All quarter](/tags/bufferbloat), I've been evaluating all-new hardware
 for the [sflab](/tags/lab). I was blind-sided by
 [Michal Kazior](/author/Michal%20Kazior) actually producing a set of
-[patches that worked](/post/fq_codel_on_ath10k) at the right layer,
+[fq_codel patches that beat bufferbloat](/post/fq_codel_on_ath10k) on wifi at the right layer,
 [on hardware I didn't have](/tags/ath10k), and I've had to scramble to
 duplicate them on that hardware. The results were (mostly) beautiful -
-and I allowed myself to [believe](/post/fq_codel_on_ath10) [all](/post/ath10_ath9k_1)
+and I allowed myself to [believe](/post/fq_codel_on_ath10k) [all](/post/ath10_ath9k_1)
 [the good ones](/post/)... and not [all](post/cs5_lockout/) of
-[the](/post/ath10_ath9k_1/) [bad](ath10_ath9k_2) but... after the
+[the](/post/ath10_ath9k_1/) [bad](/post/ath10_ath9k_2) but... after the
 excitement of actually getting a variety of tests last week done died
 down however, it was time to tear apart the anomalies this weekend.
 
