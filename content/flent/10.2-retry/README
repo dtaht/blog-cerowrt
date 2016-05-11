@@ -1,0 +1,14 @@
+This was a repeat of older tests, this time with the ostensibly 
+offending 
+
+apt-get remove accountsservice  
+
+removed from the test driver and the ap under test.
+
+The periodic lossage to the linux client continued - so it must be the
+client!
+
+Firmware: 10.2
+Drivers: fqmac 3.5
+OSX: mavericks
+Linux: debian
