@@ -9,16 +9,16 @@ description = "Routing asymmetry for 30 seconds... why?"
 Chasing this interesting performance problem in the babel routing daemon isn't what I wanted to be doing.
 
 What I wanted to be doing was showing "gloriously better" behavior with short fq_codeled' queues, in the new [fq_codel for ath10k code](/tags/ath10k), so that a route change would not cause A) a flow reset, and
-B) the flow would grab more of the link the sooner as it had more link, and C) back off faster when it switches to a worse link. Instead... well... I worked on a bunch of other stuff before trying to pick up on where I left off with trying to [fail over fast](/post/failing_over_fast), last time.
+B) the flow would grab more of the link the sooner as it had more link, and C) back off faster when it switches to a worse link. Instead... well... I worked on a bunch of other stuff before trying to pick up on where I left off with trying to [fail over fast](/post/failing_over_faster), last time.
 
 I changed 3 parameters this time.
 
 I switched from a raspberry pi switching between wifi and ethernet to
- a [C.H.I.P](http://getchip.com) going from usb networking to wifi (because I'm bringing up everything in the [sflab](/tags/lab) and enjoy [massively changing the environment while searching for the real variable](/post/all_up_testing)...
+ a [C.H.I.P](http://getchip.com) going from usb networking to wifi (because I'm bringing up everything in the [sflab](/tags/lab) and enjoy [massively changing the environment while searching for the real variable](/post/all_up_testing)...)
 
 The "chipzilla" box is connected via an interface-independent ipv6 address: fd99::23.  This stable identifier should make it possible to "stay up" even as all the routes change from under it. I really hate out addresses come and go otherwise.
 
-adding that was adding this to the /etc/networks/intefaces file for the "lo" entry
+adding that was adding this to the /etc/networks/interfaces file for the "lo" entry
 
 ```
 post-up ip -6 addr add fd99:23/128 dev lo
