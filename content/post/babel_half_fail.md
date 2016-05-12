@@ -46,9 +46,12 @@ If you squint, at T+60 to T+90, you can see us using more wifi bandwidth... you 
 fom T+170 to T+220. Why is that? Wifi is half duplex, so
 using up less bandwidth in one direction gives more in the other - and
 the throughput improvement here would be even greater if we weren't
-suddenly sending 8x as many acks. 
+suddenly sending 8x as many acks. Then at T+220, we are back to sending both
+flows over the same (usb) channel, and the total bandwidth allocated
+to the downlink flow falls in relation to the uplink grabbing a piece of it.
 
-This is a case where a triangular routing scenario is actually a good thing.
+So we are doing a bit of triangle routing here, with the T+220 result
+being the proof of it.
 
 At T+110 the usb interface comes up again. Roughly 60 seconds later
 one side of the link notices and starts sending packets out that way.
