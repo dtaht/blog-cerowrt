@@ -72,6 +72,29 @@ accurate resolutions below 10ms.
 owamp has much promise but I still don't trust it's measurements lacking
 both realtime privs and fdtimer support, also.
 
+## Flent works well at high speeds
+
+A huge flaw in most network research today is that researchers tend
+to focus on achieveable speeds in the lab, and are perpetually posting
+results in the 1mbit to 10mbit range. Flent lets you test at speeds
+up to 40Gbit. 
+
+TCP's behaviors at lower rates are bound by different variables than 
+TCP's behaviors at higher rates. Of issue are the size of the initial
+window, loss rates, and ssthresh, and the actual tcp used.
+
+Our focus with flent has been measuring actually achieved rates in the 
+field, which for ISPs ranges from 384k up to a gigabit - measuring
+queue depth, cpu overhead, etc. Some binding variables there include
+the size of the initial window also, but pacing, recv and send buffering,
+and so on start factoring into play more. Loss rates drop dramatically,
+in particular. 
+
+One of the hardest problems to measure is what happens at a range of achievable rates from 1Mbit to 1Gbit in the same session, as in [wifi](/tags/wifi),
+or in [route flaps](/fixme)
+
+Nobody has a good emulation for wifi's behaviors today. 
+
 ## Flent doesn't count tcp acks as part of the overall traffic measurement
 
 Flent does not account for tcp ACK traffic as part of the overall
