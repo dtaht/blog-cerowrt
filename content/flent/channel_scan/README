@@ -1,0 +1,15 @@
+  ICMP Host Unreachable from 172.26.16.5 for ICMP Echo sent to 172.26.130.12
+  ICMP Host Unreachable from 172.26.16.5 for ICMP Echo sent to 172.26.130.12
+  ICMP Host Unreachable from 172.26.16.5 for ICMP Echo sent to 172.26.130.12
+  
+  172.26.130.12 : xmt/rcv/%loss = 6200/0/100%
+Fatal error: No data to aggregate. Run with -L and check log file to investigate.
+Warning: Command produced no valid data.
+Data series: TCP upload BE1 172.26.130.12
+Runner: NetperfDemoRunner
+Command: /usr/bin/netperf -P 0 -v 0 -D -0.05 -4 -Y CS0,CS0 -H 172.26.130.12 -t TCP_MAERTS -l 300 -f m   --   -H 172.26.130.12 
+Standard error output:
+  
+no powersave
+
+
