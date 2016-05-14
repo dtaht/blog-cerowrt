@@ -1,0 +1,9 @@
+To test against ethernet with some of the rates being achieved on
+wifi 
+
+Rates: 300/90, 6.5/.500, 90/60, 28/6.5
+
+the simultaneious up/down tests should be mostly ignored as wifi is 
+not full duplex. 
+
+
