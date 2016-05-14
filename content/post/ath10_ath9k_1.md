@@ -54,7 +54,7 @@ latency.
 I need to repeat the test as there was a catastrophic fall in cubic
 througput partially through the test. Interference? noise? Multicast? An
 interrelationship between acks and latency? The new AMDSU code acking
-up? Scans?
+up? (It turned out to be [channel scans](/post/disabling_channel_scans))
 
 {{< figure src="/flent/ct-10.1/cs6boom.svg" title="The diffserv CS5 (VI queue) and CS6 (VO queue) tests were horrible " >}}
 
@@ -110,7 +110,8 @@ The flent data from  this series is [here](/flent/ct-10.1.tgz), individual files
 ```
 #!/bin/sh
 # Simple script to exercise a ton of wifi features
-
+# Note: I include a simple script like this in nearly all data sets.
+ 
 S=172.26.128.1 # apu2d4
 S0=172.26.128.1
 S1=172.26.16.130 # odroid c2
