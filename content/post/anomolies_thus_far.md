@@ -49,8 +49,8 @@ I assumed the
 [120s period bumps in throughput here](/post/predictive_codeling) were related
 to a channel scan on the Linux hardware I was using.
 
-I was wrong. The [OSX upload results](/flent/osx-qca-10.2-fqmac35-codel-5)
-didn't have those *at all*.
+I was partially right. The [OSX upload results](/flent/osx-qca-10.2-fqmac35-codel-5)
+didn't have those *at all*, Linux is messed up.
 
 {{< figure src="/flent/osx-qca-10.2-fqmac35-codel-5/noosxspikesupload.svg" >}}
 
@@ -64,6 +64,10 @@ spikes on the AP side, though:
 
 Furthermore the baseline tests had a periodic spike in latency, not a
 decline in bandwidth.
+
+*Update*: It's [due to the channel scan](/posts/disabling_channel_scans).
+
+I disabled the accountsservice daemon universally anyway. There is no reason why it should eat so much cpu to do as little as it does.
 
 ## How much room is there in a TXOP?
 
@@ -209,10 +213,21 @@ showed 4-10 seconds to service each of 64 active stations. Even if you
 assume it's 6ms of backlog per station and 4 RTTs that still seems way
 out of whack.
 
+Michal did a bit of work on this, basically duplicating the service time problem::
+
+{{< figure src="/flent/drr/10tothe5.svg" title="Driving 100 stations with baseline drivers = 10 sec of latency" >}}
+
+He then had a go at adding a fq_codel like algorithm to manage per station service times much better:
+
+{{< figure src="/flent/drr/newcode.svg" title="100 stations with alternate scheduler = 250ms of latency" >}}
+
 In fact stations that have not asked for service in a while should get a
 disproportionate number of slices in order to get into flow balance with
 the others. Most of the time, on, for example, web traffic, that station will then
 "go away" for seconds or minutes.
+
+Getting the service time for 100 stations below 250ms kicked off a long discussion on the mailing list. 70ms to service this
+many stations seamed feasible, but objections were raised as to the cost in bandwidth it would take.
 
 ## Better show what better congestion control means
 
@@ -226,7 +241,9 @@ While these random events are hard to test for - they are great examples
 of typical usage of wifi, and should get incorporated into more tests.
 
 note: We used to use the chrome web page benchmarker for web stuff, but
-it broke. Maybe they fixed it?
+it broke. Maybe they fixed it? 
+
+Update: No. Dang it. Need to update the bug.
 
 Note: Add in the tcp_square_wave tests to the next round. Maybe add a 3
 flow test like Grenville is using.
