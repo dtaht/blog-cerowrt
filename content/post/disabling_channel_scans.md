@@ -18,8 +18,9 @@ connectivity with aftereffects that last for *seconds*.
 
 Naturally...
 
-I want things like bar charts and other forms of total measurements
-that are repeatable, and are consistent and make sense over any interval...
+I want things like bar charts and cdfs, and other forms of total
+measurements that are repeatable, and are consistent and make sense over
+any interval... over months of testing...
 
 ... and I'm running tests that only last for 1 minute - so sometimes I
 see the scan killing throughput and latency for 6 or more seconds,
