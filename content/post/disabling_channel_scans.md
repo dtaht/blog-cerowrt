@@ -21,7 +21,12 @@ Naturally...
 I want things like bar charts and other forms of total measurements
 that are repeatable, and are consistent and make sense over any interval...
 
-... and I'm running tests that only last for 1 minute - so sometimes I see the scan killing throughput and latency for 6 or more seconds, sometimes I don't, and it always happens on at an inconvenient time on more complex tests. It also does interesting things to relative throughput and latency when comparing OSX (ath10k) to Linux ath9k, for example:
+... and I'm running tests that only last for 1 minute - so sometimes I
+see the scan killing throughput and latency for 6 or more seconds,
+sometimes I don't, and it
+[always happens at an inconvenient time](/post/anomolies_thus_far) on
+more complex tests. It also does interesting things to relative
+throughput and latency when comparing OSX (ath10k) to stock Linux ath9k, for example:
 
 {{< figure src="/flent/channel_scan/osxvslinux.svg" title="OSX (.11) vs Linux (.12)" >}}
 
