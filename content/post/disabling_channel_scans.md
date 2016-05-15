@@ -59,7 +59,7 @@ we were doing before, reset the ath9k driver enough to keep it alive.
 
 No: NetworkManager came back from the grave and messed things up again.
 
-I kind of regard killing NetworkManager, going with a static ip address, disabling powersave and only being able to test for 5 minutes as a drastic non-solution. I would certainly like to ensure that the device under test [re-associate when it loses association](/posts/10.1firmware), in particular.
+I kind of regard stopping NetworkManager, going with a static ip address, disabling powersave and only being able to test for 5 minutes as a drastic non-solution. I would certainly like to ensure that the device under test [re-associate when it loses association](/posts/10.1firmware), in particular.
 
 How to to tell NetworkManager to stop with the !@#@!@ scanning already? Is it that that does it or wpa_supplicant? (I'll try that next).
 
