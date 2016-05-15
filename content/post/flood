@@ -1,0 +1,38 @@
++++
+date = "2016-04-24T22:02:58+01:00"
+draft = true
+tags = [ "lab", "wifi", "bufferbloat" ]
+title = "Some basic flood results"
+description = "Measuring basic capacity is good"
++++
+
+[ ID] Interval           Transfer     Bandwidth       Jitter    Lost/Total Datagrams
+[  4]   0.00-1.00   sec  52.1 MBytes   437 Mbits/sec  0.037 ms  1276/38379 (3.3%)  
+[  4]   1.00-2.00   sec  54.3 MBytes   456 Mbits/sec  0.042 ms  0/38699 (0%)  
+[  4]   2.00-3.00   sec  56.1 MBytes   470 Mbits/sec  0.030 ms  0/39933 (0%)
+
+On one side I get:
+
+[  5]  37.00-38.00  sec  64.2 MBytes   539 Mbits/sec  0.026 ms  31613/77355 (41%)  
+[  5]  38.00-39.00  sec  62.8 MBytes   527 Mbits/sec  0.023 ms  31517/76255 (41%)  
+[  5]  39.00-40.00  sec  62.0 MBytes   520 Mbits/sec  0.033 ms  31052/75201 (41%)
+
+On the other:
+
+[  4]  77.00-78.00  sec   111 MBytes   929 Mbits/sec  78915  
+[  4]  78.00-79.00  sec   103 MBytes   864 Mbits/sec  73371  
+[  4]  79.00-80.00  sec   108 MBytes   907 Mbits/sec  77034  
+[  4]  80.00-81.00  sec   107 MBytes   900 Mbits/sec  76423  
+[  4]  81.00-82.00  sec   104 MBytes   875 Mbits/sec  74277  
+[  4]  82.00-83.00  sec   113 MBytes   950 Mbits/sec  80666
+
+Interesting. In none of these cases am I seeing any drops in the qdisc.
+
+Accepted connection from 172.26.16.3, port 60820
+[  5] local 172.26.117.50 port 5201 connected to 172.26.16.3 port 57873
+[ ID] Interval           Transfer     Bandwidth       Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  0.00 Bytes  0.00 bits/sec  0.000 ms  0/0 (-nan%)  
+[  5]   1.00-2.00   sec  0.00 Bytes  0.00 bits/sec  0.000 ms  0/0 (-nan%)  
+[  5]   2.00-3.00   sec  0.00 Bytes  0.00 bits/sec  0.000 ms  0/0 (-nan%)  
+[  5]   2.00-3.00   sec  0.00 Bytes  0.00 bits/sec  0.000 ms  0/0 (-nan%)  
+
