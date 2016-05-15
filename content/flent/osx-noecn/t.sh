@@ -3,7 +3,7 @@
 S0=172.26.130.12
 S1=172.26.130.11
 S2="-H $S0 -H $S0 -H $S1 -H $S1"
-T='txop-94-noecn-step-.2-fqcodel-5'
+T='txop-normal-noecn-step-.2-stock-pfifo-5'
 # Make sure we're alive
 OPTS="--test-parameter=qdisc_stats_hosts=apu2 --test-parameter=qdisc_stats_interfaces=wlp4s0 --test-parameter=cpu_stats_hosts=apu2"
 

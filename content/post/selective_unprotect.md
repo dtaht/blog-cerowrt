@@ -75,7 +75,7 @@ the relevant specs and some data sheets a few years ago, and I only just
 remembered it. If it isn't possible today, perhaps I'll propose it for
 some future wifi spec.
 
-You can (maybe) mark *some* packets in an aggregate as "don't care if you
+You can (maybe) mark *some* packets in a TXOP as "don't care if you
 drop them, don't ask for a retransmit if they are corrupted".
 
 Consider an aggregate consisting of different flows. Flow A has 4
@@ -115,6 +115,8 @@ update: The parameter I am talking about is QosNOack, which is in section
 also table 7.4 in the standard.
 
 More notes:
+
+It still isn't clear if you can do multiple ampdus in a single txop.
 
 ESOP = end of service period. 7.1.3.5.5 is the Queue size
 
@@ -181,6 +183,8 @@ Having wifi rate control not aim for the perfect rate, but the slightly
 less than perfect (and usually faster) rate that *ensures enough loss to keep the backlog small* seems fairly ideal... but hard.
 
 You can also turn off requests for block acknowledgements on some aggregates.
+If your media is being perfect, you can save som etime doing that... and
+lose some darn packets....
 
 ## Ack thinning/Stretch acks
 
