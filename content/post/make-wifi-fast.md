@@ -20,6 +20,11 @@ By investing in making WiFi Fast in a way that the whole industry - and all the 
 The return on the investment is very hard to quantify, but also extremely high. Even the lost human time due to bufferbloat is many times the hours spent in engineering; a simple estimate for one second of work time lost per day for one billion users results in 100 person work years (40 hours/week) lost per day.
 ```
 
-I'm glad we've finally got [a piece of the project](/tags/wifi) off the ground. Since
-we started writing that document, over 3 billion wifi devices shipped,
+I'm glad we've finally got [a piece of the project](/tags/wifi) off the ground. Since we started writing that document, over 3 billion wifi devices shipped,
 all with a stack that could have been made much better.
+
+What I've been doing with [this blog](/post/) is trying to break out 
+the individual problems, help solve what I can, and describe how much more
+could be done to make wifi better, so that more people, and companies,
+can pitch in.
+
