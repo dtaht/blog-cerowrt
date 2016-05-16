@@ -16,6 +16,8 @@ connectivity with aftereffects that last for *seconds*.
 
 {{< figure src="/flent/channel_scan/channelscan.svg" title="Channel Scans suck">}}
 
+UPDATE: This blog post kicked off a long G+ threaded discussion. [PLEASE Go there for more detail](https://plus.google.com/u/0/107942175615993706558/posts/WA915Pt4SRN).
+
 Naturally...
 
 I want things like bar charts and cdfs, and other forms of total
