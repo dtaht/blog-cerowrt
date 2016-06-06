@@ -3,7 +3,7 @@
 S0=172.26.130.12
 S1=172.26.130.11
 S2="-H $S0 -H $S0 -H $S1 -H $S1"
-T='ecn-nmfixed-fqcodel-tim'
+T='ecn-nmfixed-bedroom-fqcodel-tim'
 # Make sure we're alive
 
 fping -c 3 $S0 $S1
