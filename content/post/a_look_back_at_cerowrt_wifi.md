@@ -6,10 +6,10 @@ title = "A look back at CeroWrt's WiFi"
 description = "How far we've come! How far we have left to go!"
 +++
 
-I dragged an old cerowrt box out of the bin to compare where we are
-now with where we were 3 years ago. We'd solved a metric ton of
-problems with that project, but we'd not made the dent in wifi latency
-we'd wanted to make.
+I dragged an old cerowrt (wndr3800) box out of the bin to compare
+where we are now with where we were 3 years ago. We'd solved a metric
+ton of problems with that project, but we'd not made the dent in wifi
+latency we'd wanted to make.
 
 With the latest softq-enabled code are achieving over 50% more
 throughput, with 1/3 the induced latency!
@@ -18,6 +18,8 @@ throughput, with 1/3 the induced latency!
 
 These numbers are not achieved by any other wifi card I've ever tested
 under linux, or indeed, any other operating system.
+
+(The results with HT40 mode are a 5-15% improvement in throughput with a 30% decline in latency, not shown)
 
 If I had any one goal with the [make-wifi-fast project](https://www.bufferbloat.net), it has been to get wifi performing with sub-30ms latencies throughout its operating range,
 with 4 stations running full blast, making good gaming and voip
@@ -33,13 +35,13 @@ It is *possible* to do even better than this. The current structure of
 the code is: one aggregate in the hardware, one, submitted, "ready to
 go", and the rest being queued up in software. When the first
 aggregate completes, the "ready to go one" starts getting processed by
-the hardware, a completion interrupt is generated to clean up the tx
-descriptor, which fires off construction of a new aggregate, which is
-considered "ready to go" as soon as its constructed and submitted into
-the hardware FIFO. This leads to a natural median RTT of what you see
-here - about 15ms, with a minimum of 5ms, and a long tail extending
-out to 40ms (depending on retries). Both stations have to have code
-this tight to get here, but...
+the hardware, while a completion interrupt is generated to clean up
+the tx descriptor, which fires off construction of a new aggregate,
+which is considered "ready to go" as soon as its constructed and
+submitted into the hardware FIFO. This leads to a natural median RTT
+of what you see here - about 15ms, with a minimum of 5ms, and a long
+tail extending out to 40ms (depending on retries). Both stations have
+to have code this tight to get here, but...
 
 Even the worst case latency of the new code is better than the best
 case latency on the old code, *at this rate*.
@@ -74,9 +76,9 @@ How can we do better?
 ## Defer the next aggregate submittal until the device is less busy
 
 The first technique is that once "one is in the hardware", we also have an
-estimate for how long it is going to take to transmit (usually 1-4ms).
+estimate for how long it is going to take to transmit (1-4ms).
 
-We don't have an *accurate* mininum estimate for how long it will
+We don't have an *accurate mininum* estimate for how long it will
 take, we have one for the maximum time it will take with up to 4
 minstrel-controlled retry chains, but we can change the code to
 give us that. (and also start [reworking minstrel to work smarter](/post/minstrel))
@@ -91,7 +93,7 @@ overhead, and attempts to submit drivers that used a technique like
 this have largely been regected due to costing extra cpu.
 
 The advantage of this approach is that we don't need to know anything
-more about the ath9k hardware than wqe already do, and you can get
+more about the ath9k hardware than we already do, and you can get
 quite a few packets in 1ms over ethernet - 6 big ones. Or some packets
 arrive over the air... any way you do it, you potentially get more
 packets to aggregate that you can't get otherwise.
@@ -100,7 +102,7 @@ Note: It may well be at the smaller transmit estimates we need to accrue
 more than one outstanding txop in the first place, particularly at
 higher than HT20 rates, with some sort of NAPI or BQL-like
 tradeoff. At really high rates (>300Mbits) we're seeing a need to do
-that on newer hardware like the ath10k.
+that, particularly on receive, on newer hardware like the ath10k.
 
 ## Defer next submittal until the next tx is in progress
 
@@ -108,17 +110,19 @@ In the real world, there are multiple stations capable of grabbing
 a slot out of the wifi contention window and transmitting.
 
 Because there is contention for the non-duplex media, the real
-estimate before you can grab the media again is X + active
-stations. It's worse than that - which device will win the election,
-is random. One device might get a chance to transmit 2 or 3 times
-before another device wins. If the AP wins multiple times we end up
-draining its queue without accumulating enough packets in the reverse
-direction to keep a TCP flow going. There is a lot to be said for real
-full duplex!
+estimate before you can grab the media again is X + Y stations also
+trying to transmit. It's worse than that - which device will win the
+election, is random. One device might get a chance to transmit 2 or 3
+times before another device wins. If the AP wins multiple times we end
+up draining its queue without accumulating enough packets in the
+reverse direction to keep a TCP flow going. If the AP loses multiple
+times then latency can suffer similarly. There is a lot to be said for
+real full duplex like what you get from an ethernet switch!
 
-Regardless the total time spent waiting for the ability to transmit
-might be 10s of ms, during which time new packets can arrive from a
-variety of sources that you could assemble into the new aggregate.
+Regardless: the total time spent waiting for the ability to transmit
+again might be 10s of ms, during which time new packets can arrive
+from a variety of sources that you could assemble into the new
+aggregate.
 
 Still, arbitrarily waiting for the (minimum time - some overhead) as
 per the first method described above - would ensure more packets were
