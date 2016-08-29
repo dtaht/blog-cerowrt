@@ -85,18 +85,22 @@ So we don't have to start the process of assembling and submitting a
 new one to the hardware until (minimum_estimate - some time to form
 the aggregate).
 
-Doing this deferral would require scheduling a soft-txqueue handler to
+Doing this deferral would require scheduling a softirq handler to
 fire at some point after that estimate, which does involve added
 overhead, and attempts to submit drivers that used a technique like
 this have largely been regected due to costing extra cpu.
 
 The advantage of this approach is that we don't need to know anything
-more about the ath9k hardware than we already do, and you can get
-quite a few packets in 1ms over ethernet - 6 big ones. Or some packets arrive over the air...
+more about the ath9k hardware than wqe already do, and you can get
+quite a few packets in 1ms over ethernet - 6 big ones. Or some packets
+arrive over the air... any way you do it, you potentially get more
+packets to aggregate that you can't get otherwise.
 
-It may well be at the lower transmit estimates we need to accrue
-more than one outstanding txop in the first place, particularly
-at higher than HT20 rates, with some sort of NAPI or BQL-like tradeoff.
+Note: It may well be at the smaller transmit estimates we need to accrue
+more than one outstanding txop in the first place, particularly at
+higher than HT20 rates, with some sort of NAPI or BQL-like
+tradeoff. At really high rates (>300Mbits) we're seeing a need to do
+that on newer hardware like the ath10k.
 
 ## Defer next submittal until the next tx is in progress
 
