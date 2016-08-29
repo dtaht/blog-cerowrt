@@ -179,53 +179,75 @@ I tend to think that making a decision to schedule a txop for a given
 station should be pushed to the airtime scheduler on the AP, and that
 we should stay in there fighting for media access in the driver.
 
-# Getting more bandwidth for TCP
+## Coping with cpu scheduling latency
 
 This is not the whole story, cpu scheduling latency factors in, which is
-why on this ethernet benchmark, you see the udp tests, here,
+why on this ethernet benchmark, you see the ICMP portion of the tests, here,
 
 {{< figure src="/flent/cerowrtcompared/udp_vs_icmp.svg"  >}}
 
-taking about 250us of jitter/latency because there is a context switch between
-the kernel and netperf that takes a while to process. 250us is essentially
-"noise" of course, at ethernet speeds, but we need to account for it.
+taking less time than UDP, with about 250us of jitter/latency, because
+there is a context switch between the kernel and netperf that takes a
+while to process for UDP. 250us is essentially "noise" of course, at
+ethernet speeds, but we need to account for it, as there are no "hard"
+realtime deadlines within the linux kernel, other workloads might
+interfere with interrupt or softirq processing.
 
 Some of the lag here is due to NAPI batching up interrupts, also.
 
 We may already be running into scheduling problems, if we only have
-one small packet outstanding in the hardware, we may be missing
-the window for submittal of the next one. This would explain why
-we aren't getting as much upload throughput as we used to on the rrul test.
+one small packet outstanding in the hardware, we may be missing the
+window for submittal of the next one. This would explain why we aren't
+getting as much upload throughput as we used to on the rrul test.
 
 {{< figure src="/flent/cerowrtcompared/rrul_be.svg"  >}}
 
 ...
 
 Modern software engineering is skewed horribly on the side of using
-less cpu. Modern CPUs' inability to context switch rapidly is in part
-the reason for the rise of dpdk and other alternatives that avoid this
-context switch. They burn cpu cores spinning madly, polling for
-packets rather than awaiting interrupts or further batching them up
-(with techniques like [NAPI](ZXC) to (dpdk is a great way to heat data
-centers)
+less interrupts. Modern CPUs' inability to context switch or respond to
+interrupts rapidly is in part the reason for the rise of dpdk and
+other alternatives that avoid this context switch. They burn cpu cores
+spinning madly, polling for packets rather than awaiting interrupts or
+further batching them up (with techniques like [NAPI](ZXC))
+
+(dpdk is a great way to heat data centers)
 
 There are sound reasons to want to use less cpu - it frees up the cpu
-for other applications, it saves power - but in all cases, batching up
-interrupts violates a basic principle of packet conservation - the
-fluid model. 
+for other applications, it saves power - and if you are *out* of cpu,
+bad things happen - but in all cases, if you are not out of cpu - and
+you can context switch rapidly enought - batching up interrupts
+violates a basic principle of packet theory - the fluid model: one
+packet in, one packet out, wherever possible.
+
+While you can selectively violate this principle as bandwidths get higher, (and we do!, with techniques like TSO/GRO, NAPI, etc, being able to handle individual packets well, also, at lower bandwidths, is still also needed. We've gradually evolved techniques (notably BQL & cake) to scale up and down the amount of needed batching on ethernet, and are now entering a phase where we need to do the same for wifi.
+
+Things like NAPI *should* be less and less needed in an age for
+multi-core, each of which can respond to interrupts separately.
 
 ## A look at existing code
-
-In ath9k/xmit.c
 
 The capabilities of the hardware are ironic. Each of the 4 queues can
 have an 8 deep fifo attached. This means that at worst case transmit
 rates, the hardware can have 128ms worth of packets queued up without
-further intervention. We're running the fifo depth effectively at 2*8
-now, and an end goal might be to nearly eliminate the BK queue in
-favor of better aggregation, and soft limit the entrance to the VI and
-VO queues so that we supply a limited amount of airtime and backlog.
+further intervention from the main cpu. That's a crazy amount of
+buffering for network data. We're running the fifo depth effectively
+at 2*4 now, starving the built-in hardware mechanisms almost
+completely, and an end goal might be to nearly eliminate the BK queue
+in favor of better aggregation, and soft limit the entrance to the VI
+and VO queues so that we supply a limited amount of airtime and
+backlog. In other words, have no more than 2 TXOPs scheduled anywhere
+in the hardware.
 
+I'd like to rip out nearly all of the existing hardware queue distinctions
+in favor of dynamically selecting a hardware queue when needed. We could,
+for example, leverage two BE queues to have packets outstanding for two
+different destinations, and keep one starved, instead of the structures
+described in this blog post....
+
+In ath9k/xmit.c:
+
+<pre>
 {{< highlight C >}}
 enum ath9k_tx_queue_flags {
         TXQ_FLAG_TXINT_ENABLE = 0x0001,
@@ -263,3 +285,4 @@ enum ath9k_tx_queue_flags {
                                         TXQ_FLAG_TXDESCINT_ENABLE;
         }
 {{< /highlight >}}
+</pre>
