@@ -19,10 +19,11 @@ throughput, with 1/3 the induced latency!
 These numbers are not achieved by any other wifi card I've ever tested
 under linux, or indeed, any other operating system.
 
-If I had any one goal with the [make-wifi-fast project](https://www.bufferbloat.net), it has been to get wifi performing with
-sub-30ms latencies throughout its operating range, with 4 stations running full blast, making good gaming and voip experiences possible, again, without explicit
-classification. We've finally proved that feasible, with this and the
-new airtime fairness scheduler.
+If I had any one goal with the [make-wifi-fast project](https://www.bufferbloat.net), it has been to get wifi performing with sub-30ms latencies throughout its operating range,
+with 4 stations running full blast, making good gaming and voip
+experiences possible, again, without explicit classification. We've
+finally proved that feasible, with this and the new airtime fairness
+scheduler.
 
 {{< figure src="/flent/cerowrtcompared/boundedlatency.svg" >}}
 
@@ -32,12 +33,13 @@ It is *possible* to do even better than this. The current structure of
 the code is: one aggregate in the hardware, one, submitted, "ready to
 go", and the rest being queued up in software. When the first
 aggregate completes, the "ready to go one" starts getting processed by
-the hardware, a completion interrupt is generated to clean up the
-tx descriptor, which fires off construction of a new aggregate, which is considered
-"ready to go" as soon as its constructed. This leads to a natural
-median RTT of what you see here - about 15ms, with a minimum of 5ms,
-and a long tail extending out to 40ms (depending on retries). Both stations
-have to have code this tight to get here, but...
+the hardware, a completion interrupt is generated to clean up the tx
+descriptor, which fires off construction of a new aggregate, which is
+considered "ready to go" as soon as its constructed and submitted into
+the hardware FIFO. This leads to a natural median RTT of what you see
+here - about 15ms, with a minimum of 5ms, and a long tail extending
+out to 40ms (depending on retries). Both stations have to have code
+this tight to get here, but...
 
 Even the worst case latency of the new code is better than the best
 case latency on the old code, *at this rate*.
@@ -53,8 +55,8 @@ code.
 There are three other techniques that could cut this still further,
 but they are kind of speculative at the moment.
 
-For starters, let's compare this 60Mbit result with what we could get
-on ethernet.
+For starters, let's compare this 60Mbit (HT20 running at 120 to
+150mbits) result with what we could get on ethernet.
 
 {{< figure src="/flent/cerowrtcompared/ethernetvsath9k.svg" >}}
 
@@ -90,7 +92,11 @@ this have largely been regected due to costing extra cpu.
 
 The advantage of this approach is that we don't need to know anything
 more about the ath9k hardware than we already do, and you can get
-quite a few packets in 1ms over ethernet - 6 big ones.
+quite a few packets in 1ms over ethernet - 6 big ones. Or some packets arrive over the air...
+
+It may well be at the lower transmit estimates we need to accrue
+more than one outstanding txop in the first place, particularly
+at higher than HT20 rates, with some sort of NAPI or BQL-like tradeoff.
 
 ## Defer next submittal until the next tx is in progress
 
@@ -99,38 +105,41 @@ a slot out of the wifi contention window and transmitting.
 
 Because there is contention for the non-duplex media, the real
 estimate before you can grab the media again is X + active
-stations. The total time spent waiting for the ability to transmit
+stations. It's worse than that - which device will win the election,
+is random. One device might get a chance to transmit 2 or 3 times
+before another device wins. If the AP wins multiple times we end up
+draining its queue without accumulating enough packets in the reverse
+direction to keep a TCP flow going. There is a lot to be said for real
+full duplex!
+
+Regardless the total time spent waiting for the ability to transmit
 might be 10s of ms, during which time new packets can arrive from a
 variety of sources that you could assemble into the new aggregate.
 
 Still, arbitrarily waiting for the (minimum time - some overhead) as
-per the first method described here - would ensure more packets were
+per the first method described above - would ensure more packets were
 available at the transmitter to send, without affecting the contention
 window.
-
-It's worse than that - which device will win the election, is
-random. One device might get a chance to transmit 2 or 3 times before
-another device wins. If the AP wins multiple times we end up draining
-its queue without accumulating enough packets in the reverse direction
-to keep a TCP flow going. There is a lot to be said for real full duplex!
 
 So...
 
 IF there was a way to check or poll for the device being busy on a
-receive, we could recognise that, and then wait until the *receive
+receive, we could recognize that, and then wait until the *receive
 interrupt* was received before starting the aggregate assembly
 timer. This would ensure more packets arrived to be processed
 elsewhere and cut the apparent latency still further in that case.
 
 Better:
 
-The most ideal solution would be if the ath9k hardware could generate an
-interrupt upon actually starting to transmit what it has queued up,
-which we'd use to signal the start of the next aggregate formation.
+The most ideal solution would be if the ath9k hardware could generate
+an interrupt upon actually starting to transmit what it has queued up,
+which we'd use to signal the start of the next aggregate formation,
+instead of the completion interrupt.
 
 Timings are tight, you'd want to be able to form that aggregate in
 under 1/10th a ms, but you'd have had a chance to accrue packets for a
-far longer period of time while you knew the media was otherwise busy.
+far longer period of time while you knew the media was otherwise busy,
+and aggregate all you've got into your eventually acquired TXOP.
 
 ## Not scheduling a tx at all until "enough" packets arrive
 
@@ -157,6 +166,10 @@ arrive 130us later.
 
 There are also techniques elsewhere in the stack like xmit_more, and
 we can also peek the queue to see what's there instead of blocking.
+
+I tend to think that making a decision to schedule a txop for a given
+station should be pushed to the airtime scheduler on the AP, and that
+we should stay in there fighting for media access in the driver.
 
 # Getting more bandwidth for TCP
 
