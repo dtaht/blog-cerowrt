@@ -48,11 +48,11 @@ videoconferencing, and a possible perfect future of the Internet.
 
 ## Bi-directional fairness: WTF??
 
-This result was so bad that I have no idea what to think.
+This result was so bad that I have no idea what to think. The rrul_be test used here, tests 4 simulatanious upload flows with 4 simultaneous download flows, along with 4 latency measurement flows, and a "good" result would be the two sets of flows getting a nearly equal amount of bandwidth, moderated somewhat by the difference in rates achieved by the quality of the chips/antennas/dsps in the two different products.
 
 {{< figure src="/flent/fq_codel_osx/rrul_be_sucks.svg" >}}
 
-WTF?
+WTF? The *upload* from the Air nearly completely starves the download.
 
 {{< figure src="/flent/fq_codel_osx/rrul_be_wtf.svg" >}}
 
@@ -60,7 +60,7 @@ I'm going to put this one down and not think about it for a while. The
 rrul test was the nastiest test I could devise in 2011. It was
 expressly designed to blow up wifi - and it does - but this result was
 totally unexpected, and I don't know the cause. Certainly we get badly
-assymmetric behavior with Linux, also, regularly.
+assymmetric behavior with Linux, also, regularly, but not anywhere near this bad.
 
 And the main rrul test - which tests the wifi hardware queues, hard,
 sucks on everything I've ever tried - which we have a design to fix,
