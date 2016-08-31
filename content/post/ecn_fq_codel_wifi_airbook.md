@@ -126,10 +126,12 @@ single numbers to measuring TCP behavior.
 {{< figure src="/flent/fq_codel_osx/upload_zoomed_to_show_the_ramp.svg" >}}
 
 The roughly 2 seconds it takes to ramp up to full speed here for a
-single flow is *nessessary* for TCP's stable operation. Two flows,
-ramp faster. A given web transaction rarely lasts for more than 2
-seconds, and is bound by the RTT - not the baseline bandwidth!
-Anything you can do to reduce the RTT is a win. I'd like to look in
-more detail as to how web transactions are behaving at some point... and in the meantime I'd really like it if more people could look at sawtooths like these and understand that they are *good*.
+single flow is *necessary* for TCP's stable operation. Two flows, ramp
+faster. A given web transaction rarely lasts for more than 2 seconds,
+and is bound by the RTT - not the baseline bandwidth!  Anything you
+can do to reduce the RTT is a win. I'd like to look in more detail as
+to how web transactions are behaving at some point... and in the
+meantime I'd really like it if more people could look at sawtooths
+like these and understand that they are *good*.
 
 {{< figure src="/flent/fq_codel_osx/download_pattern.svg" >}}
