@@ -66,7 +66,7 @@ Once you reduce the bufferbloat inflicted RTT nightmare with bypassing
 the bulk flows with fq, and managing the rest with an aqm like codel,
 even without ECN:
 
-{{< figure src="/flent/fq_codel_osx/loss_sacked.png" >}}
+{{< figure src="/flent/fq_codel_osx/loss_sack.png" >}}
 
 on this local test with the new code it only takes 25ms to have a loss
 and recovery that fills the hole and allows forward progress to continue.
