@@ -29,8 +29,13 @@ WiFi mac. I'd like to take this code and see what nastyness LTE-U will do to it.
 
 ## A Quick set of comparisons with an ath9k Linux client
 
-It also shows off how easily we can compare results using [flent's](https://www.flent.org) data. Before flent existed, we'd have had to pull apart captures,
-process data with awk, spit the results into gnuplot, and hope for the best. The process for a single test used to take *days*, now it's minutes.
+It also shows off how easily we can compare results using
+[flent's](https://www.flent.org) data. Before flent existed, we'd have
+had to pull apart captures, process data with awk, spit the results
+into gnuplot, and hope for the best. The process for a single test
+used to take *days*, now it's minutes.
+
+(unfinished, sorry - it only takes minutes to compare the tests, but we're sorting out a bug as I write. Please check back later)
 
 ## Testing ECN worked out well
 
@@ -55,13 +60,11 @@ I'm going to put this one down and not think about it for a while. The
 rrul test was the nastiest test I could devise in 2011. It was
 expressly designed to blow up wifi - and it does - but this result was
 totally unexpected, and I don't know the cause. Certainly we get badly
-assymmetric behavior with Linux, also, regularly:
+assymmetric behavior with Linux, also, regularly.
 
-{{< figure src="/flent/fq_codel_osx/rrul_be_wtf.svg" >}}
-
-And the main rrul test - which tests the wifi hardware queues, hard, sucks on everything I've ever tried - which we have a design to fix, if not an implementation as yet: 
-
-{{< figure src="/flent/fq_codel_osx/rrul_be_wtf.svg" >}}
+And the main rrul test - which tests the wifi hardware queues, hard,
+sucks on everything I've ever tried - which we have a design to fix,
+if not an implementation as yet.
 
 It could be the new fq_codel code is broken somehow. It could be
 Mavericks is broken somehow. In either case I need to go back and redo
