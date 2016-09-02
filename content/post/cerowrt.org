@@ -1,0 +1,68 @@
++++
+date = "2016-05-13T12:02:58+01:00"
+draft = true
+tags = [ "lab", "wifi", "bufferbloat", "ath9k", "rant" ]
+title = "Live testing on wifi networks"
+description = "Results from the real world"
++++
+
+A look back at cerowrt
+
+I dragged an old cerowrt box out of the box.
+
+We are achieving 5-20% more throughput, with 1/3 the induced latency.
+
+These numbers are not achieved by any other network I've ever tested under linux. 
+
+Living in a bubble, dominated by bad internet.
+
+I see things like $400M for better broadband internet into rural areas, when - if we could just find that developer that wrote the original code and 
+
+I tell them that all you need is sound, bql-like buffer management in the firmware itself to get benefits like this, and they go away, and don't talk to me anymore. 
+
+Channel bonding 
+
+It is *possible* to do even better than that. The current structure of the code is: one aggregate in the hardware, one, "ready to go", and the rest being queued up.  This leads to a natural minimum RTT of what you see here - about 12ms, with a minimum of 5ms, and a long tail extending out to 409ms (depending on retries) There are three other techniques that could cut this still further.
+
+Let's compare this 60Mbit result with what we could get on ethernet. 
+
+The first is that once "one is in the hardware", we have an estimate for how long it is going to take to transmit (usually 1-4ms). 
+
+We don't have an *accurate* mininum estimate for how long it will take, we have one for the maximum time it will take with up to 4 minstrel-controlled retry chains.
+
+Because there is contention on the non-duplex media, the real estimate is X + active stations. Still, arbitrarily waiting for the minimum time - some overhead - would  ensure more packets were available at the transmitter to send, without affecting
+the contention window. 
+
+Which device will win the election, is random. One device might get a chance to transmit 2 or 3 times before another device wins.
+
+IF there was a way to poll for the device being busy on a receive, we could recognise that, and then wait until the *recieve interrupt* was recieved before starting the timer. This would ensure more packets arrived to be processed elsewhere and cut the apparent latency still further.
+
+The leads to a third technique
+
+Or induce latency, 
+
+Timings here are tight: It is unknown when - after a solid block ack is delivered - the election takes place, and the recieve interrupt is delivered. 
+
+If I had any one goal, it has been to get wifi performing with sub-30ms latencies throughout, making good gaming and voip experiences possible, again. 
+
+I should be happy.
+
+# Getting more bandwidth for TCP
+
+This is not the whole story, scheduling latency factors in, which is why on this benchmark, you see the udp tests,
+taking 2-3x as much time, because there is a context switch between the kernel and netperf that takes a while to 
+process. Some of the lag here is due to NAPI batching up interupts, also.
+
+skewed horribly on the side of using less cpu. Modern CPUs' inability to context switch rapidly is in part
+the reason for the rise of dpdk and other alternatives that avoid this context switch, and instead burn cpu cores
+spinning madly, polling for packets rather than awaiting interrupts or, further, batching them up (with techniques
+like [NAPI]() to 
+
+(dpdk is a great way to heat data centers)
+
+There are sound reasons to want to use less cpu - it frees up the cpu for other applications, it saves power
+
+like measuring all the packets in flight on the sender side, rather than those recieved. 
+
+Or even to pick another station to transmit to entirely.
+

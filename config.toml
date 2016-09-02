@@ -2,6 +2,10 @@ baseurl = "http://blog.cerowrt.org/"
 languageCode = "en-us"
 title = "CeroWrt notebook: On fixing the internet since 2011"
 canonifyurls = true
+watchIgnoreFiles = ["\\.#(\\w+)\\.(\\w+)"]
+ignoreFiles = ["&\\.#"]
 [params]
 author = "Dave Täht"
+watchIgnoreFiles = ["\\.#(\\w+)\\.(\\w+)"]
+ignoreFiles = ["&\\.#"]
 

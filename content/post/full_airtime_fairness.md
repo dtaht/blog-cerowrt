@@ -15,10 +15,10 @@ packets in random order, still has problems.
 
 Starve the beast
 
-The codel algorthm only needs to run once per *flow* within a given txop. As a txop cannot be smaller than 
-a RTT.
+The codel algorthm only needs to run once per *flow* within a given txop. As a txop cannot be smaller than a RTT.
 
 If it is going to drop more than that it is acting to reduce the backlog rather than to act
+
 It's a packing problem.
 
 # Aggregation is a packing problem,, not a FQ problem..
