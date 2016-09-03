@@ -83,7 +83,7 @@ queuing" problem..
 
 Almost any vpn will bottleneck on packets per second (PPS) if you feed it a lot of small packets (e.g. TCP acks). All of Jason's tests tended towards being focused on one way throughput, not bidirectional, so where he claims the code can do a gbit, he's only measuring big fat tcp flows, where rrul stresses things out
 with acks and measurement flows in the reverse direction. Once we hit a threshold where
-packets were going in faster than coming out, TCP cubic started inflating
+packets were going into wireguard faster than coming out, it started accrueing packets (wireguard has a default 1000 packet buffer internally), TCP cubic started inflating
 its estimate of the RTT of the path faster than the fq_codel implementation on the wire could compensate, and in the end it took over 30 seconds for enough
 drops to happen for things to settle down to the base latency of the path. 
 
