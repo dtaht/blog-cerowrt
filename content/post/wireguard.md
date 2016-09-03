@@ -40,14 +40,14 @@ I'll get to that elsewhere)
 Tinc 1.1 - which tries to make things simpler, has also been in development
 a long time. A year (or two?) back, I'd taken a stab at making it do
 ecn, and queuing better, and gave up.  Dealing with the characteristics of the "tun" device is a PITA; the overriding suggestion is to re-write tun, I ran away screaming. Certainly if I took a few days at it, I could add ecn encapsulation and make a stab at threading the read path, and then writing a userspace fq_codel implementation might take me a week or three. (famous last words - I'd wanted to have a generalized C based fq_codel library for a long time now, and the design effort to get that even mildly right
-is probably longer than that. [sendmmsg](http://man7.org/linux/man-pages/man2/sendmmsg.2.html) anyone? Have you ever seen the userspace APIs for [cmsg](http://linux.die.net/man/3/cmsg) and [IP header info](https://www.ietf.org/rfc/rfc2292.txt)? YUCK. The linix in-kernel facilities are much nicer) 
+is probably longer than that. [sendmmsg](http://man7.org/linux/man-pages/man2/sendmmsg.2.html) anyone? Have you ever seen the userspace APIs for [cmsg](http://linux.die.net/man/3/cmsg) and [IP header info](https://www.ietf.org/rfc/rfc2292.txt)? YUCK. The linux in-kernel facilities are much nicer) 
 
 ## And wireguard has much potential
 
 Last week, I encountered [Wireguard](https://wireguard.io), via review
 by Greg Kroah-Hartman - and, um....
 
-Ooh! shiny! A minimalistic (4000 line) in-linux-kernel VPN design that took advantage of many already well-tested kernel facilities, that used modern cryptograph, and bypassed a whole lot of basically broken ideas in IPsec and most
+Ooh! shiny! A minimalistic (4000 line) in-linux-kernel VPN design that took advantage of many already well-tested kernel facilities, that used modern cryptography, and bypassed a whole lot of basically broken ideas in IPsec and most
 (maybe all) other VPN designs. It runs over udp, it's "silent" when 
 approached by aliens, it's easy to setup, and it's not quite tinc, but could be
 made more like it - and is promoted as faster than ipsec....
