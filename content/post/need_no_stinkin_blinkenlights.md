@@ -116,7 +116,7 @@ previous states in that script and then restore...
 Sigh. Now I have to reboot everything to try that out.
 
 So if I have any one UI lesson here, is that if you have an indicator light, it
-should *mostly* be used only if *something  wrong*. I'd love it if our "power on" lights
+should *mostly* be used only when *something's wrong*. I'd love it if our "power on" lights
 actually were only on when there was no power! (and our UPSes only beep when they
 were nearly out of power, but that's [another rant](/post/siliencing_the_ups_beep))
 
