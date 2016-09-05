@@ -1,5 +1,5 @@
 +++
-date = "2016-09-04T22:02:58+01:00"
+date = "2016-09-05T10:02:58+01:00"
 draft = false
 tags = [ "ui", "distractions", "rants" ]
 title = "Blinkenlights: A debugging aid AND a curse"
@@ -11,10 +11,13 @@ Engineers sink loads of time into making the LEDs on their devices do useful thi
 ## Evoking meaning from binary digits, when that's all you have
 
 There are whole manuals on all the different meanings of blink patterns in the POST step
-on x86 hardware. Everything has a "power is on" light, everything has multiple indicator lights
-that indicate something important. Your car has a *low oil* light. But the common availability
-of cheap LEDs have led to a profusion of lights always on, or blinking in some pattern, that means
-something, that my subconcious is always attempting to extract meaning from.
+on x86 hardware. 4 long, 2 short means something entirely different than 2 short 4 long. Everything has a "power is on" light, everything has multiple indicator lights
+that indicate something important. Your car has a *low oil* light.
+
+But the common availability of cheap LEDs have led to a profusion of lights always on, or blinking in some pattern, that must mean something, that my subconcious is always attempting to extract meaning from.
+
+The "blinking 12:00" that coffee makers and microwaves have have driven multiple generations
+nuts. It's an Internet meme all by itself.
 
 I've worked really hard in my life to get that first board to come up far enough to actually
 enable an LED, and done a little dance of triumph when it finally did. But:
@@ -29,7 +32,7 @@ Everyone is trying to encode meaning into these things, because, well, that's wh
 are there, you gotta use them for something.
 
 LED programming is a great pastime. The guy that programmed the connection machine's blinkenlights is a geek hero - because he had no API and he had to co-ordinate each processor's (out of 64000!) 
-general activity in sync with all the others to create pretty patterns for movies like Jurassic Park. Programming those LEDs was a full time job!
+general activity in sync with all the others to create pretty patterns for movies like Jurassic Park. Programming those LEDs was a full time job! People get gigs making them do cool things at events and parties and burning man, and you'll see endless projects using led strips on various hackboards. LEDs can be *cool*!
 
 I'm not immune to using LEDs to convey meaning - for example, my meshy APs usually
 blink red when they are talking over the wireless mesh, and in locations that are not
@@ -47,7 +50,7 @@ impossible to see the stars through the dome in the roof. The room now was well 
 
 *Gimme back the stars!*
 
-*One* light in a room - triggered by motion - is useful and comforting. The self-inflicted sea of blinkinglights really got under my skin. And my gf's.
+*One* light in a room - triggered by motion - is useful and comforting. This self-inflicted sea of blinkinglights really got under my skin. And my gf's.
 
 OK... I'd had enough. So at 2AM... I figured out...
 
@@ -76,9 +79,13 @@ done
 
 and fired it up. I dimmed the bedroom by about 2/3s!
 
-Still: Many lights had no userspace controls. None of the beaglbone green wireless's gpios
+Still: Many lights had no userspace controls. None of the beaglebone green wireless's gpios
 seemed to change anything. And: Power in particular - I lay awake 
 getting grumpy at my power strips.  Does someone make a power strip without a power on light?
+
+I know I'm not alone is wanting the LEDs off. All the googling I did for multiple products
+had someone else trying, desparately, to find some way to turn them off, and coming up
+empty.
 
 ## Stealthy switch
 
