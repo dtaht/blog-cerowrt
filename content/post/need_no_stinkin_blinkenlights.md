@@ -44,7 +44,7 @@ can't sleep - Even the power light is a curse -
 email alert if it goes down!"
 
 
-I finally hit my limit when I deployed two new APs [ubnt UAP AC Lites](/post/uap_ac_lite) in the [yurtlab](/tags/lab), yesterday. I've added a dozen boxes to the lab in the last few days, but
+I finally hit my limit when I deployed two new APs ([ubnt UAP AC Lites](/post/uap_ac_lite)) in the [yurtlab](/tags/lab), yesterday. I've added a dozen boxes to the lab in the last few days, but
 these got mounted up high, so I had to lie here, and watch the on light (white) be constantly on, and see the blue light flash out of the corner of my eye when traffic was present. "Traffic is always present, what kind of traffic is it?" I'm trying to sleep, watching these things blink in crazy ways, and illuminate the entire room - and the added brightness made it
 impossible to see the stars through the dome in the roof. The room now was well enough lit to be able to clearly see all the walls in the dead of night.
 
@@ -81,9 +81,9 @@ and fired it up. I dimmed the bedroom by about 2/3s!
 
 Still: Many lights had no userspace controls. None of the beaglebone green wireless's gpios
 seemed to change anything. And: Power in particular - I lay awake 
-getting grumpy at my power strips.  Does someone make a power strip without a power on light?
+getting grumpy at all my power strips.  Does someone make a power strip without a power on light?
 
-I know I'm not alone is wanting the LEDs off. All the googling I did for multiple products
+I know I'm not alone in wanting the LEDs off. All the googling I did for multiple products
 had someone else trying, desparately, to find some way to turn them off, and coming up
 empty.
 
@@ -124,9 +124,9 @@ were nearly out of power, but that's [another rant](/post/siliencing_the_ups_bee
 
 This exercise gave me an idea that I woke up with. One of the things we are trying to do is shave all the latency and jitter out of WiFi. If I could have a utility that put out a periodic message (multicast or unicast) and could blink multiple devices simultaneously, I'd get a grip on how well we were doing...
 
-I could rig up a high speed camera to it all, capture stuff at 1000 fps, and gather up how good it all is with some machine learning! Put dozens of blinkenlights to good use exhibiting 
+I could rig up a high speed camera to it all, capture stuff at 1000 fps, and gather up how good it all is with some machine learning! Put dozens of blinkenlights on dozens of machines to good use exhibiting the improved 
 parallelism - And then, maybe, I could sync everything to music! Or leverage Linux's sound
-system's abilitity to do so! Even if I'm not playing music....
+system's ability to do so! Even if I'm not playing music....
 
 I hit caps-lock a number of times while thinking about how to do that...
 and went back to bed. 
