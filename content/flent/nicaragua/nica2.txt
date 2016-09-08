@@ -1,0 +1,29 @@
+qdisc htb 1: root refcnt 2 r2q 10 default 10 direct_packets_stat 0 direct_qlen 32
+ Sent 1125682432 bytes 1196017 pkt (dropped 13405, overlimits 912181 requeues 0) 
+ backlog 0b 0p requeues 0 
+qdisc fq_codel 110: parent 1:10 limit 1001p flows 1024 quantum 1514 target 9.3ms interval 104.3ms ecn 
+ Sent 1125682432 bytes 1196017 pkt (dropped 13405, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0 
+  maxpacket 1514 drop_overlimit 0 new_flow_count 262522 ecn_mark 20
+  new_flows_len 0 old_flows_len 1
+qdisc htb 1: root refcnt 2 r2q 10 default 12 direct_packets_stat 0 direct_qlen 1000
+ Sent 584359650 bytes 1033932 pkt (dropped 7938, overlimits 1166056 requeues 0) 
+ backlog 0b 0p requeues 0 
+qdisc fq_codel 110: parent 1:11 limit 1001p flows 1024 quantum 300 target 9.3ms interval 104.3ms ecn 
+ Sent 3215950 bytes 25664 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0 
+  maxpacket 590 drop_overlimit 0 new_flow_count 9247 ecn_mark 0
+  new_flows_len 1 old_flows_len 13
+qdisc fq_codel 120: parent 1:12 limit 1001p flows 1024 quantum 300 target 9.3ms interval 104.3ms ecn 
+ Sent 581143700 bytes 1008268 pkt (dropped 7938, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0 
+  maxpacket 1514 drop_overlimit 0 new_flow_count 253782 ecn_mark 0
+  new_flows_len 0 old_flows_len 2
+qdisc fq_codel 130: parent 1:13 limit 1001p flows 1024 quantum 300 target 9.3ms interval 104.3ms ecn 
+ Sent 0 bytes 0 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0 
+  maxpacket 0 drop_overlimit 0 new_flow_count 0 ecn_mark 0
+  new_flows_len 0 old_flows_len 0
+qdisc ingress ffff: parent ffff:fff1 ---------------- 
+ Sent 1127318247 bytes 1209809 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0 
