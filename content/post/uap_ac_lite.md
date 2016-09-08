@@ -1,21 +1,16 @@
 +++
 date = "2016-09-05T12:02:58+01:00"
-draft = false
+draft = true
 tags = [ "ath9k", "ath10k", "ubnt" ]
 title = "The UAP ac Lite"
 description = "an ideal router for make-wifi-fast - well, it's more of a bridge"
 +++
 
-When I fire up Toke's code, the theme from star wars goes through my head. He's a big Darth Vader fan.
-
-"Dum, dum, dum, da, da dum, da da dum."
-
-My memory for music is so good that frequently I can replay an entire song in my head while doing a flash. It's the only way I can deal with my PTFD.
+When I fire up Toke's code, the theme from star wars goes through my head. He's a big Darth Vader fan. "Dum, dum, dum, da, da dum, da da dum." My memory for music is so good that frequently I can replay an entire song in my head while doing a flash. It's the only way I can deal with my PTFD.
 
 # Evaluating the factory firmware
 
 I'll get around to this. For now I was too excited. I just needed to get in there and blow things up.
-
 ## Figuring out what was already in lede
 
 ## Some early tests
@@ -144,7 +139,6 @@ Yes, toke halved the latency from 40ms to 15ms
 * Did we hurt throughput?
 
 We might have!
-
 
 
 [ 3149.226254] WARNING: CPU: 0 PID: 0 at compat-wireless-2016-06-20/net/mac80211/tx.c:1514 ieee80211_tx_dequeue+0x17c/0x968 [mac80211]()
