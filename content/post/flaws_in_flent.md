@@ -67,7 +67,7 @@ each flow to truly "get" whats going on.
 The problem with the latter problem is no tool does it, and at the
 higher rates (like 10Gbit) actually doing timestamps well is problematic.
 
-The middle problem is that few good tools for creating isochronous traffic exist. Flent has a test built around the d-itg voip simulation tool, but d-itg is not exactly "safe" to run on the open internet, and I'd
+The former problem is that few good tools for creating isochronous traffic exist. Flent has a test built around the d-itg voip simulation tool, but d-itg is not exactly "safe" to run on the open internet, and I'd
 like something with hard realtime privs that used fdtimers to get
 accurate resolutions below 10ms.
 
@@ -82,7 +82,7 @@ Quic has always been on my mind.
 ## Flent works best at high speeds
 
 A huge flaw in most network research today is that researchers tend
-to focus on achieveable speeds in the lab, and are perpetually posting
+to focus on achievable speeds in the lab, and are perpetually posting
 results in the 1mbit to 10mbit range. Flent lets you test at speeds
 up to 40Gbit. Most of our testing has been in the range 4-200Mbit.
 
@@ -101,8 +101,7 @@ One of the hardest problems to measure is what happens at a range of achievable 
 or in [route flaps](/fixme)
 
 Nobody has a good emulation for wifi's behaviors today. It seemed simpler
-to just go forth and implement what we have, in linux directly, and go
-measure that.
+to just go forth and implement the new queueing ideas we have, in Linux directly, and go measure that, and wash, rinse, repeat.
 
 ## Flent doesn't count tcp acks as part of the overall traffic measurement
 
@@ -188,6 +187,17 @@ There was a start at a [json based flent analytics engine](fixme) that
 could show details with javascript. It was a great prototype, but it stalled
 out - one on a stupid thing with font licensing, another on sort of needing
 that db backend, and it needed a committed developer, also. 
+
+## Test Automation and standardized strings of tests
+
+There is a very good "batch" facility in flent, but using it for the first
+time is intimidating. But you can construct a long series of tests and checks
+for errors, and so on, using it.
+
+Me, I tend to script up something in bash, and include that test script with
+the data, to see what I had under test. It would be better if I and everyone
+else put more rigor into this, with a standardized set of "batches" that captured all the statistics available. There are so many site specific variables
+that make that hard.
 
 ## Not (quite) enough worldwide coverage
 
