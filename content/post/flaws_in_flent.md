@@ -12,8 +12,11 @@ core researchers in the [bufferbloat](/tags/bufferbloat) effort.
 With it - in a matter of minutes you can replicate any network test "out there"
 and compare results across an extraordinary number of variables. Before Toke developed flent, it would takes days, sometimes, to set up a single plot,
 now I am deluged in data, and we can investigate network behaviors in minutes
-that take other researchers months. Accurately. With comparable results
+that could take other researchers months. Accurately. With comparable results
 in a standardized file format.
+
+Best of all, it's free (GPLv3) software, and it's easy to get up and running
+on Linux and OSX.
 
 ## Getting "standard statistics"
 
@@ -170,6 +173,29 @@ section of the chart AND sawtooths at some multiplier of the actual path
 RTT is what you want to see, but we have not got those clearly seperated
 yet. It would interesting if we could correllate those two separate
 concepts from the data itself.
+
+## No DB backend
+
+As the number of tests has grown into the 100s of thousands, having some
+form of database backend to figure out stuff, with access to metadata,
+has grown more and more needed.
+
+We encapsulate a lot of the variable data into filenames, which is something that each user names differently. So we end up doing stuff like flent-gui *ecn_yes*.gz to look at data over time or other variables as a first pass.
+
+## No web front end
+
+There was a start at a [json based flent analytics engine](fixme) that
+could show details with javascript. It was a great prototype, but it stalled
+out - one on a stupid thing with font licensing, another on sort of needing
+that db backend, and it needed a committed developer, also. 
+
+## Not (quite) enough worldwide coverage
+
+We operate 10 [flent servers around the world](fixme), but they are A) hosted primarily with one co-location facility (linode) and B) you really can't trust the
+numbers above 200Mbit.
+
+Generally the expectation is that folk will use flent in a lab, while
+testing new hardware, rather than hit the worldwide servers.
 
 ## Underdocumented options incompletely implemented
 
