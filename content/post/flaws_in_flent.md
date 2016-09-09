@@ -48,7 +48,7 @@ and while I can point to a "good result" pretty easily -
 
 {{< figure src="/flent/good_results/example.svg" >}}
 
-explaining everything that can go wrong would take pages and pages -
+Explaining everything that can go wrong would take pages and pages -
 which I intend to do someday in the hope that more folk learn to read
 a rrul plot and what it means.
 
@@ -64,8 +64,7 @@ each flow to truly "get" whats going on.
 The problem with the latter problem is no tool does it, and at the
 higher rates (like 10Gbit) actually doing timestamps well is problematic.
 
-The former problem is that few good tools for creating isochronous traffic exist.
-d-itg is not exactly "safe" to run on the open internet, and I'd
+The middle problem is that few good tools for creating isochronous traffic exist. Flent has a test built around the d-itg voip simulation tool, but d-itg is not exactly "safe" to run on the open internet, and I'd
 like something with hard realtime privs that used fdtimers to get
 accurate resolutions below 10ms.
 
@@ -77,12 +76,12 @@ on the wider internet without some sort of 3-way handshake to kick it off.
 
 Quic has always been on my mind.
 
-## Flent works well at high speeds
+## Flent works best at high speeds
 
 A huge flaw in most network research today is that researchers tend
 to focus on achieveable speeds in the lab, and are perpetually posting
 results in the 1mbit to 10mbit range. Flent lets you test at speeds
-up to 40Gbit. 
+up to 40Gbit. Most of our testing has been in the range 4-200Mbit.
 
 TCP's behaviors at lower rates are bound by different variables than 
 TCP's behaviors at higher rates. Of issue are the size of the initial
@@ -121,14 +120,14 @@ gauge of whether or not I'm fooling myself.
 Once measurements start getting down below 5ms, all sorts of measurement
 noise enter the tests - 
 
-* ICMP ping's - which are responded to by the kernel - start responding faster
+* ICMP pings - which are responded to by the kernel - start responding faster
   than UDP bsed pings - which have to context switch into user space. Sometimes.
   Some kernels deprioritize ping!
 
 * RTT based measurements start becoming significant - dropping a 
   queue from 10ms to 1ms increases the measurement traffic by a factor of 5.
 
-Try not to take any observed difference in performance under 5ms cautiously.
+Try to take any observed difference in performance under 5ms cautiously.
 
 ## Sample size is large
 
@@ -141,13 +140,18 @@ like fping, start getting behind - finding a ping tool that could
 accurately get below 50ms resolution would be nice. 
 
 Yet, there is often much hidden detail that can be revealed by using a smaller
-sample size.
+sample size. And if you really need more detail, take a packet capture and
+tear that apart with other tools. With the *repeatable* aspects of the flent
+tests, driving a given load, packet captures can be torn apart more sanely.
 
 ## Videoconferencing
 
-We don't have a good videoconferencing test. Videoconferencing has a characteristic where the video frame does not fit into a single packet. Thus with the
+We don't have a good videoconferencing test. Videoconferencing has a characteristic where the video frame does not fit into a single packet, and there
+is a burst of packets (10 or so) every 16ms at a 60hz rate. Many video
+conferencing systems only capture 5-16 frames/sec. Thus with the
 FQ we do, the first part of the new frame is moved forward in time, relative
-to the tail. Our latency measurements do not measure that.
+to the tail, and this periodic "burst" is something we hope codel will 
+largely ignore under most loads. Our latency measurements do not measure that.
 
 We've discussed how to go about feeding a representative videoconferencing
 flow into a webrtc via various means, there's a single command line way 
