@@ -10,7 +10,7 @@ description = "Engineering to the test - especially your own test - can be delud
 core researchers in the [bufferbloat](/tags/bufferbloat) effort.
 
 With it - in a matter of minutes you can replicate any network test "out there"
-and compare results across an unblievable number of variables. Before Toke developed flent, it would takes days, sometimes, to set up a single plot,
+and compare results across an extraordinary number of variables. Before Toke developed flent, it would takes days, sometimes, to set up a single plot,
 now I am deluged in data, and we can investigate network behaviors in minutes
 that take other researchers months. Accurately. With comparable results
 in a standardized file format.
@@ -30,7 +30,7 @@ flent -i datafile -o plot.csv -f plot
 
 What I regard these as most useful for is disproving to statistics minors
 that guassian statistics measures anything useful when it comes to network
-behavior.I care an awful lot about everything above the 95th percentile,
+behavior. I care an awful lot about everything above the 95th percentile,
 for example, and most stats majors just chop that off before even
 starting an analysis.
 
@@ -72,6 +72,11 @@ accurate resolutions below 10ms.
 owamp has much promise but I still don't trust it's measurements lacking
 both realtime privs and fdtimer support, also.
 
+Avery's "isochronous" tool is of some use, but again, unsafe to deploy
+on the wider internet without some sort of 3-way handshake to kick it off.
+
+Quic has always been on my mind.
+
 ## Flent works well at high speeds
 
 A huge flaw in most network research today is that researchers tend
@@ -87,13 +92,15 @@ Our focus with flent has been measuring actually achieved rates in the
 field, which for ISPs ranges from 384k up to a gigabit - measuring
 queue depth, cpu overhead, etc. Some binding variables there include
 the size of the initial window also, but pacing, recv and send buffering,
-and so on start factoring into play more. Loss rates drop dramatically,
-in particular. 
+and so on start factoring into play more. At higher speeds, loss rates drop
+dramatically, in particular. 
 
 One of the hardest problems to measure is what happens at a range of achievable rates from 1Mbit to 1Gbit in the same session, as in [wifi](/tags/wifi),
 or in [route flaps](/fixme)
 
-Nobody has a good emulation for wifi's behaviors today. 
+Nobody has a good emulation for wifi's behaviors today. It seemed simpler
+to just go forth and implement what we have, in linux directly, and go
+measure that.
 
 ## Flent doesn't count tcp acks as part of the overall traffic measurement
 
@@ -121,11 +128,15 @@ Try not to take any observed difference in performance under 5ms seriously.
 ## Sample size
 
 The default --step-size is 200ms in width - this is both to reduce the
-heisenbugs introduced by the measurement portions of the text and to
+heisenbugs introduced by the measurement portions of the text and to lower
+the overhead of sampling in the first place.
 
 When trying to operate at resolutions lower than 50ms, other tools,
 like fping, start getting behind - finding a ping tool that could
 accurately get below 50ms resolution would be nice. 
+
+Yet, there is often much hidden detail that can be revealed by using a smaller
+sample size.
 
 ## Videoconferencing
 
@@ -146,7 +157,7 @@ the aqm is actually functioning.
 
 You can infer the AQM's behavior by the width of the sawtooths on the
 up and download portions of the plot. Seeing low latency on the ping
-section of the chart AND sawtooths some multiplier of the actual path
+section of the chart AND sawtooths at some multiplier of the actual path
 RTT is what you want to see, but we have not got those clearly seperated
 yet. It would interesting if we could correllate those two separate
 concepts from the data itself.
@@ -167,14 +178,20 @@ tos
 
 ## iperf vs netperf
 
-if there is any one thing I regret sometimes, it was using netperf instead of iperf
-as the primary measurement tool. netperf is widely used within the linux
-kernel community, but iperf is the primary tool elsewhere. iperf3,
+If there is any one thing I regret sometimes, it was using netperf instead of iperf as the primary measurement tool. netperf is widely used within the linux
+kernel community, but iperf is a primary tool elsewhere. iperf3,
 in particular, supports json output AND there are version of it 
-readily availble for both android and IoS, and I wish we had oore
+readily available for both android and IoS, and I wish we had oore
 support for it.
 
-I do not have the faith in iperf that I do in netperf however.
+I do not have the faith in iperf that I do in netperf however. Yet netperf
+is not built by default for many platforms, and building it yourself is
+a barrier to entry on code that is otherwise currently pure python.
+
+In either case, using a C written test tool is what got us to where we could
+drive big loads, regularly, and reliably. Things like the web tests are
+basically testing browser and server javascript performance at higher rates,
+not queuing delay.
 
 ## UDP floods
 
@@ -182,13 +199,17 @@ We recently discovered a need to try out udp floods in at least some
 tests, as we ran small boxes out of cpu in a rarely hit portion of the
 fq_codel algorithm..
 
+## Fragments
+
+We've ignored fragments, which is probably a bad idea.
+
 ## Flent vs other stuff is *very useful*
 
 I'd also always intended to use the various flent tests as a way
 of generating repeatable "background" loads, against which other traffic
 could be measured. It's hard to "see" what's going on in a typical
 web transaction, for example. We used flent very successfully in
-conjuntion with the chrome web page benchmarker, in showig how
+conjuntion with the chrome web page benchmarker, in showing how
 well normal, not faked, web traffic did vs loads similar to torrenting.
 
 Over time, key tests for simultanienty have moved into flent itself -
