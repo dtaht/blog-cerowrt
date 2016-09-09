@@ -28,8 +28,8 @@ Flent *can* produce standard statistics from any test, as well as detailed outpu
 flent -i datafile -o plot.csv -f plot
 ```
 
-What I regard these as most useful for is disproving to statistics minors
-that guassian statistics measures anything useful when it comes to network
+What I regard these as most useful for: is disproving to statistics minors
+that guassian statistics measure anything useful when it comes to network
 behavior. I care an awful lot about everything above the 95th percentile,
 for example, and most stats majors just chop that off before even
 starting an analysis.
@@ -69,7 +69,7 @@ d-itg is not exactly "safe" to run on the open internet, and I'd
 like something with hard realtime privs that used fdtimers to get
 accurate resolutions below 10ms.
 
-owamp has much promise but I still don't trust it's measurements lacking
+owamp has much promise but I still don't trust its measurements lacking
 both realtime privs and fdtimer support, also.
 
 Avery's "isochronous" tool is of some use, but again, unsafe to deploy
@@ -105,13 +105,16 @@ measure that.
 ## Flent doesn't count tcp acks as part of the overall traffic measurement
 
 Flent does not account for tcp ACK traffic as part of the overall
-bandwidth tracked. If you observe a small decline in bandwidth at a 
-reduction in RTT from 100 ms to 10ms, at least part of that is due to
-the increased ack traffic. I've longed to have an "ack estimator" available
-(basically adding in 1/40th the size of the sent flows on recieve on ipv4),
-just to have an estimate of whether or not I'm fooling myself.
+bandwidth tracked. Flent does not also fully account for the size of the measurement flows.
 
-Flent does not also fully account for the size of the measurement flows.
+If you observe a small decline in bandwidth at a 
+reduction in RTT from 100 ms to 10ms, at least part of that is due to
+the increased ack traffic and increased amount of measurement flows.
+
+I've longed to have an "ack estimator" available
+(basically adding in 1/40th the size of the sent flows on receive on ipv4),
+and to add in the costs of the measurement traffic - just to have an
+gauge of whether or not I'm fooling myself.
 
 ## Resolution
 
@@ -119,13 +122,15 @@ Once measurements start getting down below 5ms, all sorts of measurement
 noise enter the tests - 
 
 * ICMP ping's - which are responded to by the kernel - start responding faster
-  than UDP bsed pings - which have to context switch into user space.
+  than UDP bsed pings - which have to context switch into user space. Sometimes.
+  Some kernels deprioritize ping!
+
 * RTT based measurements start becoming significant - dropping a 
   queue from 10ms to 1ms increases the measurement traffic by a factor of 5.
 
-Try not to take any observed difference in performance under 5ms seriously.
+Try not to take any observed difference in performance under 5ms cautiously.
 
-## Sample size
+## Sample size is large
 
 The default --step-size is 200ms in width - this is both to reduce the
 heisenbugs introduced by the measurement portions of the text and to lower
