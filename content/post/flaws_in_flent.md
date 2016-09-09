@@ -59,7 +59,9 @@ What I had always intended was the "fail the rrul" phase to be followed
 by individual measurements of the simpler tests, like single tcp up and
 downloads, followed by multiple tcps, etc.
 
-There is a pretty basic flaw in all of flent in that it uses RTT based 
+## RTT measurements rather than one way delay
+
+There is a pretty basic flaw in nearly all of flent in that it uses RTT based 
 measurements and what's really needed is measurements of one way delay
 on isochronous intervals (say, 10 or 20ms), and/or measurements within
 each flow to truly "get" whats going on.
@@ -79,7 +81,7 @@ on the wider internet without some sort of 3-way handshake to kick it off.
 
 Quic has always been on my mind.
 
-## Flent works best at high speeds
+## Flent works best at speeds greater than 4Mbit
 
 A huge flaw in most network research today is that researchers tend
 to focus on achievable speeds in the lab, and are perpetually posting
@@ -163,7 +165,7 @@ to do it that I need to find.
 
 The various tests in flent mostly use a separate measurement flow, rather
 than measuring timestamps inside of each flow. So once we added fq
-into the over aqm effort, the basic plot can be misleading as to whether
+into the overall aqm effort, the basic plot can be misleading as to whether
 the aqm is actually functioning. 
 
 You can infer the AQM's behavior by the width of the sawtooths on the
@@ -191,7 +193,7 @@ that db backend, and it needed a committed developer, also.
 ## Test Automation and standardized strings of tests
 
 There is a very good "batch" facility in flent, but using it for the first
-time is intimidating. But you can construct a long series of tests and checks
+time is intimidating. But: you can construct a long series of tests and checks
 for errors, and so on, using it.
 
 Me, I tend to script up something in bash, and include that test script with
@@ -246,7 +248,8 @@ fq_codel algorithm..
 
 ## Fragments
 
-We've ignored fragments, which is probably a bad idea.
+We've ignored fragments, which is probably a bad idea. iperf and netperf's
+UDP flood tests DO generate fragments.
 
 ## Flent vs other stuff is *very useful*
 
@@ -263,3 +266,9 @@ variables controlled is a goodness...
 
 ... but sometimes you just want to show something like web, or quake
 *just working* while the network is under load, and flent is great for that. 
+
+## Conclusion
+
+Don't engineer to the test! DO test stuff as repeatably as possible. Find
+workloads you want to simulate and file bugs and submit patches to the [github repo for flent](https://github.com/tohojo/flent)! The network you
+might save is your own.
