@@ -120,7 +120,7 @@ ideal aggregation limit, but that's otherwise it.
 This softens the impact of the existing fq_codel new/old queue
 distinction, while improving the potential aggregation opportunities,
 while possibly improving "needed" service times - while costing some
-latency for new, short flows.
+latency for short transactions to "new" stations.
 
 ## Packet Pair scheduler
 
