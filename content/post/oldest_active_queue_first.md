@@ -134,7 +134,7 @@ make a prediction for when you "have enough" to keep the flow going.
 
 I like it a lot, because it's a lot closer to an ideal fluid model,
 and there IS some stuff in the lit (flowlets) that comes
-close to describing it. But although I've got most of it written 
+close to describing both of these ideas. But although I've got most of this one written 
 down, the opportunity to go and implement it hasn't arisen yet - 
 
 and frankly we still have other problems elsewhere to deal with.
