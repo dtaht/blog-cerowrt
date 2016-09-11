@@ -47,8 +47,8 @@ round.
 Newer FQ methods (QFQ, SQF, DRR++, fq_codel), attempt to give some
 priority to new flows entering the system. This pushes new flows to
 faster parity with older ones, drives applications to respond to short
-flows earlier, and overall gave a 25% boost in network performance over
-straight AQM methods in mixed traffic.
+flows earlier, and overall gave a marked boost in network performance over
+older FQ methods in mixed traffic.
 
 BUT: These techniques were pioneered on switched ethernet, which is a
 full-duplex medium, with a minimum media access time measured in usec
