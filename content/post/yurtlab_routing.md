@@ -15,6 +15,8 @@ queue delay induced by some vlan you aren't monitoring is a PITA. This
 somewhat dumb (everybody else uses vlans!) decision has driven a lot
 of my desine and need for things like routing protocols.
 
+VLAN's are also a security nightmare. 1 Misconfigured entrance,
+
 1 Wire. A set of FQ'd flows. Layer 3 security only. 
 
 I'm really swimming uphill here. All the SDN researchers are filled

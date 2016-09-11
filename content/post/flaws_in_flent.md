@@ -225,7 +225,7 @@ tos
 
 ## iperf vs netperf
 
-If there is any one thing I regret sometimes, it was using netperf instead of iperf as the primary measurement tool. netperf is widely used within the linux
+If there is any one thing I regret, it was using netperf instead of iperf as the primary measurement tool. netperf is widely used within the linux
 kernel community, but iperf is a primary tool elsewhere. iperf3,
 in particular, supports json output AND there are version of it 
 readily available for both android and IoS, and I wish we had oore
@@ -235,7 +235,7 @@ I do not have the faith in iperf that I do in netperf however. Yet netperf
 is not built by default for many platforms, and building it yourself is
 a barrier to entry on code that is otherwise currently pure python.
 
-In either case, using a C written test tool is what got us to where we could
+In either case, wrapping the analytics around a hyperfast C written test tool is what got us to where we could
 drive big loads, regularly, and reliably. Things like the web tests are
 basically testing browser and server javascript performance at higher rates,
 not queuing delay.
