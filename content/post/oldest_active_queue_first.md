@@ -14,6 +14,9 @@ Our early attempts at eliminating the excess latency in the ath9k driver have su
 
 * with per station queuing we've dramatically improved bandwidth and aggregation
 
+* By applying fq_codel to each station queue we're fitting in more different
+flows, with (sometimes not quite) enough queuing for tcp to scale well
+
 * with airtime fairness we are servicing more stations, with less latency
 
 * Some benchmarks have shown enormous improvements in airtime efficiency
@@ -52,7 +55,8 @@ older FQ methods in mixed traffic.
 
 BUT: These techniques were pioneered on switched ethernet, which is a
 full-duplex medium, with a minimum media access time measured in usec
-(or nsec in the case of 10Gbit ethernet).
+(or nsec in the case of 10Gbit ethernet). Here, we are adapting the
+techniques to apply to whole stations, not flows.
 
 The next set of major tests was on cable modems, which have an
 inherent downstream latency of 2ms and upstream of about 6ms
@@ -62,9 +66,6 @@ We'd worked hard on two promising techniques for making wifi behave
 better, only to abandon them, when we realized that the core problem
 was too much buffering in the driver itself. OK, we've fixed that.
 We've induced not enough latency. 
-
-Here, we are adapting the techniques to apply to whole stations, not
-flows.
 
 WiFi framing overhead *costs* and station selection induces LARGE
 random delays and jitter, much larger and more apparent now that we
