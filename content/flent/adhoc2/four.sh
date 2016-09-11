@@ -2,10 +2,10 @@
 
 F="flent -4 -l 30"
 
-$F -H lite-3 -H lite-2 -H lite-1 -H lite-4 -t "dhoc-one-hop-4-station" rtt_fair4be
+$F -H lite-3 -H lite-2 -H lite-1 -H archer-1  -t "adhoc-one-hop-4-station-archer-antennna" rtt_fair4be
 for i in up down
 do
-$F -H lite-3 -H lite-2 -H lite-1 -H archer-3 -t "dhoc-one-hop-4-station" rtt_fair_var_$i
+$F -H lite-3 -H lite-2 -H lite-1 -H archer-1 -t "adhoc-one-hop-4-station-archer-antenna" rtt_fair_var_$i
 done 
 
 exit
