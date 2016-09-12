@@ -60,14 +60,34 @@ techniques to apply to whole stations, not flows.
 
 The next set of major tests was on cable modems, which have an
 inherent downstream latency of 2ms and upstream of about 6ms
-(depending on other factors).
+(depending on other factors). Wifi is both better (under 1ms
+minimum access time), and worse - a maximum txop is 5.7ms,
+in each direction, and because its a simplex multistation
+medium, every station active can add up to 2xMaxTxop.
+
+To use round numbers:
+
+Stations  | Median Delay
+----------|-------------
+1 |10ms
+2 |20ms
+4 |40ms
+
+
+It's even worse than that. Which of these stations gets a chance to
+broadcast is *randomly arbitrated*. One station might get a chance
+to broadcast 3 times in a row, while the others starve. So in the
+contrived 4 station example above, you end up with potential jitter in the 1ms
+(nobody broadcasting), to 120ms, range with a typical median of 40ms.
+
+On top of *that* you need enough queuing to keep TCP happy.
 
 We'd worked hard on two promising techniques for making wifi behave
 better, only to abandon them, when we realized that the core problem
 was too much buffering in the driver itself. OK, we've fixed that.
 We've induced not enough latency. 
 
-WiFi framing overhead *costs* and station selection induces LARGE
+WiFi framing overhead *costs* and station selection (per above) induces LARGE
 random delays and jitter, much larger and more apparent now that we
 just eliminated excessive buffering from the driver itself, and
 started using airtime more efficiently than before.
