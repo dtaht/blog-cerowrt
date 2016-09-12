@@ -60,7 +60,7 @@ Linux has gradually evolved to have a standard API for dealing with
 blinkenlights. The UAP Lite supports it.  Soooo:
 
 <pre>
-echo 0 > /sys/devices/platform/leds-gpio/leds/ubnt:blue:dome/brightness
+echo 0 > /sys/devices/platform/leds-gpio/leds/ubnt:white:dome/brightness
 echo 0 > /sys/devices/platform/leds-gpio/leds/ubnt:blue:dome/brightness
 </pre>
 
