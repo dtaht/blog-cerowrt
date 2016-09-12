@@ -77,7 +77,7 @@ aggregate. An aggregate consisting of 20 TCP acks takes nearly no more
 time to transmit than one with a single one, and yet that txop
 overhead is largely unaccounted for - the goal in that part of the code
 is to fill 4ms of airtime. (elsewhere I've argued it should aim for
-less airtime as more stations need service. And you only need the last
+less airtime when more stations need service. And you only need the last
 ack, not 20)
 
 Getting a TXOP is a matter for the scheduler - but is also arbitrated by
@@ -91,7 +91,7 @@ that maybe we'll explore. What we got already *is pretty darn good*, but
 I project a nearly infinite number of attempts to get this more right,
 by lots of folk, eventually.
 
-# Oldest Active Queue First
+# Oldest Active Station Queue First
 
 The fq bit in fq_codel has one flaw - if the total service time for all stations
 exceeds the sparse packet interval, then that station goes to the back
@@ -102,7 +102,7 @@ While, in practice, if you have that many stations, you are screwed
 anyway, moderating the impact of optimizing for aggregation in favor of
 more airtime fairness is desirable.
 
-And packets tend to arrive in bursts, as hard as we've tried to break that
+Packets tend to arrive in bursts, as hard as we've tried to break that
 up with fq. And those bursts *end*, eventually, in most cases.
 
 Why not wait til you've accumulated more of that burst, if you are already
@@ -123,6 +123,9 @@ distinction, while improving the potential aggregation opportunities,
 while possibly improving "needed" service times - while costing some
 latency for short transactions to "new" stations.
 
+The new airtime fairness scheduler, instead, just tries to push
+newer stations to be serviced first, which may lead to less potential
+aggregation.
 ## Packet Pair scheduler
 
 This idea I meant to patent, long ago, because I think it's genuinely
