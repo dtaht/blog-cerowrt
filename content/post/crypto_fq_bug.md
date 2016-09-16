@@ -136,7 +136,7 @@ no more priority interrupts for a while.
 
 "They can't help you with that. They just need your proposal for their first 100 days by tomorrow."
 
-"I'll get on it! 2PM PDT ok?"
+"They need to get elected first! WiFi can't wait!"
 
 ## Still on a personal note
 
