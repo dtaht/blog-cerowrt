@@ -78,7 +78,7 @@ It's even worse than that. Which of these stations gets a chance to
 broadcast is *randomly arbitrated*. One station might get a chance
 to broadcast 3 times in a row, while the others starve. So in the
 contrived 4 station example above, you end up with potential jitter in the 1ms
-(nobody broadcasting), to 120ms, range with a typical median of 40ms.
+(nobody broadcasting), to 120ms (with a long tail), range with a typical median of 40ms.
 
 On top of *that* you need enough queuing to keep TCP happy.
 

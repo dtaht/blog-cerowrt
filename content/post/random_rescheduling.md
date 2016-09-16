@@ -55,7 +55,7 @@ for( int i = 0 ; i < MAX_QUEUES; i++) {
 ```
 
 Which might be contributing to the birthday problem observed. It would
-be iteresting to try something like
+be interesting to try something like
 
 ```
 int start = random() % MAX_QUEUES;
@@ -74,7 +74,7 @@ the long term unfairness shown here:
 ## fq-pie
 
 The original version of "fq-pie" showed that if you explicitly and nearly
-perfectly randomized the imput, the output achieved results better than
+perfectly randomized the input, the output achieved results better than
 the more typically bursty behavior of the flows themselves. I liked this
 work, I'm sorry it died. There is a wide gap between the mathematics of
 randomness, and fair queueing, and the actual real-world behavior of flows.

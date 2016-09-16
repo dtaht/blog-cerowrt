@@ -202,5 +202,17 @@ We might have!
 [ 3149.882392] ---[ end trace 103165cc10a64d96 ]---
 ash: getcwd: No such file or directory
 
-
 default via 172.22.136.1 dev enp2s0 
+
+## Still hope for adhoc
+
+Candelatech's 
+
+iroot@lite-4:~# netperf -H 172.22.254.25 -t TCP_MAERTS
+MIGRATED TCP MAERTS TEST from 0.0.0.0 (0.0) port 0 AF_INET to 172.22.254.25 (172) port 0 AF_INET : demo
+Recv   Send    Send                          
+Socket Socket  Message  Elapsed              
+Size   Size    Size     Time     Throughput  
+bytes  bytes   bytes    secs.    10^6bits/sec  
+
+ 87380  16384  16384    10.00      83.49  

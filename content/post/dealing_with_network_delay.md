@@ -36,6 +36,22 @@ tc filter add dev $ext parent ffff: protocol all u32 match u32 0 0 action mirred
  egress redirect dev $ext_ingress
 </pre>
 
-But it's still missing some things. You are emulating 
+## Emulating the Internet, over ethernet
 
+But it's still missing some things. You are emulating the internet, but
+you are doing it over ethernet, which for local connectivity is dependent
+on a few types of "ant" packets scurrying around to keep things working:
+arp and ND.
 
+## Real bottlenecks
+
+Arrive at the bottleneck. This is the oft-used graph showing
+
+Except that it's not drawn to scale. That burst came out at 10GigE, 
+and is arriving at 10Mbits! It gets streeeched out - well, let's say
+the thing is an inch wide on your screen - the actual size - it's 
+now a thousand inches. 83 feet.
+
+## RTTs really matter for control traffic
+
+## 
