@@ -1,0 +1,40 @@
+127.0.0.1	localhost
+127.0.1.1	nemesis
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+172.22.148.3  delay prancer
+
+172.22.148.9 c2
+
+172.22.254.25 lite-3
+172.22.254.26 lite-4
+172.22.254.24 lite-2
+172.22.254.27 lite-1
+
+172.22.254.32 archer-1
+172.22.254.33 archer-2
+172.22.254.34 archer-3
+
+172.22.254.22 m2-1
+172.22.254.20 m5-1
+172.22.254.21 m5-2
+
+# USB NETWORK
+
+# Backbone
+
+172.22.192.1 rudolf server
+fd99::13 dair
+#fd99::12 rudolf
+fd99::5 delay prancer
+fd99::10 nemesis
+fd99::14 pi3
+fd99::15 c2
+fd99::16 bbg
+
