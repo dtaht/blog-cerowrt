@@ -58,7 +58,7 @@ At lower rates, things are even better. Where the old ath9k approach
 would generate latencies extending out in seconds at the lowest wifi
 rates, the new code's network latency is relatively flat across all
 rates. I'd hoped to show this wonderfulness in this blog entry, but
-the codebase needed a change [to solve a fq + crypto bug](/posts/crypto_fq_bug), and there is still some work needed to
+the codebase needed a change [to solve a fq + crypto bug](/posts/fq_crypto_bug), and there is still some work needed to
 round out the new [airtime fairness](https://blog.tohojo.dk/2016/06/fixing-the-wifi-performance-anomaly-on-ath9k.html)
 code.
 
