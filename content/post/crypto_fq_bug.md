@@ -28,7 +28,7 @@ One of our problems has been that we rarely get *all* the very
 interrelated patches out, never the whole enchalada, and thus people
 have been testing (and often, reverting), individual patches, tested in their
 particular circumstances, where we have been testing the whole thing,
-with our limited testbeds, and engrained habits.
+with our limited testbeds, and ingrained habits.
 
 Felix Feitkau (of the lede-project) had to revert the FQ portion of the
 patches, which got bandwidth up where it belonged (with codel
@@ -50,8 +50,6 @@ it was basically was how I spent my summer vacation.
 
 ## Finding and Fixing the "FQ Bug"
 
-The bug:
-
 With FQ on, and two or more flows, peak bandwidth went to hell, and
 codel wasn't working. With ECN also enabled, there were no marks, but
 plenty of packet loss. With FQ disabled, ECN on showed a normal codel
@@ -62,9 +60,10 @@ With FQ on, the bandwidth of the flows were being regulated by
 something else. There was lots of loss. Some flows would stop entirely
 until a 250ms timeout.
 
-By shaving all this latency out of wifi it seemed we'd broken TCP. UDP
-floods showed some similar patterns - about a 25% lossage with two udp
-flows present.
+By shaving all this latency out of wifi it seemed we'd broken TCP - with two
+flows we normally would get more bandwidth, not less. But: UDP
+floods showed some similar patterns - about a 25% bandwidth lossage with two udp
+flows present. 
 
 What that "something else" was was really hard to find. We explored
 TCP send buffering, receive buffering, pacing on or off, disabling the
@@ -309,7 +308,7 @@ likely losses, black likely retransmits.
 
 If there's a gap, there probably are no packets.
 
-"Looks like Pointilism!" - she said. 
+*"Looks like [Pointillism](https://en.wikipedia.org/wiki/Pointillism)!"* - she said. 
 
 * Simon Wunderlich's lab joined the effort
 
@@ -330,7 +329,7 @@ next, at higher rates with the same number of stations, with
 spectacular results.
 
 The tool they created to look at WiFi airtime stats is now open
-sourced. Get [yourself a copy](https://github.com/cloudtrax/airtime-pie-chart), take an aircap and see the air!
+sourced. Get [yourself a copy](https://github.com/dtaht/airtime-pie-chart), take an aircap and see the air!
 
 * We built a better test matrix
 
