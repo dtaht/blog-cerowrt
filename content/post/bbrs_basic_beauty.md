@@ -114,3 +114,5 @@ the work to follow! And I sure hope netflix is paying attention, in
 particular.
 
 My thanks to everyone that has worked on BBR! It's been a long time coming.
+
+I put the basic config, and some flent tests (not the captures) up, [here](/flent/bbr).
