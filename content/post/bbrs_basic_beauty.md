@@ -14,7 +14,7 @@ separate phases, and deals with the "gain of the paced rate" rather
 than the rate itself, which is something, to this ex-audio guy, that
 seems intuitively correct.
 
-So I setup a quick internet emulation (0 and 48ms RTTs), at 20Mbits,
+So I setup an internet emulation (0 and 48ms RTTs), at 20Mbits,
 to take a look, using the sqm-scripts (htb + fq_codel), for the rate
 management on one interface, and netem (for delay) on the other on the
 middlebox.
