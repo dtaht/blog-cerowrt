@@ -35,7 +35,7 @@ I quickly ran the [flent](https://flent.org) tcp_upload test, once for
 reno, cubic, and bbr, to get this result. Comparing TCP reno, cubic
 and BBR, you can see some characteristic differences between these
 TCPs. The classic (dotted lines) reno TCP sawtooth is dramatically
-evident, cubic's (dashed lines) more curvy one, and BBR's (solid
+evident, cubic's (dashed lines) smaller, more curvy one, and BBR's (solid
 lines) RTT probe every 10 seconds.
 
 {{< figure src="/flent/bbr/reno_cubic_bbr.png" >}}
@@ -69,7 +69,7 @@ Here's BBR:
 {{< figure src="/flent/bbr/bbr_beauty.png" >}}
 
 A mark!, no CWR, nothing else, for the rest of the trace. 0 packet
-loss, 0 induced latency on the rest of the network. Fq_codel did its
+loss, 4-6ms induced latency on the rest of the network. Fq_codel did its
 job early in the trace and then got out of the way, and BBR just
 motored along, at the right rate, for the whole time! BBR actually was
 self-regulating with less induced delay than codel was willing to give
