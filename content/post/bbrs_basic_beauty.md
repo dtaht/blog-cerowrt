@@ -16,7 +16,18 @@ seems intuitively correct.
 
 So I setup a quick internet emulation (0 and 48ms RTTs), at 20Mbits,
 to take a look, using the sqm-scripts (htb + fq_codel), for the rate
-management on one interface, and netem (for delay) on the other.
+management on one interface, and netem (for delay) on the other on the
+middlebox.
+
+<pre>
+server 1Gbit running cubic/reno/bbr with sch_fq on its interfaces
+     |
+  enp3s0 w/netem 24 ms each way
+  delay box
+  enp4s0 w/sqm-scripts 20mbit both ways
+     |
+client 1Gbit with fq_codel, cubic
+</pre>
 
 ## Death of the sawtooth, Film at 11
 
