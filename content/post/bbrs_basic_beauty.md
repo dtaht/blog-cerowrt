@@ -6,8 +6,7 @@ title = "A quick look at TCP BBR"
 description = "BBR gets a lot right"
 +++
 
-Will Google's new TCP BBR congestion controller solve bufferbloat?
-When I first heard of BBR, I was extremely cynical that any delay
+Will Google's [new TCP BBR congestion controller](https://patchwork.ozlabs.org/patch/671069/) solve bufferbloat? When I first heard of BBR, I was extremely cynical that any delay
 based TCP can work on the the overall Internet. But: BBR isn't
 "delay-based" per se' - rather it probes for RTT and bandwidth in
 separate phases, and deals with the "gain of the paced rate" rather
