@@ -34,7 +34,6 @@ Cut down on message traffic. Weirdly, I actually want more
 message traffic - babel hasn't been tested to really huge scales and I
 have a constant need to make sure multicast is actually working - as well as transfers of larger routing tables.
 
-
 I want to make the same mistakes new users make, I want to see the
 impact of multicast lost and routing changes on the whole network.
 
