@@ -68,8 +68,8 @@ Here's BBR:
 
 {{< figure src="/flent/bbr/bbr_beauty.png" >}}
 
-A mark!, no CWR, nothing else, for the rest of the trace. 0 packet
-loss, 4-6ms induced latency on the rest of the network. Fq_codel did its
+A mark! Nothing else!, for the rest of the trace. 0 packet
+loss, 3-6ms induced latency on the rest of the network. Fq_codel did its
 job early in the trace and then got out of the way, and BBR just
 motored along, at the right rate, for the whole time! BBR actually was
 self-regulating with less induced delay than codel was willing to give
