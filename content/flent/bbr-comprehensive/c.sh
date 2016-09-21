@@ -10,8 +10,8 @@ RTTS="0 1 4 8 24 48"
 RTT=48ms
 QDISCS="cake_flowblind cake fq_codel pie bfifo_64k bfifo_256k pfifo_100 pfifo_1000"
 BWS="20Mbit 100Mbit 200Mbit 10Mbit 2Mbit 1Mbit"
-BW=20Mbit
-QDISC="cake"
+BW=5Mbit_20Mbit
+QDISC="bfifo_1024k_256k_offloads=off"
 #QDISC="bfifo_256k"
 # remote control of queue delay and qdisc omitted
 
