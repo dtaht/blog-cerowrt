@@ -1,0 +1,21 @@
+This data set is also flawed in many respects. 
+
+Usually I investigate behaviors at well below 200Mbits, 
+using hardware that is well documented to behave sanely at these speeds.
+
+1Gbit!? Luxury.
+
+It was kind of neat to see BBR settling on around 800Mbit on the 
+path - sometimes! - which I thought was due to some offload based
+packet loss, where I was able to consistently get a better result
+with shaping at 900Mbit.
+
+So I experimented with offloads on and off, shaping on 
+and off, and so on. 
+
+It seems like I am capable of getting a decent result at 1Gbit on
+the apu2 hardware I'm using for delay/aqm. A bit more work is needed,
+and I keep wondering what will happen if I try to shape at closer to 
+the line rate.
+
+Other things of note were the BBR behaviors with 16 flows. 
