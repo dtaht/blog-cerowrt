@@ -1,7 +1,7 @@
 +++
 date = "2016-04-24T22:02:58+01:00"
 draft = false
-tags = [ "lab", "wifi", "bufferbloat" ]
+tags = [ "lab", "wifi", "bufferbloat", "hackerboards" ]
 title = "Some hackerboards for benchmarking networks"
 description = "Cheaping out for the sake of science"
 +++
