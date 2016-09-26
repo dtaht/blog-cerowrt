@@ -1,0 +1,8 @@
+I explored the ce_threshold parameter. Set to 1ms, it
+seems to help but some of the results were puzzling.
+
+Like everything else I have about BBR, you should not 
+treat the results here as definitive, but as a guide for
+finding interesting further avenues of investigation.
+
+
