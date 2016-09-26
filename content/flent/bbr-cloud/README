@@ -1,0 +1,16 @@
+This data set is pretty flawed.
+
+I was trying to get a box up in the cloud and see how it behaved and
+ran into a few problems. In at least one series, I ran the intervening
+router out of cpu. In another, I'd setup a faster router behind the
+slow one to do the shaping - but there was still traffic on the main
+router, uncompensated for.
+
+In most - but not all - of the ecn enabled ones, I
+was trying out the ce_threshold = 1ms idea. 
+
+The biggest thing I need to do, is get the stuff in the right places,
+AND repeat the other lab tests at the measured RTT here - which was
+about 11ms (vs the 8 I used elsewhere).
+
+Which I don't have time for.
