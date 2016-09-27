@@ -103,6 +103,9 @@ Google'd flows were short - youtube's rate-limited - the only way I
 have to really figure out how something is working is run a range of
 fairly long tests against it - and that's not what I could do.
 
+My benchmarks showed only a barely measurable improvement for pacing
++ cubic. Not worth talking about. 
+
 ## Clue #3: BBR in QUIC?
 
 Then BBR snuck out again as [part of a QUIC commit](https://groups.google.com/a/chromium.org/forum/#!topic/proto-quic/aOldwaxktxA).
@@ -114,6 +117,10 @@ annoyed at the very idea of IW32 (10 slow start packets and 22 paced
 ones) - while watching it really work against all kinds of traffic and
 wondering what was up - but there is no decoder for quic that tears
 apart its cwnd or tcp-equivalent statistics - just an opaque header.
+
+Hmm. Maybe the [fighting fire with fire paper](http://ieeexplore.ieee.org/document/7440667/) had more applicability than I thought? That one showed good results against
+packet fifo limited queues in clearing out delay... but their method
+required constant measurement.
 
 The code for the QUIC server at the time, was not particularly easy to
 use, I never got around to setting it up, and the only way to understand
