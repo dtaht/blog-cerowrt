@@ -121,8 +121,7 @@ QUIC's behavior would have been to have a heavily instrumented quic client,
 which didn't exist either. And I looked over the code, and it seemed
 like the same broken BBR I'd looked at before.
 
-"Just tell me one thing" - I asked. "Tell me what I'm doing on wifi is still
-worthwile? Lie if you must!"
+"Just tell me one thing" - I asked. "Tell me what [I'm doing on wifi](/tags/wifi) is still worthwhile? Lie if you must!"
 
 The answer came back: "The wifi work is worthwhile - keep at it."
 
@@ -317,19 +316,24 @@ latency for for audio applications, and VR, one day. Doubt I'll
 ever get there.
 
 Anyway, after a first look at BBR's behaviors over wifi, I think a
-good answer is to not sweat the buffering problem as much as we have
-and have a kinder, gentler approach to the amount of buffering we
-allow - either queue up a "good sized" aggregate for *every* station,
-or vary the codel target and interval as a function of the number of
-active stations. Right now, it's a fixed 20ms, and a hack to make it
-behave better at really low rates, which works ok for a small number
-of stations. I worry about the overall size of the "knee" of the curve
-here, and for all I know we'll have to abandon codel as we know it,
-entirely. The FQ bit... airtime fairness... intermediate queues implementation... still needed, and nice.
+ good answer is to not sweat the buffering problem as much as we have
+ and have a kinder, gentler approach to the amount of buffering we
+ allow - either queue up a "good sized" aggregate for *every* station,
+ or vary the codel target and interval as a function of the number of
+ active stations. Right now, it's a fixed 20ms, and a hack to make it
+ behave better at really low rates, which works ok for a small number
+ of stations. I worry about the overall size of the "knee" of the
+ curve here, and for all I know we'll have to abandon codel as we know
+ it, entirely.
+
+The FQ bits... airtime fairness... intermediate queues
+ implementation... were needed on wifi, and we can further strive
+ towards reducing the latency and jitter as I described above with
+ potentially positive synergetic effects with BBR.
 
 There's a long term problem in that we just eliminated the qdisc
 entirely in favor of doing all that, and perhaps a wifi client would
-want to run BBR - which mandated sch_fq.
+want to run BBR - which mandates sch_fq to get pacing to work.
 
 ## Clue #6
 
