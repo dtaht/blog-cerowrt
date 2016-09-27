@@ -61,7 +61,14 @@ papers on bufferbloat, and TCP BBR as I grokked it then, joined the
 ashheap of all the other delay TCPS, like CDG, and New Vegas.
 
 Without an Internet flag day, a delay based TCP was going to go
-nowhere.
+nowhere. 
+
+Note: The BBR developers are keen to stress - as I will be in the
+future - that BBR, as just released, "models the pipe" - and tests for
+both RTT and bandwidth separately. It is something new under the sun,
+and cannot be compared directly against anything "delay based", or for
+that matter, "loss based". But I'm getting ahead of myself on this
+timeline.
 
 ## Still... something was up
 
