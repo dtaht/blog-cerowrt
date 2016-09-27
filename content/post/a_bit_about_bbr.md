@@ -164,6 +164,8 @@ wouldn't work tomorrow", like what had happened to
 
 * I stopped working on "cake"
 
+I really just wanted to work on wifi, anyway.
+
 [Cake](https://www.bufferbloat.net/projects/codel/wiki/CakeTechnical/) - well, as I originally conceived it - was intended merely to be
 faster than htb + fq_codel in the sqm-scripts on weak hardware. The
 earliest version of it could rate limit inbound 40% better than that
@@ -172,7 +174,7 @@ could.
 Then: Second system syndrome set in, in response to user requests. 
 
 Cake gained many forms of diffserv classification, and extensive
-statistics. It sprouted a variant of blue, called cobalt (for handling
+statistics. Jonathan added a variant of blue, called cobalt (for handling
 unresponsive flows), added an 8 way set-associative hash, switched to
 memory limiting rather than packet limiting - and most recently -
 Kevin got nat and per host fairness working. Not having fq within per
