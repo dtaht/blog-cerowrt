@@ -241,7 +241,9 @@ on the bufferbloat related mailing lists, and you haven't got any email
 from me lately, check your spam folders?
 
 It's always puzzled me as to why nearly no traffic from the lists ends
-up to the lists.bufferbloat.net server archive, and why we only have 66,000 or so bufferbloat related results on any given google search.
+up in a google search with a pointer to lists.bufferbloat.net email
+archive, and why we only have 66,000 or so bufferbloat related results
+on any given google search, after 6 years of it....
 
 ## Clue #5
 
