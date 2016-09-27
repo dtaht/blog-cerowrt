@@ -25,15 +25,15 @@ worth of uploads:
 
 Still it struggles with uploads in general:
 
-{{< figure src="/flent/pine64/upload_bbr_pine64.svg" >}}
+{{< figure src="/flent/pine64/upload_cubic_fq_codel.svg" >}}
 
-Downloads are better but still weird:
+Downloads can be weird:
 
 {{< figure src="/flent/pine64/weird_download_fq_codel.svg" >}}
 
 And: for giggles, I hit it on an upload with [tcp bbr](/tags/bbr).
 
-{{< figure src="/flent/pine64/pine64_fq_codeled_bbr.svg" >}}
+{{< figure src="/flent/pine64/upload_bbr_pine64.svg" >}}
 
 The odroid c2 is still the winner - but has problems, too, that I need
 to write up - and I've mostly reverted to using an apu2 from pcengines
