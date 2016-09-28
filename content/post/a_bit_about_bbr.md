@@ -103,8 +103,9 @@ Google'd flows were short - youtube's rate-limited - the only way I
 have to really figure out how something is working is run a range of
 fairly long tests against it - and that's not what I could do.
 
-My benchmarks showed only a barely measurable improvement for pacing
-+ cubic. Not worth talking about. 
+My benchmarks showed only a barely measurable improvement for pacing +
+cubic. Not worth talking about. There were changes there that made a
+lot of sense for rate-limited streaming flows, but...
 
 ## Clue #3: BBR in QUIC?
 
@@ -191,32 +192,36 @@ statistics. Jonathan added a variant of blue, called cobalt (for handling
 unresponsive flows), added an 8 way set-associative hash, switched to
 memory limiting rather than packet limiting - and most recently -
 Kevin got nat and per host fairness working. Not having fq within per
-host fairness was a common complaint - it more or less works now.
+host fairness was a common complaint. It works now. The denatting and
+per host fairness stuff may become cake's "killer feature".
 
-Cake has become the nearly most feature-full shaping software there is out
-there.  It's teetering on the verge of being middlebox-ware, although
-no-one has gone so far as to propose adding ack thinning to it, thank
-Ghu.
+Cake has become the nearly most feature-full shaping software there is
+out there.  It's teetering on the verge of being middlebox-ware,
+although no-one has gone so far as to propose deeper dpi and adding
+ack thinning to it, thank Ghu.
 
 The end result of all that has been code that was actually slower than
 htb+fq_codel is. I've long thought there was a way of improving that
 dramatically - getting rid of the need for "tc_mirred" in the ingress
-filter, but haven't got around to it. Cake *does* work, on decent
+filter, but haven't got around to it. Cake *does* work, on high end
 hardware, at past 10Gbit rates, and for those that want the ultimate
-in low latency networking can apply it there, too.
+in low latency routing at some cpu cost can apply it there, too. 
 
 Cake's primary use case now is dealing with shaping requirements in
-the most optimal way on very slow networks. That's a big use case -
-Most home users still have far less than a 10Mbit upload channel! But
+the most optimal way on very slow networks. That's a big use case:
+most home users still have far less than a 10Mbit upload channel! But
 it still isn't quite what I'd wanted.
 
 Cake's improvements over fq_codel amount to percentage points here and
 there, a much better user interface, and better handling of a slew of
 edge cases.
 
-Maybe someday, if someone gets on it, the original dream of
+Maybe someday, if someone gets on it, the original dream of:
 
-tc qdisc add dev eth0 ingress cake bandwidth 100Mbit
+<pre>
+tc qdisc add dev eth0 root cake bandwidth 20Mbit # egress
+tc qdisc add dev eth0 ingress cake bandwidth 100Mbit 
+</pre>
 
 will work on low end hardware. I use cake daily, on just about everything,
 but haven't got around to evaluating all the new whizzy features.
@@ -240,9 +245,9 @@ solve their way. Maybe policers will remain relevant, now.
 A year (?) ago, support for a weird new parameter, "ce_threshold",
 arrived for fq_codel in the Linux mainline.
 
-It did bad things to cubic. I tried DCTCP against it - that wasn't it
-either. What the heck was it for? I didn't even bother to ask, knowing
-I'd get stonewalled on the answer.
+It did bad things to cubic. I tried DCTCP against it - that wasn't
+quite it either. What the heck was it for? I didn't even bother to
+ask, knowing I'd get stonewalled on the answer.
 
 We documented it for the still-pending fq_codel RFC, and moved on.
 
