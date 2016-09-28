@@ -1,0 +1,17 @@
+I reran a string of longer duration tests looking at the 1,2 and 16 flow
+issues.
+
+I completely forgot that the download tests have no control over the
+remote congestion control algorithm, on the original test run.
+
+I redid a few of the tests, but maybe not all, with cubic configured
+manually on the remote server. Anybody else testing against this server
+this morning thinking it was doing bbr, got invalid results. Tough.
+
+I think I've finally proven that with a massively overbuffered CMTS (600+ms)
+that inbound rate shaping cannot work at short rtts with lots of flows,
+at speeds above 100Mbits.
+
+Sigh.
+
+
