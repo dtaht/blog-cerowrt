@@ -55,7 +55,7 @@ made more like it - and is promoted as faster than ipsec....
 Also:
 
 In a day, the author (while on a plane!) tossed off an ecn encapsulation
-implementation (it worked! but it's not currently as modern RFC compliant as it should be), and we exchanged a flurry of emails where I was already at maximum
+implementation, and we exchanged a flurry of emails where I was already at maximum
 cognitive load [on other stuff](/tags/ath9k). Wow, he knows his
 stuff in depth. He found kernel facilities I didn't even know existed!
 
