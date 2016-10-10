@@ -1,5 +1,5 @@
 +++
-date = "2017-09-27T12:02:58+01:00"
+date = "2016-09-27T12:02:58+01:00"
 draft = false
 tags = [ "bufferbloat", "tcp", "bbr" ]
 title = "A bit about TCP BBR"
@@ -178,7 +178,7 @@ wouldn't work tomorrow", like what had happened to
 
 * I stopped working on "cake"
 
-I really just wanted to work on wifi, anyway.
+I really just gitwanted to work on wifi, anyway.
 
 [Cake](https://www.bufferbloat.net/projects/codel/wiki/CakeTechnical/) - well, as I originally conceived it - was intended merely to be
 faster than htb + fq_codel in the sqm-scripts on weak hardware. The
