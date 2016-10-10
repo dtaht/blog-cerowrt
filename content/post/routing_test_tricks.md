@@ -6,7 +6,7 @@ title = "A simple routing trick makes my tests easier"
 description = "Try this in your topology!"
 +++
 
-The APs in the yurtlab are mostly in routed configuration, where all
+The APs in the yurtlab are mostly in a routed configuration, where all
 the devices under test are on the same ethernet switch. To do a test
 of some configuration, all I do is do a ifdown lan on the devices I
 want to talk to wirelessly, and the babel protocol figures out which
@@ -31,16 +31,17 @@ In a few seconds the network discovered its new topology and I didn't
 even lose my connections.
 
 ````
+root@m2-1:~# ifconfig eth0 down
 root@m2-1:~# ip route
 default via 172.22.254.26 dev wlan0 onlink 
-172.20.6.119 via 172.22.148.8 dev eth0 onlink 
+172.20.6.119 via 172.22.148.8 dev eth0 onlink # further away not yet switched
 172.22.0.0/16 via 172.22.254.26 dev wlan0 onlink 
 172.22.64.0/22 via 172.22.254.26 dev wlan0 onlink 
 172.22.192.0/22 via 172.22.254.26 dev wlan0 onlink 
 172.22.192.3 via 172.22.254.26 dev wlan0 onlink 
 172.22.148.0/24 dev eth0  src 172.22.148.22 
 172.22.148.3 via 172.22.254.26 dev wlan0 onlink 
-172.22.148.8 via 172.22.148.8 dev eth0 onlink # Laptop
+172.22.148.8 via 172.22.148.8 dev eth0 onlink # Laptop not yet switched
 172.22.148.9 via 172.22.254.25 dev wlan0 onlink 
 172.22.254.0/24 via 172.22.254.26 dev wlan0 onlink 
 172.22.254.24 via 172.22.254.24 dev wlan0 onlink 
