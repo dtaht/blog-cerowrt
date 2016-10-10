@@ -24,24 +24,23 @@ figures out the new topology for you.
 This saves hugely on renaming, and renumbering things.
 
 In this example, I disconnected the AP from the switch so it would
-pick up a route over the wireless. I then went behind that AP for a quick
-test.
+pick up a route over the wireless. I then plugged my laptop into
+the AP for a quick test.
 
 In a few seconds the network discovered its new topology and I didn't
 even lose my connections.
 
 ````
-root@m2-1:~# ifconfig eth0 down
+root@m2-1:~# # plug into laptop directly
 root@m2-1:~# ip route
 default via 172.22.254.26 dev wlan0 onlink 
-172.20.6.119 via 172.22.148.8 dev eth0 onlink # further away not yet switched
 172.22.0.0/16 via 172.22.254.26 dev wlan0 onlink 
 172.22.64.0/22 via 172.22.254.26 dev wlan0 onlink 
 172.22.192.0/22 via 172.22.254.26 dev wlan0 onlink 
 172.22.192.3 via 172.22.254.26 dev wlan0 onlink 
 172.22.148.0/24 dev eth0  src 172.22.148.22 
 172.22.148.3 via 172.22.254.26 dev wlan0 onlink 
-172.22.148.8 via 172.22.148.8 dev eth0 onlink # Laptop not yet switched
+172.22.148.8 via 172.22.148.8 dev eth0 onlink # Laptop behind the ap
 172.22.148.9 via 172.22.254.25 dev wlan0 onlink 
 172.22.254.0/24 via 172.22.254.26 dev wlan0 onlink 
 172.22.254.24 via 172.22.254.24 dev wlan0 onlink 
@@ -120,7 +119,7 @@ Psh is nicer tho:
 pdsh -g lites 'sed -i s/HT40+/HT20/g /etc/config/wireless; reboot; exit'
 ````
 
-Now I can repeat the same test in HT40+ mode... but I just reset all the
+Now I can repeat the same test in HT20 mode... but I just reset all the
 devices back to their bridged ethernet defaults and need to recreate
 the topology.
 
