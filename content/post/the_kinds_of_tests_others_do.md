@@ -1,9 +1,10 @@
 +++
-date = "2016-05-07T18:02:58+01:00"
+date = "2016-10-11T18:02:58+01:00"
 draft = true
-tags = [ "wifi", "bufferbloat", "ath9k" ]
+tags = [ "bufferbloat", "benchmarks" ]
 title = "The kinds of tests others do"
 description = "I really should do more of these"
+author = "Dave Taht & Aaron Wood"
 +++
 
 There are some common network tests that I don't do as often as I
@@ -74,9 +75,11 @@ Videconferencing over the internet is heavily in flux and hard to test against.
 Which was otherwise a very good paper - limited itself to a range of 1-2Mbits.
 I got a beef:
 
-it's merely better because they were willing to accept 300ms of latency
+It's merely better because they were willing to accept 300ms of latency
 at 2mbits, and that's not my target. SFQ - with the default 127 packets -
-is at one mbit latency to a flow that wants to eat it.
+is at one mbit, 165ms latency to a flow that wants to eat it.
+
+...
 
 In my world, I'd always have voice and video on a different tuple -
 this gives you a useful clock to measure delays within a RTT, when
@@ -92,13 +95,13 @@ I'd also really like to see ecn tried, especially on the Iframe.
 ## UDP flooding
 
 Recently Aaron Wood [posted two great articles on iperf3](http://burntchrome.blogspot.com/2016/09/iperf3-and-microbursts.html)'s udp burst behaviors under
-OSX were "broken", in that they injected a huge flood of packets every 100ms in order to achieve the desired "rate" of the test. At 50 mbits - he got 8mbits, where TCP was happly using it all.
+OSX were "broken", in that they injected a huge flood of packets every 100ms in order to achieve the desired "rate" of the test. At 50 mbits - he got 8mbits from that udp flood, where TCP was happly using all 50Mbits.
 
 {{< figure src="https://3.bp.blogspot.com/-fSwmDFWdS-U/V-GjSSNWwnI/AAAAAAAAdXI/S-tZNgN7u44OjypS52EjYqAU-hb8vpEEgCLcB/s1600/iperf3_microbursts_100ms.png" title="Millabursts, not microbursts!">}}
 
 He fixed the osx code to pace the packets at 1ms, rather than 100ms,
-intervals, to get the desired bandwidth measurement, and submitted
-those patches upstream.
+intervals, to get the desired bandwidth measurement, and is keeping
+the patches [here](https://github.com/woody77/iperf/tree/pacing_timer). I suspect the same problem exists on windows as well.
 
 {{< figure src="https://3.bp.blogspot.com/-zRBp_39g7lY/V-GqvRO2OQI/AAAAAAAAdXs/IW4LWvr0QlQhb9OAQwGkfBYMzukWzrwPQCLcB/s640/iperf3_microbursts_100ms_vs_1ms.png">}}
 
@@ -106,20 +109,20 @@ He later on, improved that still further.
 
 His conclusion was (please read the article!):
 
-````
-Know what your tools actually do.  Especially in networking where rate limiting is really an exercise in pulse-width modulation.
-````
+"Know what your tools actually do.  Especially in networking where rate limiting is really an exercise in pulse-width modulation."
 
 BUT: Iperf's behavior - before this was fixed - *was a perfectly valid
 test* - it just wasn't testing what the users were expecting.  Fixing
 what happens when you inject bursts like that into the network is
 exactly what all the work to improve shallow buffer performance in
-[bbr](/tags/bbr) and in so much else of the network stack is all about!
+[bbr](/tags/bbr) and in so much else of the network stack has been all about!
 
 Now there's a whole generation of iperf-on-osx tests that I can safely
 ignore, and an issue I can raise any time someone points to a iperf
-udp result as "bad". But I think I'll keep a copy of the old osx iperf
-around just so I can see what happens, when that happens.
+udp result as "bad". Assuming the upstream default changes to the new
+code you can see what used to happen via "--max-pacing-rate 100". If
+it doesn't change upstream, well, use --max-pacing-rate 1000 and
+document what setting you used in your next paper!
 
 UDP floods - used carefully - are a pretty decent way to determine the
 one way bandwidth of a link, but in order to get something accurate, it
@@ -130,7 +133,7 @@ There's another problem with udp flooding in general, in that if you push
 your OS can throw away packets, more than the "normal" behavior of the card
 and driver itself.
 
-Again: this is a totally valid test - in today's ddos soaked internet
+Again: this is a totally valid test - in today's DDOS soaked internet
 you DO need to throw away packets a lot.
 
 ... but it's not normal behavior, and it is worth optimizing for, so long as you conceptualize it separately.
