@@ -15,7 +15,7 @@ set of statistically significant results. Often, I fail.
 Over the next few months we are trying to land a bunch of interrelated
 fixes for the ath9k portion of the stack. First up - we are trying to
 break the current, fixed relationship, in wifi latency to the
-available bandwidth , by dynamically adjusting the buffer size to the
+available bandwidth, by dynamically adjusting the buffer size to the
 rate, in addition to adding fair queuing to make sparser packets
 closer to the front of the queue.
 
@@ -41,7 +41,7 @@ H="-H server -H delay -H server -H delay"
 
 for i in `seq 0 15`
 do
-iw set bitrates ht-5 $i
+iw set bitrates ht-mcs-5 $i
 flent -x ${T}_mcs_$i $H --test-parameter=upload_streams=4 rtt_fair_up 
 done
 ````
@@ -285,7 +285,7 @@ proved *something*, and, well, more testing awaits.
 I've now been at fixing wifi for 6 years - 8 if you count my time in
 Nicaragua - and these were my last few weeks of headaches. There are
 more. I like to think we are one or two kernel generations away from
-being this phase of make-wifi-fast, but who knows what the next test
+being done this phase of make-wifi-fast, but who knows what the next test
 series will bring?
 
 ...
