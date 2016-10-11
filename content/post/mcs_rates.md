@@ -41,7 +41,7 @@ H="-H server -H delay -H server -H delay"
 
 for i in `seq 0 15`
 do
-iw set bitrates ht-mcs-5 $i
+iw dev wlp3s0 set bitrates ht-mcs-5 $i
 flent -x ${T}_mcs_$i $H --test-parameter=upload_streams=4 rtt_fair_up 
 done
 ````
