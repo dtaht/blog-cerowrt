@@ -72,15 +72,44 @@ highest rates on TCP.
 
 ## Exploring bandwidth asymmetry
 
-Believe it or not, we can probably rip out another 4-6ms from this pretty
-easily, and, if we are willing to sacrifice bandwidth in favor of latency
-another 10ms on top of that. Getting things, overall, down, to 2ms per
-station.
+But I'll save that for another day. I'm going to savor this for a while.
 
-But I'll save that for another day. I'm just going to savor this.
+## Aside
+
+Well, let me return for a moment to an earlier plot.
+
+{{< figure src="/flent/airtime-c2/would_that_be_so_bad.svg" >}}
+
+Would it be *bad* to sacrifice 50% of your bandwidth (sometimes), in
+order to get your wifi latency below 4ms? What if it was only 20%? or
+10%? Or 70%?
+
+In order to make mu-mimo work effectively we need to shorten the txops
+anyway. What if we do that to wifi now?
+
+The theory said it would. It did. Getting wifi down to consistent latencies
+like this was my main goal for the make wifi fast project. And, I'm out
+of funding, which means that taking this any further will have to rely
+on the community.
+
+Chart
+
+## Ripping out latency can be fun!
+
+Believe it or not, we can probably rip out another 4-6ms from this
+with tighter code and/or better firmware, and, if we are willing to
+sacrifice bandwidth in favor of latency another 10ms on top of that.
+We could get things, overall, down, to an increment of no more
+than 2ms per station actively transmitting. The host result shows we
+can get to 4ms latency, and that's a *good thing*.
 
 Rip out re-ordering
 
 It will probably come at some sacrifice in bandwidth, but
 which would you rather have.
+
+Come rain, or movement, or interference, we should be able to hold
+wifi latencies nearly constant - although there as yet a few edge
+cases to explore with this code.
+
 
