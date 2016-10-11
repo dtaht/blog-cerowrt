@@ -214,11 +214,12 @@ Not a significant amount of traffic, but I'd forgot I'd left a box (.10)
 on the AP for the test, and for all I know at some point during some other
 test it'd tried for an update on some active program or another.
 
-But the capture showed... no losses, no CWRs, nothing that indicates codel was being applied.  
+But the capture showed... no losses, no CWRs, nothing that indicates codel was being applied to get an essentially perfect-looking result. All four flows
+looked like this!
 
 {{< figure src="/flent/mcs/screenshot.png" >}}
 
-But to see what things look like in the air, I'd need an aircap - and
+To see what things look like in the air, I'd need an aircap - and
 the machine I'm using to drive this is the machine I normally use to
 do that!
 
