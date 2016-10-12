@@ -21,7 +21,7 @@ are good to at least 200mbit, and that's all we need to test here. It
 is running linux 3.14, which is a data point all in itself. Whenever I
 get the other box repaired, we can go head to head with linux 4.4.
 
-Topology before, where I was essentially testing the TCP path in the AP:
+[Topology before](/post/mcs_rates/), where I was essentially testing the TCP path in the AP:
 
 <pre>
 laptop(AP) <-> Ath9k Wifi <-> OSX and Linux (ath10k)
@@ -31,7 +31,7 @@ Topology now - where I'm testing an AP as a router:
 odroid c2 <-> ethernet <-> laptop(AP) <-> Ath9k Wifi <-> OSX and Linux (ath10k)
 </pre>
 
-## And... It works
+## And... It works!
 
 {{< figure src="/flent/airtime-c2/osx-v-server-expected-totals.svg" >}}
 
@@ -39,11 +39,11 @@ odroid c2 <-> ethernet <-> laptop(AP) <-> Ath9k Wifi <-> OSX and Linux (ath10k)
 ath9k APs, also, (at HT20), so things look good here, and I can more
 or less compare stuff with prior results with fewer qualms.
 
-The results I'd got [using the AP as a server, last weekend](/post/mcs_rates) - are very dissimilar and puzzling. What this is is way more correct, now - in line with the theory, and in line with the experimental data.
+The results I'd got [using the AP as a server, last weekend](/post/mcs_rates) - are very dissimilar and puzzling. What this is is way more correct, now - in line with the theory, and in line with [prior experimental data]().
 
 {{< figure src="/flent/airtime-c2/would_that_be_so_bad.svg" title="AP station compared" >}}
 
-Going back to that data, this AP as an AP test gets a good 40Mbits
+Going back to last week's data, this AP as an AP test gets a good 40Mbits
 more bandwidth than what I was getting driving the tests directly from
 the AP. We have work to do on some tcp stack interactions
 here. This result and those following, I think, begin to explain the
@@ -55,11 +55,11 @@ in line with the AP result!
 
 Still, I slide back in my chair and look at:
 
-## Latency flat at all rates
+## Latency under load flat at all rates
 
 {{< figure src="/flent/airtime-c2/latency_flat_at_all_rates_cdf.svg" >}}
 
-... Looking at it... I have to wipe away a tear. When I first
+... Looking at this... I have to wipe away a tear. When I first
 started working on (what became) wifi, [back in 1996](http://www.rage.net/wireless/wireless-howto.html) - by 2002 we'd got
 its latency and jitter were roughly in the same bounds (using SFQ),
 typically under 15ms, and we thought [the answers so obvious](https://www.bufferbloat.net/projects/cerowrt/wiki/Wondershaper_Must_Die/)
@@ -88,7 +88,8 @@ We're finally regulating the stuff at the AP, again, properly.
 
 OK, enough navel gazing. What didn't we fix? Well, while we are
 showing that the AP can regulate the behavior on the down from the AP,
-the up from the clients can still be quite poor.
+and be fair to multiple clients, the up from the clients can still be
+quite poor.
 
 ## Unmodified drivers - from the client results
 
