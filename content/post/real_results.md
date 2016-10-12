@@ -159,7 +159,7 @@ Toke's giving a talk on all this at the [openwrt summit this week](http://openwr
 
 And I'm doing [the same at Linux Plumbers this november](https://linuxplumbersconf.org/2016/ocw/proposals/3963). See you there!
 
-As happy as I am with these results, there's still the problems identified here to solve, we need to test at the lowest 2.4ghz rates, and with ht40 and adhoc mode, at the very least, over the next few weeks.
+As happy as I am with these results, there's still the problems identified here to solve, we need to test at the lowest 2.4ghz rates, and with ht40 and adhoc mode, at the very least, over the next few weeks. There's tons more plots that can be pulled out of the flent datasets, as well - the [mcs stuff is here](/flent/mcs), and the [airtime tests are here](/post/airtime-c2).
 
 The unofficial patch set that applies on top of net-next is [here](http://www.taht.net/~d/airtime-8/), which also has pre-built .deb files for ubuntum 16.04 LTS.
 
