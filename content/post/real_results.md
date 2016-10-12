@@ -2,7 +2,7 @@
 date = "2016-10-12T10:02:58+01:00"
 draft = false
 tags = [ "ath9k", "wifi", "bufferbloat" ]
-title = "Finally... the real fq_codel/airtime-fair ath9k results"
+title = "Finally... the real net-next 4.8 fq_codel/airtime-fair ath9k results"
 description = "Getting to this point took 4 long years..."
 +++
 
