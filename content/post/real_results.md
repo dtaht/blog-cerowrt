@@ -14,12 +14,11 @@ to try and more or less duplicate my original configuration, testing a
 "genuine" fq_codel'd airtime fair AP, against the behavior of multiple
 genuine WiFi clients, to see what happened.
 
-My broken box is still borken! I pulled the odroid C2 out of
-where it was, and made it the test driver, instead of the laptop. I've
+My broken box is still borke, so I pulled the odroid C2 out, and made it the test driver, instead of the laptop. I've
 proven to myself that I [get results out of it](/posts/odroid) that
 are good to at least 200mbit, and that's all we need to test here. It
 is running linux 3.14, which is a data point all in itself. Whenever I
-get the other box repaired, we can go head to head with linux 4.4.
+get the other box repaired, we can go head to head with linux 4.4 again.
 
 [Topology before](/post/mcs_rates/), where I was essentially testing the TCP path in the AP:
 
