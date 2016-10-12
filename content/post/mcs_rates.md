@@ -286,8 +286,7 @@ proved *something*, and, well, more testing awaits.
 I've now been at fixing wifi for 6 years - 8 if you count my time in
 Nicaragua - and these were my last few weeks of headaches. There are
 more. I like to think we are one or two kernel generations away from
-being done this phase of make-wifi-fast, but who knows what the next test
-series will bring?
+being done this phase of make-wifi-fast, but [who knows what the next test series will bring](/post/real_results)?
 
 ...
 
