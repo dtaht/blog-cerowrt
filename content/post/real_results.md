@@ -60,17 +60,16 @@ Still, I slide back in my chair and look at:
 
 ... Looking at this... I have to wipe away a tear. When I first
 started working on (what became) wifi, [back in 1996](http://www.rage.net/wireless/wireless-howto.html) - by 2002 we'd got
-its latency and jitter were roughly in the same bounds (using SFQ),
-typically under 15ms, and we thought [the answers so obvious](https://www.bufferbloat.net/projects/cerowrt/wiki/Wondershaper_Must_Die/)
+its latency and jitter roughly in the same bounds (using SFQ), and we thought [the answers so obvious](https://www.bufferbloat.net/projects/cerowrt/wiki/Wondershaper_Must_Die/)
 that everybody would use them by default, and we never published the
 work due to various contractual constraints. I wish I had plots and
-packet captures from those days, not just a few blogs and legal
+packet captures from those days, not just a [few blogs](http://the-edge.blogspot.com/2010/10/who-invented-embedded-linux-based.html) and legal
 documents.
 
 (Please forgive me for cutting things off at the 98th percentile. I
 actually care a lot about outliers, and why they happen, and at some
-point I'll return to talk of limiting retries, multicast and the
-minstrel mis-behaviors.)
+point I'll return to talk of limiting retries, minimizing multicast
+and the [minstrel](/post/minstrel) mis-behaviors)
 
 But, just sit with me, and admire that plot above for a while. (TODO: I need to
 redo the tests with Linux 4.4, same configuration, for a comparison)
@@ -103,9 +102,9 @@ The OSX box tends to go asleep and sometimes take a while to start up,
 so here you see the linux server getting started 5 seconds early, and
 then the OSX box kicking in.
 
-We're still getting a benefit from the more fq_codeled driver in the
-AP - but there's not much - and because the latencies have grown so large,
-and there isn't enough fair queuing, there's ping packet loss.
+Airtime fairness is ensuring both stations get an equivalent share of
+the link but because the latencies have grown so large, and there
+isn't enough fair queuing, there's ping packet loss.
 
 {{< figure src="/flent/airtime-c2/osx-v-server-expected-down-cdf.svg" >}}
 
@@ -119,7 +118,7 @@ new code online for a few clients, as well, to see what happens.
 Most wifi connections are highly asymmetric. You might be getting
 mcs12 from the AP (because it has good antennas) and only mcs1 from
 the client (because they don't). Here you can clearly see the effect
-of asymmetry between the lowest and highest rates on TCP.
+of asymmetry between the lowest and highest rates on the TCP "ack" backchannel.
 
 {{< figure src="/flent/airtime-c2/downloads_somewhat_bound_by_uplink_rate.svg" >}}
 
