@@ -15,6 +15,8 @@ Toke asked me to try and refine how to look at the
 [crypto+fq](/post/crypto_fq] bug, so we could better see it in the
 future, so I spent the weekend trying to see patterns in it.
 
+Such a good intro. FIXME
+
 I never got around to testing the crypto fix, I started off with a
 laptop with last month's code and never got anything that worked well
 enough in the first place to move on to the crypto stuff!

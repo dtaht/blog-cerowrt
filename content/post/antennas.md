@@ -5,6 +5,12 @@ tags = [ "lab", "wifi", "bufferbloat" ]
 title = "Antennas suck"
 description = "Your device uses wifi to communicate - why does your antenna suck"
 +++
+
+I LOVE the new "chip". but you have to squint to see the antenna on it. Same goes for nearly all the new wifi integrated boxes like the pi3. The iot people are shipping horribly bad antennas on their devices not much bigger than a few mm. To save a fraction of a cent on the bom, and because "their" device only needs 6mbits, so why not use up all the air for it?
+
+FIXme - I have no idea what the hell I was writing here. I must have 
+been drunk or something.
+
 http://www.amazon.com/Rocketek%C2%AE-Memory-Reader-Writer-Build-/dp/B00IX9ZDKC/ref=sr_1_6?s=pc&ie=UTF8&qid=1461205992&sr=1-6&keywords=usb+sd+card+reader
 if you want a stick
 You've seen this work with Linux?  Because if so I'll order one.
@@ -29,5 +35,3 @@ but I would sit out the chaos the fork may cause unless you have a compelling re
 Some pretty decent new hardware is in the pipeline, but it's still too buggy to recommend...
 and seriously... I'd rather spend every ounce of energy I have trying to fix wifi. 3 billion wifi devices with a crappy stack shipped last year. And those stacks affect everybody else using wifi...
 http://blog.cerowrt.org/post/fq_codel_on_ath10k/
-and the iot people are shipping horribly bad antennas on their devices not much bigger than a few mm. To save a fraction of a cent on the bom, and because "their" device only needs 6mbits, so why not use up all the air for it?
-I LOVE the new "chip". but you have to squint to see the antenna on it. Same goes for nearly all the new wifi integrated boxes like the pi3.

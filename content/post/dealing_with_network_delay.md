@@ -6,7 +6,32 @@ title = "Dealing with delay"
 description = "Too many people - including me - don't test with real-world delays"
 +++
 
+Once upon a time, a magnificent new network product was developed. It
+looked great in the lab - very exciting inhouse demos - and in the culture
+of secrecy that existed inside that particular company - no code left the
+the building. 3 days before the announcement, the executives were allowed
+to take it home to play with... and it didn't work!! - at all - at real world
+RTTs and bandwidths.
+
 Getting that right is *hard*.
+
+EE's have a particularly hard time with this. Their response to an operation
+that takes longer than a clock cycle is to make stuff smaller. This works
+so long as you've got nanometers to deal with, but as things gradually grew
+from meters to miles, and to cross-continental distances, real world RTTs
+intrude. 
+
+I would love it, honestly, if a class on queue theory was required for the
+EEs of the world. They could start with the problem of distriubuted clocks
+on a chip, grow to asynchronus chip design (a long neglected area), then
+scale up to, at least, inches, then data centers, and then - the world!
+
+It's not fair for me to pick on EEs. Nearly everybody gets even the most
+basic of queue theory wrong. It's not helpful that the field has it's
+own notation, it's own language, and sits off in the side of so many
+things.
+
+Algorithms to live by.
 
 I am presently using 
 

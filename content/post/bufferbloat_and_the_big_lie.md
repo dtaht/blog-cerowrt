@@ -32,7 +32,7 @@ doubting thomas into a rabid advocate. These were benefits that were
 not only directly measurable, but paid off in vastly improved network
 "feel", and QoE.
 
-I (and others in the bufferbloat effort) have spent an extra-ordinary
+I (and others in the bufferbloat effort) have spent an extraordinary
 amount of time - trying to make vendors and ISPs understand that they
 are delivering products that could be vastly improved.
 

@@ -10,7 +10,6 @@ pcengines
 
 ## shaping starts dropping at the rx path
 
-
 There are three sorts of anomolies
 
 Dumps 64k into the network at Gigabit
@@ -43,8 +42,8 @@ bytes.
 
 ECN has mass
 
-and consistently on the high side. Take tcp_limit_output_bytes
+and consistently on the high side. Take tcp_limit_output_bytes, PLEASE!
 
-originally set to 4096, it caused a regression on the current generation
+TSQ was originally set to 4096, it caused a regression on the current generation
 of wifi drivers... so it got increased to 64k... then it caused a
 regression on xen, which got the default bumped to 256k.

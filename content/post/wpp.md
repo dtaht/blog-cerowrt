@@ -9,6 +9,8 @@ description = "You want to attack a network?"
 What would be the worst possible protocol?
 So I did.
 
+FIXME: reference something else
+
 It would only run over ipv6.
 The dest addr would be an entire /64 subnet, only.
 I'd use the 20 bit "flowid" field as an index into the IV.

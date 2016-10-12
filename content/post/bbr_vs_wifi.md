@@ -1,10 +1,15 @@
 +++
 date = "2016-10-11T18:02:58+01:00"
 draft = true
-tags = [ "ath9k", "wifi", "bufferbloat", "bbr" ]
+tags = [ "ath10k", "wifi", "bufferbloat", "bbr" ]
 title = "BBR vs Wifi"
-description = ""
+description = "E2E needs assistance"
 +++
+
+I had great hope that [BBR](/tag/bbr) would solve all my problems, and I could quit hacking on wifi, and go back to surfing every day. No such luck. I
+set up a few tests on an overbuffered ath10k in the hope that BBR would
+"just work", E2E, and we wouldn't need to continue modifying the drivers to 
+do fair queuing and codel at the mac80211 layer. 
 
 ## BBR wins all the internets? Not. Darn it.
 
@@ -30,4 +35,4 @@ the BBRs?
 
 ## Staggered start
 
-
+FIXME, have graph for this

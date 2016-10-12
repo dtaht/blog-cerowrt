@@ -13,6 +13,7 @@ Airtime fairness! Victory!
 I've pointed elsewhere at how channel scans really muck with
 performance also.
 
+FIXME: Merge with managing_multicast
 
 But I didn't believe it. So I delved into the raw data.
 

@@ -1,11 +1,20 @@
 +++
-date = "2016-03-30T18:02:58+01:00"
-draft = true
-tags = [ "wifi", "bufferbloat" ]
-title = "Some traceroutes from nicaragua"
-description = "It seems like the entire country is behind one big nat"
+date = "2016-10-12T04:02:58+01:00"
+draft = false
+tags = [ "bufferbloat" ]
+title = "Some traceroutes from Nicaragua"
+description = "It seemed like the entire country was behind one big nat"
 +++ 
 
+What does your internet look like? How can you figure out anything
+about your userbase if your users are behind 7! Yes 7! layers of private
+network? When I was in Nicaragua earlier this year I had a chance to
+deploy a few fq_codel enabled APs on two networks there, and run a few
+tests on how things behaved on these longer RTTs. I wasn't expecting
+to discover that a goodly portion of the country, seems to be behind
+a giant NAT.
+
+```
 dair-2384:cerowrt d$ traceroute -n 8.8.8.8
 traceroute to 8.8.8.8 (8.8.8.8), 64 hops max, 52 byte packets
  1  192.168.2.1  443.298 ms  319.503 ms  80.494 ms
@@ -23,6 +32,12 @@ traceroute to 8.8.8.8 (8.8.8.8), 64 hops max, 52 byte packets
     216.239.50.103  1091.300 ms
     216.239.50.105  1153.353 ms
 12  8.8.8.8  1340.056 ms *  661.494 ms
+```
+
+Yes - 1143ms RTT on this test. And I at least - had no extra traffic on
+the link.
+
+```
 dair-2384:cerowrt d$ traceroute -n 8.8.8.8
 traceroute to 8.8.8.8 (8.8.8.8), 64 hops max, 52 byte packets
  1  192.168.2.1  43.003 ms  47.484 ms  19.852 ms
@@ -41,9 +56,12 @@ traceroute to 8.8.8.8 (8.8.8.8), 64 hops max, 52 byte packets
     216.239.51.133  3112.878 ms
 12  8.8.8.8  867.064 ms  837.938 ms  1853.168 ms
 
---
+```
+Later on I tried this at a different location, on the cable provider,
+that was only behind 3 layers of NAT, before crossing underseas and
+finding a google dns server. Look at these RTTs and variance. WTF?
 
-http://www.surfnsr.com/nicaragua-surf-report
+```
 
 traceroute to 8.8.8.8 (8.8.8.8), 64 hops max, 52 byte packets
  1  192.168.0.1  2.349 ms  1.461 ms  1.384 ms
@@ -60,3 +78,6 @@ traceroute to 8.8.8.8 (8.8.8.8), 64 hops max, 52 byte packets
     216.239.51.163  113.963 ms
  9  8.8.8.8  120.779 ms  45.879 ms  48.143 ms
 
+```
+
+How the heck can IPv6 ever deploy with this much nat in the way?

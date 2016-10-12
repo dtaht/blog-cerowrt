@@ -3,7 +3,7 @@ date = "2016-05-07T18:02:58+01:00"
 draft = true
 tags = [ "wifi", "bufferbloat", "ath9k" ]
 title = "RTT unfairness"
-description = ""
+description = "RTT unfairness for longer paths"
 +++
 
 Has a large "WTF" component. Delivery rates to the second wifi hop is

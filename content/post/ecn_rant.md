@@ -88,15 +88,49 @@ The ECN debate breaks down into 5 contingents.
 
 1) 99.999% of the networking universe does not care.
 
+The other .001% is divided into four argumentative groups that regularly
+duke it out and fail to agree on anything, now, for over a decade.
+
 2) Congest
 
 3) Treating a mark as equivalent to a drop
 
-But aqms like RED did not deploy. 
+But aqms like RED did not deploy. Fq_codel, codel, pie, and all the mainline
+TCP's treat marks and drops as if they were the same thing.
 
-3) Treating a
+3) Treating a mark as an earlier signal than a drop
 
-4) The fourth contingent (which includes myself) think that ECN should
+DCTCP pioneered this approach (with
+
+I have gradually come around to this point of view. But nobody can
+agree on when that "earlier" signal should happen, or how often it
+should happen, or what it should means when it happens!
+
+Then there's a philosophical difference.
+
+0) Packets should be dropped at the point of congestion, period
+
+Drop has worked fine for 40 years, why change it?
+
+1) ECN on TCP! ECN on ALL TCPs! ECN always.
+
+ECN's basic appeal is that you can do congestion control without losing
+packets. It allows for "closed-form" solutions where things currently
+bifurcate into chaos.
+
+I'm always strongly encouraging the ECN on TCP folk to look at the nature of
+other non-TCP traffic, and make sure they aren't going to mess that up, and
+worry a whole lot more about what potential DDOS attacks can do.
+
+In particular, watching out for what happens when you have a non-responsive
+ECN-capable sender. Recently [BBR](/tag/bbr) arrived - without support for ECN,
+and the simplest, cleanest example of what that can do to other traffic is here:
+
+{{< figure src="mybbrthingfixme" >}}
+
+2) 
+
+3) The third contingent (which includes myself) think that ECN should
 be used very sparsely, under limited circumstances, particularly NOT
 at low rates, and only by applications that actually need it. Anything
 that can tolerate a loss and still recover should keep doing so.
@@ -108,6 +142,8 @@ speed interactive video delivery. (:cough: Virtual and Augmented
 Reality) These are extraordinarily hot markets, and I hope the demands
 of these make ecn-enabled fq and aqm techniques like fq_codel on the
 routers and clients - ubiquitous.
+
+There hasn't been enough work on Trust. I think the "earlier signal than drop" idea makes for gaming ECN to be a non-starter.
 
 Maybe Stuart's been right to push for full ECN support in the AQM
 deployment, that aiming for the perfect will work better than merely

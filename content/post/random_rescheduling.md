@@ -6,6 +6,7 @@ title = "Random rescheduling"
 description = "Achieving imperfect flow balance might help sometimes"
 +++
 
+FIXME: I really wish I could find the sprong graph. Maybe it's on snapon
 Note to self: This was triggered by seeing a neat graph of four
 flows going wildly out of balance for a while, syncing, and
 getting worse, then converging. Then it sort of became a digression

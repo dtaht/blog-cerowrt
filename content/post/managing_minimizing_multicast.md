@@ -9,4 +9,18 @@ description = ""
 Minimizing multicast - as a string of patches is trying to do now,
 seems like a worthy goal. Managing it better, is, too.
 
+## Stop filtering out the data!
+
+git@github.com:dtaht/airtime-pie-chart.git
+
+But it was puzzling. I saw no probes, and no multicast.
+
+Once again, the tool was broken.
+
+## How much multicast is out there?
+
+## What kind of multicast is it?
+
+pie chart
+
 

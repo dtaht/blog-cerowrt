@@ -8,7 +8,6 @@ description = ""
 
 laboring in the dark, trying to bring in old, broken ideas that preserve existing business models.
 
-
 TCP takes a few seconds to ramp  up.
 
 so, which is the right number? the beguinning? the middle? the end? The average?

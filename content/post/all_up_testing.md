@@ -12,22 +12,27 @@ to make dramatic progress... or, make dramatic explosions.
 
 All up testing is the fastest way to find "the true variable" - what
 Donald Rumsfeld called the [unknown unknown](). I've spent most of my
-life in the pre-scientific process, the one chasing intuition, in search
-of isolating and fixing the unknown unknowns - endless experimentation,
-tweaking as many variables as possible, 
+life in the pre-scientific process, chasing intuition, in search
+of isolating and fixing the unknown unknowns - doing endless experimentation,
+tweaking as many variables as possible, trying to find a lever to move
+the world, writing down random results of random tests, in the hope that
+one day a repeatable pattern may emerge, and an unknown unknown, move,
+at least, to being a known unknown, or a known. 
 
 True scientists (I can't count myself as one!) find my approach maddening. They want to test each variable in
 isolation, figure it out thoroughly, write a paper, then move on. Hell, my
 approach makes *me* crazy - I'll find a bunch of problems that interact somehow
 and then grope for months to isolate the real variable(s), by backing
-off each major change one by one to see what was really broke.
+off each major change one by one to see what was really broke. Or,
+if I'm lucky - by describing what I encounterd so well that someone 
+with more of a clue can have their "Aha!" moment.
 
 The real world does not have many single variable problems. Nearly all those
 have been isolated and examined. All that's left is the interaction between
 multiple variables.
 
 I (with a lot of help), pounded through 50 years of network queue theory to
-ultimately come up with what became fq_codel. I'd started off with a vague
+ultimately help come up with what became fq_codel. I'd started off with a vague
 generalization - "Why didn't wondershaper scale up?" 
 
 It turned out there were multiple variables in play, all of which inobvious.
@@ -105,7 +110,8 @@ Some of the hardest problems are ones with interrelated bugs.
 and you struggle to reproduce it. And you finally do - crash the whole network - just when your gf is trying to watch a show. "Honeeeeyyyy"? 
 "The network's down"
 
-Adding fq-codel to wifi was like that.
+Adding fq-codel to wifi has been like that. There are so many variables
+in the experiment that it's hard to hold them all in your head.
 
 # On the CeroWrt project
 
@@ -166,7 +172,7 @@ looking for more, trying to line up resources to fix them, and not having
 a good time anymore.
 
 Every project needs multiple kinds of people on it, and they mostly all have
-to appreciate each other's value. I am grateful for 
+to appreciate each other's value.
 
 But I do wish we had more people, applying their skills, and adopting some
 of mine, to finish up the work.
@@ -189,7 +195,7 @@ And I team up with people that can compensate
 
 Sometimes though, I get so scattered across the surface of things that
 I need to take weeks (or months), to look across my notes, and try to
-identify . I've had to put in my schedule - "Reset my schedule"
+identify if any of the odd patterns added up. I've had to put in my schedule - "Reset my schedule".
 
 It's the difference between applying the OODA loop and engaging in a full
 frontal assault. I recognise that both methods apply but have specialized
@@ -205,7 +211,7 @@ a 9 month cycle between papers, where
 
 exploration of all the alternatives, led to a blinding flash of insight
 on Eric Dumazet's part that a modification to DRR would solve most of the
-problems we'd hit by using per packet fairness schemes such as SFQ
+problems we'd hit by using per packet fairness schemes such as SFQ.
 
 everyone else - including me! - was so blindsided by this that it took 
 months to internalize, and begin to isolate what new problems were exposed
@@ -215,8 +221,7 @@ by this approach. Finding a means to drop packets from flooding took
 "Cake" has been a patient exploration of - for benefits that are nearly
 immesurable.
 
-
-By such means, progress is made
+By such means, progress is made.
 
 # Summary
 
@@ -230,6 +235,8 @@ But without that initial seed crystal, nothing would have happened.
 
 Universal Systems Language - Lessons from apollo
 
+Fixme: I have no idea why these are in here
+
 http://blog.interviewing.io/we-built-voice-modulation-to-mask-gender-in-technical-interviews-heres-what-happened/
 
 http://lens.blogs.nytimes.com/2009/06/03/behind-the-scenes-tank-man-of-tiananmen/?_r=0
@@ -241,7 +248,5 @@ post singularity arrives ahead of schedule
 by the time you read this it will be too late.
 
 what if aggregation increased with distance? Actual distance in ms.
-
-https://en.wikipedia.org/wiki/Prostitution_in_Germany#Football_World_Cup_2006
 
 http://images.google.de/imgres?imgurl=https://upload.wikimedia.org/wikipedia/commons/2/2e/Margaret_Hamilton.gif&imgrefurl=https://en.wikipedia.org/wiki/Margaret_Hamilton_(scientist)&h=719&w=566&tbnid=T5zwwY7Y7ijerM:&tbnh=186&tbnw=146&docid=QvlAI254ghjvuM&itg=1&usg=__YQUnKH6s40iFXnYKlDQdpbSSqvI=

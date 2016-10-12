@@ -11,7 +11,7 @@ the 802.11e queues work today - and should work - for a very long time now.
 It's a big elephant.
 
 But from reading the EDCA related sections of the 802.11n-2012 standard,
-it's clear, nearly everybody's doing it wrong.
+it's clear, Linux is doing it wrong.
 
 EDCA setters should be dynamically setting parameters based on the workload,
 tightening up some as more stations join, loosening others, responding

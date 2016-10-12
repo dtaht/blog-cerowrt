@@ -2,8 +2,8 @@
 date = "2016-08-30T12:02:58+01:00"
 draft = true
 tags = [ "wifi", "bufferbloat", "ath9k", "osx" ]
-title = "fq_codel'd WiFi intermediate queues verse OSX Mavericks"
-description = "We got the best results ever with the new code, vs OSX"
+title = "Research Rants"
+description = "How I'd do better network research"
 +++
 
 Another group arbitrarily defined bufferbloat as > 200ms induced latency, filtered out half their results (as a ping didn't return in under a second)

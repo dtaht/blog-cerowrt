@@ -6,7 +6,8 @@ title = "Doing the engineering at the right layers"
 description = "Finding and fixing real problems, faster"
 +++
 
-I've had this conversation one too many times over the past year. They: "Dave,
+I've had this conversation one too many times over the past few years.
+They: "Dave,
 we love this stuff, can you talk to us about how to add it into our next chip?" 
 Me: "All you have to do is expose a managable interface to the buffering, and
 let the higher layers of the stack take care of the rest". :silence:. That
@@ -14,7 +15,8 @@ meeting is almost never scheduled.
 
 And: months or years later, I hear about a new proprietary feature
 that sounds almost, but not quite like, what we'd discussed, with a new name
-and someone claiming it solves everything.
+and someone claiming it solves everything. I get a chance to test it, and,
+it doesn't.
 
 I'm a lazy programmer. I don't have time for marketing special features. You just need to do the engineering in the right place.
 

@@ -6,7 +6,7 @@ title = "What is the future internet?"
 description = "The future is already here, it's just not evenly distributed yet"
 +++
 
-The ""next generation internet" is already all around us - it just isn't evenly
+The "next generation internet" is already all around us - it just isn't evenly
 distributed yet. Technologies already designed, need to be further developed,
 and made deployable, and deployed. Vulnerable technologies, need to be patched,
 and regularly updated. 

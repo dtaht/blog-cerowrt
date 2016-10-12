@@ -6,7 +6,7 @@ title = "Flaws in Flent"
 description = "Engineering to the test - especially your own test - can be deluding"
 +++
 
-[flent](https://flent.org) has been the test tool of choice for the
+[flent](https://flent.org) has been the test tool of choice for several
 core researchers in the [bufferbloat](/tags/bufferbloat) effort.
 
 With it - in a matter of minutes you can replicate any network test "out there"
