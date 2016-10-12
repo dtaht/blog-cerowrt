@@ -6,13 +6,13 @@ title = "Finally... the real net-next 4.8 fq_codel/airtime-fair ath9k results"
 description = "Getting to this point took 4 long years..."
 +++
 
-When experiments go awry - sometimes you learn something. Doing the
-same thing over and over again expecting a different result is a
-definition of insanity - doing a different thing different ways, all
-the time, must be saner, right? Well, it was time to try and more or
-less duplicate my original configuration, testing a "genuine"
-fq_codel'd airtime fair AP, against the behavior of multiple genuine
-WiFi clients, to see what happened.
+When [experiments go awry](/post/mcs_rates/) - sometimes you learn
+something. Doing the same thing over and over again expecting a
+different result is a definition of insanity - doing a different thing
+different ways, all the time, must be saner, right? Well, it was time
+to try and more or less duplicate my original configuration, testing a
+"genuine" fq_codel'd airtime fair AP, against the behavior of multiple
+genuine WiFi clients, to see what happened.
 
 My broken box is still borken! I pulled the odroid C2 out of
 where it was, and made it the test driver, instead of the laptop. I've
