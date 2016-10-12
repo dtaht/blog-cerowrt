@@ -14,7 +14,7 @@ to try and more or less duplicate my original configuration, testing a
 "genuine" fq_codel'd airtime fair AP, against the behavior of multiple
 genuine WiFi clients, to see what happened.
 
-My broken box is still borke, so I pulled the odroid C2 out, and made it the test driver, instead of the laptop. I've
+My broken box is still borked, so I pulled the odroid C2 out, and made it the test driver, instead of the laptop. I've
 proven to myself that I [get results out of it](/posts/odroid) that
 are good to at least 200mbit, and that's all we need to test here. It
 is running linux 3.14, which is a data point all in itself. Whenever I
@@ -38,7 +38,7 @@ odroid c2 <-> ethernet <-> laptop(AP) <-> Ath9k Wifi <-> OSX and Linux (ath10k)
 ath9k APs, also, (at HT20), so things look good here, and I can more
 or less compare stuff with prior results with fewer qualms.
 
-The results I'd got [using the AP as a server, last weekend](/post/mcs_rates) - are very dissimilar and puzzling. What this is is way more correct, now - in line with the theory, and in line with [prior experimental data]().
+The results I'd got [using the AP as a server, last weekend](/post/mcs_rates) - are very dissimilar and puzzling. What this is is way more correct, now - in line with the theory, and in line with the [prior experimental data](https://blog.tohojo.dk/2016/06/fixing-the-wifi-performance-anomaly-on-ath9k.html).
 
 {{< figure src="/flent/airtime-c2/would_that_be_so_bad.svg" title="AP station compared" >}}
 
