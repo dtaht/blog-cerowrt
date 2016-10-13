@@ -102,12 +102,12 @@ spent months... dead in the water... stumped.
 ## Personal note
 
 Sometimes I think the only thing going for me is a clear goal and
-dogged persistence - I don't have the coding chops and ability to
-visualize nanoseconds Eric has, nor the deep insights into the
-structure of the ath9k code Felix and Toke have, nor the experiences
-and insights into TCP's behaviors Kathie, Van and Matt have, nor the
-clear grasp of Minstrel that Andrew and Thomas have... I just want to
-end bufferbloat in my lifetime!
+dogged persistence - I don't see things from orbit, as Jim does, I
+don't have the coding chops and ability to visualize nanoseconds Eric
+has, nor the deep insights into the structure of the ath9k code Felix
+and Toke have, nor the experiences and insights into TCP's behaviors
+Kathie, Van and Matt have, nor the clear grasp of Minstrel that Andrew
+and Thomas have... I just want to end bufferbloat in my lifetime!
 
 And despite that "persistence" - my ADHD has really got out of hand:
 

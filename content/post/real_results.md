@@ -75,7 +75,7 @@ But, just sit with me, and admire that plot above for a while. (TODO: I need to
 redo the tests with Linux 4.4, same configuration, for a comparison)
 
 100s of millions of crappy APs have shipped since we started the
-bufferbloat project. Billions of WiFi devices, also. 4 years ago, we'd
+bufferbloat project. Billions of WiFi devices, also. Four years ago, we'd
 mostly worked out how to fix them, three years ago we went seeking
 funding, two years ago good infrastructure started landing, and this
 year...
@@ -111,7 +111,7 @@ isn't enough fair queuing, there's ping packet loss.
 At some future point - perhaps in the near future - I can bring the
 new code online for a few clients, as well, to see what happens.
 
-(I've already seen what happens. It's *lovely*. Trust me.)
+(I've already seen what happens. It's *lovely*. Trust me)
 
 ## Side note: the effects of bandwidth asymmetry
 
@@ -158,11 +158,9 @@ Toke's giving a talk on all this at the [openwrt summit this week](http://openwr
 
 And I'm doing [the same at Linux Plumbers this november](https://linuxplumbersconf.org/2016/ocw/proposals/3963). See you there!
 
-As happy as I am with these results, there's still the problems identified here to solve, we need to test at the lowest 2.4ghz rates, and with ht40 and adhoc mode, at the very least, over the next few weeks. There's tons more plots that can be pulled out of the flent datasets, as well - the [mcs stuff is here](/flent/mcs), and the [airtime tests are here](/post/airtime-c2).
+As happy as I am with these results, there's still the problems identified here to solve, we need to test at the lowest 2.4ghz rates, and with ht40 and adhoc mode, at the very least, over the next few weeks. There's tons more plots that can be pulled out of the flent datasets, as well - the [mcs stuff is here](/flent/mcs), and the [airtime tests are here](/flent/airtime-c2).
 
 The unofficial patch set that applies on top of net-next is [here](http://www.taht.net/~d/airtime-8/), which also has pre-built .deb files for ubuntum 16.04 LTS.
-
-...
 
 ## Can we rip out even more latency than this from modern WiFi?
 
