@@ -146,6 +146,11 @@ stations was *my main goal* for the make wifi fast project. We've done
 it! And: with hopefully (knock on wood) only a few bugs left to solve,
 the code can all move upstream over the next two kernel releases.
 
+This what mcs0 used to look like - pfifo-fast, 1000 packets, 123 in the
+ath9k driver itself. The horrors!
+
+{{< figure src="/flent/airtime-c2/stock-linux-4.4-mcs_0.png" >}}
+
 I'm nearly out of funding, and very tired. I am massively grateful to
 everyone on the make-wifi-fast mailing list and the bufferbloat
 project members for all their help in getting this far - and huge kudos
