@@ -16,10 +16,10 @@ outdoors, smoking deck, live music and table service.
 
 Yesterday I went to the Perg to try to get some writing done and had a
 chance to run a few flent tests. Their network was finally
-bufferbloat-free! I've stayed in touch with the [cruzio ISP](http://cruzio.com) for years,
-and I knew the meraki folk are also paying attention to bloat, but to
-actually see no bloat, in one of my favorite places in the world -
-where the coffee + wifi revolution started - was really wonderful.
+bufferbloat-free, less than 30ms jitter and latency! Many of my friends use the [cruzio ISP](http://cruzio.com), and I knew
+the meraki folk are also paying attention to bloat, but to actually
+see no bufferbloat, in one of my favorite places in the world - where the
+coffee + wifi revolution started - was really wonderful.
 
 {{< figure src="/flent/meraki/perfect_pergolesi.png" >}}
 
