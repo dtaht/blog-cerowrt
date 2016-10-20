@@ -21,7 +21,7 @@ and I knew the meraki folk are also paying attention to bloat, but to
 actually see no bloat, in one of my favorite places in the world -
 where the coffee + wifi revolution started - was really wonderful.
 
-{{< figure src="/flent/meraki/perfect_pergolesi.svg" >}}
+{{< figure src="/flent/meraki/perfect_pergolesi.png" >}}
 
 Back then, when cliff, elf, sean, tim, and I - and so many others -
 used to jump behind the coffee counter to help keep the wifi going,
