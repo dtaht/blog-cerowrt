@@ -7,16 +7,18 @@ description = "The DSL ISPs and chipmakers have a latency problem"
 +++
 
 Dear DSL industry - chipmakers and ISPs - you are missing out on an opportunity
-to remain relevant. 
+to remain relevant. You have a latency problem.
 
 Your users
 
 It's not your fault, entirely - shifts in the market towards higher bandwidths
 - things like IW10, 
 
+Newer gear has it worst.
+
 # Chipmakers
 
-And you're blowing it. A technique arrived to moderate the behaviof the
+And you're blowing it. A technique arrived ([BQL](fixme)) to moderate the behaviof the
 tx-ring *back in 2011* that would completely eliminate all this latency
 and allow you to hand the smarter stuff off to other techniques already
 well established in the linux kernel.
