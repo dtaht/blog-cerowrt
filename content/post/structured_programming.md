@@ -1,5 +1,5 @@
 +++
-date = "2015-12-23T18:02:58+01:00"
+date = "2016-12-23T18:02:58+01:00"
 draft = false
 tags = [ "culture jam", "rants" ]
 title = "Structured programming"
