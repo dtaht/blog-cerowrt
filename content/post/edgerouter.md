@@ -6,9 +6,9 @@ title = "Tale of the lost router"
 description = "An edgerouter is awesome... when you can find it"
 +++
 
-I've had an edgerouter X for ages. 
+I've had an edgerouter X for ages.
 
-Anyway, I was scanning my network for another device and found one 
+Anyway, I was scanning my network for another device and found one
 that responded to ping. Thankfully attempting to login showed the
 ULA disclaimer message, I remembered the password....
 
@@ -19,7 +19,7 @@ Problem is that although I've been told, multiple times, how to compile
 stuff for it, it's beyond me to fire up qemu.
 
 I *like* very much that it has a good routing protocol implementation
-and it's an object lesson to me that off-the-shelf products don't 
+and it's an object lesson to me that off-the-shelf products don't
 have babel support by default. I sure wish it was available tho,
 because integrating it into my network would be easier.
 
