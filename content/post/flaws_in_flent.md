@@ -271,33 +271,57 @@ particular, are very damaging to your link at these speeds.
 
 ## Flent (and most web benchmarks) are testing multiple flows
 
-Testing single flows - in fact, 2-3 flows - can be revealing.
+Testing single flows can be revealing. This is a long distance test
+(72ms baseline latency to newark from here) that clearly shows 50ms of
+overbuffering on the sonic link, vs the effects of codel, vs the current
+behavior of cake.
 
-{{% figure src="http://" %}}
+{{% figure src="http://www.taht.net/~d/sonic_cake_vs_fq_codel_vs_fifo_70ms.png" %}}
 
-This "feature" is in cake primarily because codel reacts too slowly to
-dealing with multiple flows in slow start on slow networks, and can
+See cake taking off very slowly there?
+
+This "mis-feature" is in cake primarily because codel reacts too slowly
+to dealing with multiple flows in slow start on slow networks, and can
 overshoot - causing excessive latency on your line that can be hard to
-clear out.
+clear out. (you can see the codel overshoot (multiple short 50ms latency
+spikes) if you squint - or are running a voip call or other isochronous
+stream). Still, we need to tune this better in the long run.
+
+Web browsers start tons of flows. I've lost hope people will stop using
+IW10. Network behaviors like this
+[hurt your internet experience](https://danluu.com/web-bloat/). Cake
+stomps on stuff in slow start early, and *hard*. TCP theorists are going
+to hate me for that, but folk in the 3rd world, (like, America) will
+love it.
 
 There's a new error in the world that has cropped up. In testing sonic
-fiber, using their tests, users happily report gbit throughput - but
+fiber, using [their tests](FIXME), users happily report gbit throughput - but
 that comes from using multiple flows across multiple machines across
-their infrastructure. Any set of flows to one destination seems to be
+their infrastructure.
+
+In my tests, any set of flows to one destination seems to be
 rate limited to a total of about 130Mbits.
 
 (I don't blame them for this, it is a sane reaction for an ISP to try to
 offer low latency. Per host fq is a semi-effective means to do that, and
 sonic has been the best ISP I've ever tested with native buffering of
 only 50ms - which I promptly reduced to near zero above with cake, and
-have been puzzling over the 2-10ms long path jitter on long duration
-tests ever since.
+have been puzzling over the 2-10ms long path jitter with multiple flows
+on long duration tests ever since:
 
-I also don't understand *how* they did this. Is it a feature of GPON? Or
+{{% figure src="http://www.taht.net/~d/sonic_106_cake_vs_default.png" %}}
+
+I also don't currently understand *how* sonic did this. Is it a feature of GPON? Or
 is my TCP running out of some window? What?)
 
-There was some good research published showing codel had an issue with 3
-flows.
+Testing 2-3 flows can also be revealing. There was some good research
+published recently showing codel had an issue with 3 flows.
+
+I don't care about the interaction of 1,2,3 or even 4 flows. I care
+about the interactions of up to hundreds of flows on real, edge, links.
+The days where you cared about getting max throughput out of a single
+flow are hopefully long dead (except for those that care about it!)
+
 
 ## Flent doesn't count tcp acks as part of the overall traffic measurement
 
