@@ -1,5 +1,5 @@
 +++
-date = "2017-02-10T18:02:58+01:00"
+date = "2017-02-11T19:02:58+01:00"
 draft = true
 tags = [ "bufferbloat", "rants", "flent" ]
 title = "Flaws in Flent"
@@ -49,7 +49,7 @@ other as network behavior is hard to boil down to a single "number", as
 much as others have tried with things such as measuring "Bandwidth" or
 "jains fairness index". It's a heisenbug principle - you cannot measure
 the capacity of a pipe at the same time as the path length - something
-that the [TCP BBR](fixme) folk finally got right (after 30 years of trying).
+that the [TCP BBR](http://queue.acm.org/detail.cfm?id=3022184) folk finally got right (after 30 years of trying).
 
 Flent *can* produce standard statistics from any test, as well as
 detailed output that can be used in other plotting tools.
@@ -188,19 +188,19 @@ possible, when you can... [At different times of day](fixme), under
 different conditions and delve into the details, as there may be dragons
 there.
 
-An example of a
-[maddening short period anomaly is here](/posts/channel_scans_suck) -
+One example of how short testing can screw you up was the recent, and maddening
+[wifi short period anomaly is here](/post/channel_scans_suck) -
 where *weeks* of 1 minute long test data were *sometimes* permuted by a
 wifi channel scan and we only figured that out extending the length of
-the test to 5 minutes, from 1. It sort of, kind of, showed up in the
-graphs, until I hit it longer and found it was on a periodic interval.
-(this is now [fixed upstream](fixme) in network manager). And worse, I'd fallen
-into the habit of looking at my summary data only, assuming that the
-rest of the network was behaving correctly. (It WAS - on OSX).
+the test to 5 minutes, from 1.
+
+I'd fallen into the habit of looking at my summary data only, assuming
+that the rest of the network was behaving correctly. (It WAS - on OSX).
 
 We found another network crash bug, once, that took 26 minutes of
-continuous testing to tickle. [And another](fixme), with a counter overflow that
-took 51 *days*.
+continuous testing to tickle. [And another](fixme), with a counter
+overflow in odhcp6 that took 51 *days* and hammered your network
+perpetually afterwards.
 
 ASIDE: I'd really like to find a way to run an OS and tools 10-100x
 faster than real time in qemu, so we could find bugs like those and have
@@ -209,11 +209,13 @@ memory leaks are really hard to find, counter overflows, also.
 
 ## The flent RRUL test isn't actually the rrul test as specified
 
-The [RRUL specification](FIXME) used isochronous traffic and wanted one
-way delay for the measurement flows and also timestamps within the TCP
-flows. This turned out to be (way) too hard to implement in 2013. We
-also use (as it turned out) a diffserv marking commonly not optimized
-for in most networks.
+The
+[original RRUL specification](https://www.bufferbloat.net/projects/bloat/wiki/RRUL_Spec/)
+specified isochronous traffic and wanted one way delay (OWD) for the
+measurement flows and also timestamps within the TCP flows. This turned
+out to be (way) too hard to implement in 2013, and in flent. We also used
+(as it turned out) a diffserv marking commonly not optimized for in most
+networks.
 
 Someday, perhaps we'll get a RRUL test that is more correct. I've
 already got a name for it - Corrected RRUL. Call it: CRUL.
@@ -294,19 +296,19 @@ class WiFi.
 
 TCP's behaviors at lower rates are bound by different variables than
 TCP's behaviors at higher rates. Of issue are the size of the
-[initial window](https://tools.ietf.org/html/draft-gettys-iw10-considered-harmful-00),
+[Initial Window](https://tools.ietf.org/html/draft-gettys-iw10-considered-harmful-00),
 loss rates, the size of the receive window, and ssthresh, and the actual
 TCP used.
 
 One of the hardest problems to measure is what happens at a range of
 achievable rates from 1Mbit to 1Gbit in the same session, as in
-[wifi](/tags/wifi), or in [route flaps](/fixme)
+[wifi](/tags/wifi), or in [route flaps](/post/babel_half_fail)
 
 Nobody has a good emulation for wifi's behaviors today. It seemed
 simpler to just go forth and implement the new queueing ideas we have,
 in Linux directly, and go measure that, and wash, rinse, repeat.
 
-That took [three years out of our lives](fixme).
+That took [three years out of our lives](paper pending sorry soon).
 
 Anyway, flent samples at a default sampling rate too high and uses too
 many flows to get decent plots as you drop below 4Mbits. The fact that
@@ -481,13 +483,14 @@ plenty of other tools for taking apart packet traces worth playing with.
 What's most helpful about flent here, is that you can generate a
 repeatable test, and get traces that you know are repeatable...
 
-There is work going on to also [get raw-er tcp behaviors](githubfixme)
-directly during a flent test. It's hard - sampling at a high rate,
-permutes the test.
+There is work going on to also
+[get raw-er tcp behaviors](https://github.com/tohojo/flent/pull/91#discussion_r100667368)
+directly via the "ss" utility during a flent test. It's hard - sampling
+at a high rate, permutes the test.
 
 See how smooth this plot looks? Great result, eh?
 
-{{% figure src="" %}}
+{{% figure src="fixme" %}}
 
 But we're lying - there's a sawtooth in there but you can't see it due
 to the sampling rate and short RTT.
@@ -496,7 +499,7 @@ Be aware that the very act of running tcpdump may skew your results also
 by eating too much cpu. Run tests with and without tcpdump to make sure
 you aren't heisenbugging yourself!
 
-[asdf](fixme) is the fastest set of tools for dealing with tcpdump I know of.
+[netsniff](http://netsniff-ng.org/) is the fastest set of tools for dealing with tcpdump I know of.
 
 ## Flent understates/obscures the impact of AQM
 
@@ -608,17 +611,18 @@ If you write your own test... please share it with us?
 
 ## Not (quite) enough worldwide coverage for flent servers
 
-We operate 10 [flent servers around the world](fixme), but they are A)
+We operate 10 [flent servers around the world](/post/worldwide_flent_servers), but they are A)
 hosted primarily with one co-location facility (the very supportive
 linode - I recommend them highly!) and B) you really can't trust the
 numbers above 200Mbit due to other factors, as we don't regulate who is
 testing when and all these servers peak at 1GBit each.
 
-Generally the expectation is that folk will use flent in a lab, while
+Generally our expectation was that folk will use flent in a lab, while
 testing new hardware, rather than hit the worldwide servers.
 
 We would welcome more netperf servers around the world located in
-different data centers. Or a means to pay the DC bill we already have.
+different data centers. A means to pay the DC bill we already have would
+be nice.
 
 ## Underdocumented options incompletely implemented
 

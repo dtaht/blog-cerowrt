@@ -1,7 +1,7 @@
 +++
 date = "2017-02-11T18:02:58+01:00"
 draft = false
-tags = [ "bufferbloat" ]
+tags = [ "bufferbloat", "lab" ]
 title = "I've never really recovered from the loss of the lab"
 description = "\"Pain shared, reduced\" - Spider Robinson"
 +++
@@ -65,9 +65,9 @@ like (but would have to spend months getting something perfect)
 Still, I flail a lot, and I feel perpetually disorganized, trying to use
 tools that are inappropriate for managing my life's context switches.
 Finger memory for dozens of function keys and dozens of other custom
-keystrokes, was wiped out. My tight integration of emacs with my other
-tools, was gone. (In particular I used org-mode's "remind mode", a lot,
-for nearly everything), and gnus.
+keystrokes, in various emacs modes, was wiped out. My tight integration
+of emacs with my other tools, was gone. (In particular I used org-mode's
+"remind mode", a lot, for nearly everything), and gnus.
 
 I haven't managed to sit down and record a note of music since, either.
 It hurts too much to think of all the labor lost - particularly all the
@@ -121,4 +121,4 @@ someday, too.
 
 I do hope that whoever stole and sold my !@#! stuff got some good drugs
 out of it and a few days worth of high. I am sometimes angry enough to
-hope they ODed.
+hope they ODed and angry at myself for being so angry.
