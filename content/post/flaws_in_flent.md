@@ -6,32 +6,33 @@ title = "Flaws in Flent"
 description = "Engineering to the test - especially your own test - can be deluding"
 +++
 
-[flent](https://flent.org) has been the test tool of choice for several
+[Flent](https://flent.org) has been the test tool of choice for several
 core researchers in the [bufferbloat](/tags/bufferbloat) effort.
 
 With it - in a matter of minutes you can replicate any network stress
 test "out there" and compare networking results across an extraordinary
-number of variables, over time, across many tests. Before [Toke](fixme)
-developed flent, it would takes days to set up a single test and single
-plot, now you can be deluged in data, and can investigate network
-behaviors in minutes that take other researchers months. Accurately.
-Over time. With comparable results in a standardized file format, and a
-zillion useful plot types.
+number of variables, over time, across many tests. Before
+[Toke](https://blog.tohojo.dk/) developed flent, it would take days to
+set up a single test and single plot. Now you can be deluged in data,
+and can investigate network behaviors in minutes that take other
+engineers months, accurately, over each change you make, with comparable
+results in a standardized file format, and a zillion useful plot types.
 
-It leverages (primarily) other well regarded test tools to accumulate
-its results, notably netperf, which is the network performance tool of
-choice in the Linux networking community.
+Flent leverages other well regarded test tools to accumulate its
+results, notably [netperf](http://www.netperf.org), which is the network
+performance tool of choice in the Linux networking community.
 
 Best of all, flent is free (GPLv3) software, and it's easy to get up and
 running on Linux and OSX. The windows version is only capable of
-browsing and plotting tests, at the moment. (You can use a windows box
-as a netperf target)
+browsing and plotting test results, at the moment. (You can use a
+windows box as a netperf target).
 
 There have been
-[many network bugs and fixes found with flent](/posts/found_with_flent).
+[many network bugs and fixes found with flent](/post/found_in_flent).
 
-Despite the title of this blog entry *I love flent*, but I felt the need
-here to express what it does and where you can go wrong, when using it.
+Despite the title of this blog entry, *I love flent*, and how useful it
+has been (see above link) but I felt the need here to express what it
+does and where you can go wrong, when using it.
 
 Getting "standard statistics" out of any network test tool
 ----------------------------------------------------------
@@ -46,7 +47,7 @@ QA team (or blue vs red teams).
 I've focused on good plotting of two or more variables against each
 other as network behavior is hard to boil down to a single "number", as
 much as others have tried with things such as measuring "Bandwidth" or
-"jains fairness index". It's a heisenberg principle - you cannot measure
+"jains fairness index". It's a heisenbug principle - you cannot measure
 the capacity of a pipe at the same time as the path length - something
 that the [TCP BBR](fixme) folk finally got right (after 30 years of trying).
 
@@ -57,32 +58,38 @@ detailed output that can be used in other plotting tools.
 flent -i datafile -o plot.csv -f plot
 ```
 
-What I regard these as most useful for is: disproving to statistics minors
-that guassian statistics measure anything useful when it comes to network
-behavior. I care an awful lot about everything above the 95th percentile,
-for example, and most stats folk just chop that off before even
-starting an analysis.
+What I regard these as most useful for is: disproving to statistics
+minors that guassian statistics measure anything useful when it comes to
+network behavior! You should care an awful lot about everything above
+the 95th percentile, for example, and most stats folk just chop that off
+before even starting an analysis.
 
-[Amdahls law](FIXME) applies - the total time to complete a network
-transaction is bound by the speed of the slowest portion of the
-transaction. Recently I saw that someone had independently rediscovered
-that 50 year law and called it [FIXME](FIXME).
+[Amdahls law](https://www.pugetsystems.com/labs/articles/Estimating-CPU-Performance-using-Amdahls-Law-619/) applies quite firmly to network behaviors - the
+total time to complete a network transaction is bound by the speed of
+the slowest portion of the transaction. Recently I saw that someone had
+independently rediscovered that 50 year law and called it
+[FIXME](FIXME). Sigh.
 
 Speed up TCP all you like, but if your DNS fails most of the time, you
 aren't going to win. Fix DNS all you like, but if you pound packets
 through DNS to make absolutely sure you always get a result, and you'll
-slow everything else down. Change multicast all you like, and
-you'll break something else. And so on.
+slow everything else down. If arp fails, you are going to get nowhere
+(literally). Change multicast all you like, and you'll break something
+else. And so on.
 
-Deeply "getting" Amdahl's law really important. Everything can slow you
-down - from dns lookup failure to happy eyeballs timeouts, to tail loss,
-to retransmit delay... and you need to be aware of and fix everything...
+Deeply "getting" Amdahl's law really important. It's wedged into my
+bones by decades of real-time programming my part. Everything can slow
+you down - from dns lookup failure to happy eyeballs timeouts, to TCP
+tail loss, to retransmit delay... and you need to be aware of and fix
+everything in this incredibly complex system of system, networks of
+networks that is the modern internet today. You fix one thing, you have
+to play wack-a-mole on the the next thing that crops up.
 
-Anyway, I tend to use the raw (all or all_scaled) plots to validate sane
-stuff happened, and the cdf plots to cover the entire range of the data,
-to understand what really is going on. Then maybe a "totals" bar plot to
-make it prettier - but always AFTER looking at the rawest data to ensure
-it is sane.
+Anyway, I tend to use the raw (all or all_scaled) plots in flent - first
+- to validate sane stuff happened, and the cdf plots to cover the entire
+range of the data, to understand what really is going on. Then maybe a
+"totals" bar plot to make it prettier - but always AFTER looking at the
+rawest data to ensure it is sane.
 
 Incidentally, despite me dissing "Standard statistics" here, I keep
 hoping that some new statistical distribution and related tools would
@@ -108,63 +115,97 @@ to a crawl, perpetually handling instruction traps.
 
 *ALWAYS LOOK AT THE RAWEST PLOTS FIRST*
 
-## Flaws in the rrul test
+Learning how to read the error bars in the whiskers is kind of hard
+too...
 
-There are so many ways to do badly on the rrul test that it's difficult
-to break them all down. I designed it to break the most stuff the fastest,
-and while I can point to a "good result" pretty easily -
+... especially if you don't trust the data you got the whiskers from in
+the first place!
+
+There are a lot of different box plot types out there. One type I'm fond
+of (that flent doesn't do) is the seven number summary - partially
+because what's above the 98th percentile is *interesting* and we'd
+rather show more detail.
+
+## Flaws in the rrul test itself
+
+I am the originator of the RRUL ("Realtime Response Under Load") test
+which sometimes I am fiercely proud of and sometimes I regret. Comcast
+asked me to write a spec for something nasty and simple that showed how
+bad bufferbloat could get, and... well... I did. Then Toke implemented
+it. And the rest is history.
+
+There are so many ways to do badly on the RRUL test that it's difficult
+to break them all down. I designed it to break the most stuff the
+fastest, and while I can point to a "good result" pretty easily -
 
 {{< figure src="/flent/good_results/example.svg" >}}
 
 Explaining everything that can go wrong would take pages and pages -
-which I intend to do someday - in the hope that more folk learn to read
-a rrul plot and what it means. What you should look for is "smoothness",
-overall latency and jitter, bounded, and multiple flows sharing fairly.
+which I intend to do someday ([here's some](/posts/found_in_flent)) - in
+the hope that more folk learn to read a rrul plot and what it means.
+What you should look for is "smoothness", overall latency and jitter,
+bounded, and multiple flows sharing fairly, and the short measurement
+flows not being lost. Positive (but not necessary on a modern network)
+things to look for is classification, actually working.
 
-Relying on any one test overmuch is a tad foolish. The rrul test was
-designed to break everything on the Net I knew to be broken in 2012, in
-under 60 seconds.
+I need to stress that relying on any one test overmuch is a tad foolish.
+The RRUL test was designed to break everything on the Net I knew to be
+broken in 2012, in under 60 seconds. Life is short. Long tests lose user
+interest quickly.
 
-What I had always intended was that the "fail the rrul" phase to be
-followed by individual measurements of the simpler tests, like single
-tcp up and downloads, followed by multiple tcps, etc.
+What I had always intended was that the "fail the RRUL" phase to be
+followed by individual measurements with simpler tests, like single
+tcp up and downloads, followed by multiple tcps, etc. There are also
+many valuable pre-existing tests out there - like packets per second -
+well worth running.
 
-It seems that a hopelessly large amount of the Internet today is
-engineered to pass "speedtest" - which is a string of tests that run for
-less than 20 seconds each, and test for latency independent of load. Run
-a speedtest-like test for 22 seconds rather than 20, and everything
-explodes, like a dragster at the end of a track.
+But at the time RRUL was designed it seemed that a hopelessly large
+amount of the Internet today was engineered to pass the "speedtest.net"
+tests - which are a string of tests that run for less than 20 seconds
+each, and test for latency independent of bandwidth. If you ran a
+speedtest-like test for 22 seconds rather than 20, everything
+exploded, like a dragster at the end of a track.
 
-The dslreports bufferbloat tests are better in that they... but they still don't
-last long enough to extrapolate the results for the long term.
+The
+[dslreports bufferbloat](http://www.dslreports.com/speedtest/results/bufferbloat?up=1)
+tests (co-designed with members of the bufferbloat.net mailing list) are
+MUCH better than speedtest in that they do test for latency under load... but they
+still don't last long enough to extrapolate the results for the long
+term, and certainly do not run long enough (by default - you can change
+the length) to test gbit links fully. They
+[chop off all data after 4 seconds of latency](http://www.dslreports.com/speedtest/results/bufferbloat?up=1), also, and we are
+[well aware that many, many seconds of latency](FIXME) exist beyond that
+on various connection types.
 
-The dslreports bufferbloat tests are better in that they... but they still don't
-last long enough to extrapolate the results for the long term. They chop
-off all data after 4 seconds of latency - and we are [well aware that
-many, many seconds of latency](FIXME) exist beyond that on various connection types.
+So... I do not look forward to a day where the internet is re-designed to
+"pass the RRUL test in 60 seconds". That would mean any breakage after
+that period would be my fault!
 
-So... I do not look forward to a day where the internet is designed to
-"pass the rrul test in 60 seconds". That would mean any breakage after
-that period would be my fault.
+For the sake of the internet, and your own sanity, (and mine!) never
+conclude that a network test of any length is a reliable predictor of
+what will happen at length * 2. Always test for the longest periods
+possible, when you can... [At different times of day](fixme), under
+different conditions and delve into the details, as there may be dragons
+there.
 
-For the sake of the internet, and your own sanity, never conclude that a
-test of any length is a reliable predictor of what will happen at
-length * 2. Always test for the longest periods possible, when you
-can... [At different times of day](fixme).
+An example of a
+[maddening short period anomaly is here](/posts/channel_scans_suck) -
+where *weeks* of 1 minute long test data were *sometimes* permuted by a
+wifi channel scan and we only figured that out extending the length of
+the test to 5 minutes, from 1. It sort of, kind of, showed up in the
+graphs, until I hit it longer and found it was on a periodic interval.
+(this is now [fixed upstream](fixme) in network manager). And worse, I'd fallen
+into the habit of looking at my summary data only, assuming that the
+rest of the network was behaving correctly. (It WAS - on OSX).
 
-An example of a [maddening short period anomaly is here](fixme) - where
-days of test data were *sometimes* permuted by a wifi channel scan and
-only found by extending the length of the test to 5 minutes, from 1. It
-sort of, kind of, showed up in the graphs, until I hit it longer and
-found it was on a periodic interval. (now fixed).
-
-We found another bug, once, that took 26 minutes of testing to tickle. [And
-another](fixme), with a counter overflow that took 51 *days*.
+We found another network crash bug, once, that took 26 minutes of
+continuous testing to tickle. [And another](fixme), with a counter overflow that
+took 51 *days*.
 
 ASIDE: I'd really like to find a way to run an OS and tools 10-100x
 faster than real time in qemu, so we could find bugs like those and have
 more hope that a deployed product would survive years in the field. Slow
-memory leaks are really hard to find, also.
+memory leaks are really hard to find, counter overflows, also.
 
 ## The flent RRUL test isn't actually the rrul test as specified
 
@@ -177,16 +218,17 @@ for in most networks.
 Someday, perhaps we'll get a RRUL test that is more correct. I've
 already got a name for it - Corrected RRUL. Call it: CRUL.
 
-And then we'll find some other reason why it's broken, and some
+And then... we'll find some other reason why it's broken, and some
 other common traffic type (google standardized on AF41 for
 videoconferencing for example) we need to be measuring.
 
 ## Flent uses RTT measurements rather than one way delay
 
 There is a pretty basic flaw in nearly all of flent (per above) in that
-it uses RTT based measurements and what's really needed is measurements
-of one way delay on (fixed) isochronous intervals (say, 10 or 20ms),
-and/or measurements within each flow to truly "get" whats going on.
+it mostly uses RTT based measurements and what's really needed is
+measurements of one way delay on (fixed) isochronous intervals (say, 10
+or 20ms), and/or measurements within each flow to truly "get" whats
+going on.
 
 The problem with the latter problem is no tool does it, and at the
 higher rates (like 10Gbit) actually doing timestamps well is problematic.
@@ -198,7 +240,7 @@ I'd like something with hard realtime privs that used fdtimers to get
 accurate resolutions below 10ms.
 
 [owamp](FIXME) has much promise but I still don't trust its
-measurements: lacking both realtime privs and fdtimer support, also -
+measurements: lacking both realtime privs and fdtimer support,
 and it needs *good* ntp or ptp sync on both sides to work right (which
 is really rather unneeded for a short test).
 
@@ -209,7 +251,7 @@ kick it off.
 Leveraging QUIC has always been on my mind, but until recently no usable
 libraries existed.
 
-## RRUL overstates the impact of bidir traffic on asymmetric links
+## RRUL overstates the impact of bidirectional traffic on asymmetric links
 
 Because it stresses out both the up and download paths equally, the
 slowest part of the (usually up) link dominates the induced latency.
@@ -222,7 +264,9 @@ the chocolately goodnesss.
 
 RRUL is intentionally modeled on bittorrent - which usually has 5 active
 flows up and down, and is symmetric (using 4) because that made it more
-possible to have a range of easily comparable tests. mis-diagnosis
+possible to have a range of easily comparable tests. The mis-diagnosis
+of what bufferbloat was doing to bittorrent's assumptions is how the
+bufferbloat problem was first seen, massively, in the wild.
 
 Ironically it had been my intent to model torrent fully (there's a test
 for it in the flent suite), but a working ledbat implementation for the
@@ -230,16 +274,10 @@ linux kernel has never arrived.
 
 ## Flent works best at speeds greater than 4Mbit
 
-A huge flaw in most network research today is that researchers tend
+A huge flaw in much network research today is that researchers tend
 to focus on achievable speeds in the lab, and are perpetually posting
-results in the 1mbit to 10mbit range. Flent lets you test at speeds
-up to 40Gbit. Most of our testing has been in the range 4-200Mbit as
-those are the upcoming speeds of the internet and within the range of
-most wifi.
-
-TCP's behaviors at lower rates are bound by different variables than
-TCP's behaviors at higher rates. Of issue are the size of the [initial
-window](IW10CONSIDEREDHARMFUL), loss rates, and ssthresh, and the actual TCP used.
+results in the 1mbit to 10mbit range - or - focusing on the 100Gbit
+range - and nothing in-between where all the real end-users are.
 
 Our focus with flent has been measuring actually achieved rates in the
 field, which for ISPs ranges from 384k up to a gigabit - measuring
@@ -247,6 +285,18 @@ queue depth, cpu overhead, etc. Some binding variables there include
 the size of the initial window also, but pacing, recv and send buffering,
 and so on start factoring into play more. At higher speeds, loss rates drop
 dramatically, in particular.
+
+We've successfully used flent at speeds up to 40Gbit. Most of our
+testing has been in the range 4-200Mbit as those are the upcoming speeds
+of the internet and within the range of most wifi. Of late, we've moved
+towards testing the gbit speeds now more common on fiber and 802.11ac
+class WiFi.
+
+TCP's behaviors at lower rates are bound by different variables than
+TCP's behaviors at higher rates. Of issue are the size of the
+[initial window](https://tools.ietf.org/html/draft-gettys-iw10-considered-harmful-00),
+loss rates, the size of the receive window, and ssthresh, and the actual
+TCP used.
 
 One of the hardest problems to measure is what happens at a range of
 achievable rates from 1Mbit to 1Gbit in the same session, as in
@@ -271,10 +321,10 @@ particular, are very damaging to your link at these speeds.
 
 ## Flent (and most web benchmarks) are testing multiple flows
 
-Testing single flows can be revealing. This is a long distance test
-(72ms baseline latency to newark from here) that clearly shows 50ms of
-overbuffering on the sonic link, vs the effects of codel, vs the current
-behavior of cake.
+Actually, testing single flows can be revealing. This is a long distance
+test (72ms baseline latency to Newark from San Francisco) that clearly shows 50ms
+of overbuffering on the sonic link, vs the effects of codel, vs the
+current behavior of cake.
 
 {{% figure src="http://www.taht.net/~d/sonic_cake_vs_fq_codel_vs_fifo_70ms.png" %}}
 
@@ -285,14 +335,14 @@ to dealing with multiple flows in slow start on slow networks, and can
 overshoot - causing excessive latency on your line that can be hard to
 clear out. (you can see the codel overshoot (multiple short 50ms latency
 spikes) if you squint - or are running a voip call or other isochronous
-stream). Still, we need to tune this better in the long run.
+stream). (Still, we need to tune this cake better in the long run)
 
 Web browsers start tons of flows. I've lost hope people will stop using
 IW10. Network behaviors like this
 [hurt your internet experience](https://danluu.com/web-bloat/). Cake
-stomps on stuff in slow start early, and *hard*. TCP theorists are going
-to hate me for that, but folk in the 3rd world, (like, America) will
-love it.
+stomps on stuff in slow start early, and *hard*. TCP theorists hell bent
+on achieving maximum throughput for one flow are going to hate us for
+that, but folk in the 3rd world, (like, America) will love it.
 
 There's a new error in the world that has cropped up. In testing sonic
 fiber, using [their tests](FIXME), users happily report gbit throughput - but
@@ -302,12 +352,12 @@ their infrastructure.
 In my tests, any set of flows to one destination seems to be
 rate limited to a total of about 130Mbits.
 
-(I don't blame them for this, it is a sane reaction for an ISP to try to
-offer low latency. Per host fq is a semi-effective means to do that, and
-sonic has been the best ISP I've ever tested with native buffering of
-only 50ms - which I promptly reduced to near zero above with cake, and
-have been puzzling over the 2-10ms long path jitter with multiple flows
-on long duration tests ever since:
+(I don't blame Sonic for this, it is a sane reaction for an ISP to try
+to offer low latency. Per host fq is a semi-effective means to do that,
+and sonic has been the best ISP I've ever tested with that native
+buffering of only 50ms - which I promptly reduced to near zero above
+with cake/fq_codel, and I have been puzzling over the 2-10ms long path
+jitter with multiple flows on long duration tests ever since:
 
 {{% figure src="http://www.taht.net/~d/sonic_106_cake_vs_default.png" %}}
 
@@ -321,7 +371,6 @@ I don't care about the interaction of 1,2,3 or even 4 flows. I care
 about the interactions of up to hundreds of flows on real, edge, links.
 The days where you cared about getting max throughput out of a single
 flow are hopefully long dead (except for those that care about it!)
-
 
 ## Flent doesn't count tcp acks as part of the overall traffic measurement
 

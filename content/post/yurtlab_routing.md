@@ -17,7 +17,7 @@ of my desine and need for things like routing protocols.
 
 VLAN's are also a security nightmare. 1 Misconfigured entrance,
 
-1 Wire. A set of FQ'd flows. Layer 3 security only. 
+1 Wire. A set of FQ'd flows. Layer 3 security only.
 
 I'm really swimming uphill here. All the SDN researchers are filled
 with folk who want to break things into the "control plane" and "data
@@ -62,7 +62,7 @@ So the lab uses BSSID X.Y.Z
 
 ## Transparent bridges
 
-Most people bridge wifi and ethernet together. 
+Most people bridge wifi and ethernet together.
 
 ## Anycast
 
@@ -71,14 +71,14 @@ servers, notably dns. It's a technique widely used on the global
 internet and it would be a great boon on my frequently bifirbated
 network to have a set of say - 10 dns servers - reachable from all
 points, and to only have to announce (and configure) two ip addresses
-for them all. I could lose a key machine and have it always be found. 
+for them all. I could lose a key machine and have it always be found.
 
 ## short RTT metrics
 
 A now 4 years deferred research project of mine is to find a way to make a RTT metric work on short distances.
 
 in conjuction with the fq_codel work (offering basically flat latency at all rates), is that rates stay pretty
-flat no matter the load, *except* 
+flat no matter the load, *except*
 
 |10Mbit|100Mbit|
 
@@ -89,4 +89,5 @@ Tends to be an all or nothing decision. Route switchover could be more gradual.
 ## Overall lessons learned
 
 Once you start doing tricky things with babel, it's hard to stop. It's also pretty easy to mess things up.
-There's a need for a book on babel, as for all I know it will become the next great routing protocol.
+There's a need for a book on babel, as for all I know it will become the
+next great routing protocol.
