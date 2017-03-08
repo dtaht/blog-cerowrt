@@ -3,8 +3,7 @@ date = "2017-02-11T19:02:58+01:00"
 draft = true
 tags = [ "bufferbloat", "bugs", "flent" ]
 title = "Bugs found by using Flent"
-description = "You too, can build better networks by using better
-diagnostic tools"
+description = "You too, can build better networks by using better diagnostic tools"
 +++
 
 I've long hoped that more system administrators and developers began to
