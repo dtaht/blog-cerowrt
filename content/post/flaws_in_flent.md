@@ -45,11 +45,13 @@ shouldn't do it - there are good reasons to have both a dev team and a
 QA team (or blue vs red teams).
 
 I've focused on good plotting of two or more variables against each
-other as network behavior is hard to boil down to a single "number", as
-much as others have tried with things such as measuring "Bandwidth" or
-"jains fairness index". It's a heisenbug principle - you cannot measure
-the capacity of a pipe at the same time as the path length - something
-that the [TCP BBR](http://queue.acm.org/detail.cfm?id=3022184) folk finally got right (after 30 years of trying).
+other as network behavior is hard to boil down to a single "number",
+as much as others have tried with things such as measuring "Bandwidth"
+or "jains fairness index". It's a heisenbug principle - you cannot
+measure the capacity of a pipe at the same time as the path length -
+something that
+the [TCP BBR](http://queue.acm.org/detail.cfm?id=3022184) folk finally
+got right (after 30 years of trying).
 
 Flent *can* produce standard statistics from any test, as well as
 detailed output that can be used in other plotting tools.
@@ -70,12 +72,7 @@ the slowest portion of the transaction. Recently I saw that someone had
 independently rediscovered that 50 year law and called it
 [FIXME](FIXME). Sigh.
 
-Speed up TCP all you like, but if your DNS fails most of the time, you
-aren't going to win. Fix DNS all you like, but if you pound packets
-through DNS to make absolutely sure you always get a result, and you'll
-slow everything else down. If arp fails, you are going to get nowhere
-(literally). Change multicast all you like, and you'll break something
-else. And so on.
+Speed up TCP all you like, but if your DNS fails most of the time, you aren't going to win. Fix DNS all you like, but if you pound packets through DNS to make absolutely sure you always get a result, and you'll slow everything else down. If arp fails, you are going to get nowhere (literally). Change multicast all you like, and you'll break something else. And so on.
 
 Deeply "getting" Amdahl's law really important. It's wedged into my
 bones by decades of real-time programming my part. Everything can slow
