@@ -37,12 +37,15 @@ The second thing I tackled was that I resurrected some old work (1998)
 towards
 a
 [very different network simulator](https://github.com/dtaht/libv6/blob/master/erm/doc/philosophy.org),
-reviewing the ideas in light of newer knowledge. It was great fun to
-*not* have to deal with gerrit, a high volume mailing list, or someone
-elses' coding style, and to start wiping some rust off my C coding
-skills without having to think about the work being of "grand import",
-and to fiddle with learning ARM neon assembly, and playing with the 16
-core parallela chip in particular.
+reviewing
+the
+[crazier](https://github.com/dtaht/libv6/blob/master/erm/doc/speculations/dram_cam.org) [ideas](https://github.com/dtaht/libv6/blob/master/erm/doc/terminology.org) in
+light of newer knowledge. It was great fun to *not* have to deal with
+gerrit, a high volume mailing list, or someone elses' coding style,
+and to start wiping some rust off my C coding skills without having to
+think about the work being of "grand import", and to fiddle with
+learning ARM neon assembly, and thinking about how to use up 1024
+cores in the parallela chip in particular.
 
 After a short exploration of rust - (Rust may be a nicer form of BDSM
 than C++, but I didn't stay in the dungeon long enough to find out),
@@ -51,7 +54,7 @@ settled on trying to make C11 bend to my will, and while I'm not
 succeeding on multiple fronts, some of the problems are beginning to
 yield.
 
-I did spend more time ranting than coding - but I really needed to get
+I did spend more time ranting than coding - here's a rant [about the limitations of the posix c library](https://github.com/dtaht/libv6/blob/master/erm/doc/ebusl.org) but I really needed to get
 it out of my system!
 
 The third one - and a fallout of these two things, and my prior blog
@@ -72,7 +75,8 @@ not quite as automated as I'd like - I would rather write in org than
 markdown - but I hope that I will retain enough lisp in my head to
 keep automating out new things as they come along again. I had a whole
 bunch of more complicated things I'd used - like a procmail to voice
-notifier and some custom window splitting routines - left to recreate)
+notifier, footpedal support, and some custom window splitting
+routines - left to recreate)
 
 Along the way I found some new tools - "ripgrep" is great - things
 like ecb can be made less annoying - and I'm still in a losing battle
@@ -94,6 +98,6 @@ there that my skillset needs - that I can make a living on solving?
 This time?
 
 I've been dusting off some old notes on m/m/1 queues, otherwise, that
-needs publication, as well as some essential missing steps in the
-papers we've published to date on the results of the bufferbloat
-effort.
+needs publication, as well pulling together some latex on some
+essential missing steps in the papers we've published to date on the
+results of the bufferbloat effort.
