@@ -14,9 +14,8 @@ with an electric blanket was not enough. I can't remember the exact date
 right now, it was 3? 4? years ago, at around this time, which is why I
 think I'm flashing on this event so much this week.
 
-So I finally arranged with my gf (she doesn't much care for all the
-blinkenlights and keyboard clicking I do) to take me and my gear in, to
-her apartment in San Francisco. I packed up the lab - 15 computers -
+So I finally arranged with my (now-ex)gf (she didn't much care for all the
+blinkenlights and keyboard clicking I do, thus the "ex") to take me and my gear in, to her apartment in San Francisco. I packed up the lab - 15 computers -
 something like 5 laptops, 3 servers - some *expensive* prototype gear I
 was testing with, and a bunch of routers, my toolkits - got it all into
 the car in the pouring rain and headed up to San Francisco in the hope
