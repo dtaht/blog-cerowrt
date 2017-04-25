@@ -3,8 +3,7 @@ date = "2017-02-11T19:02:58+01:00"
 draft = true
 tags = [ "bufferbloat", "bugs", "flent" ]
 title = "Bugs found by using Flent"
-description = "You too, can build better networks by using better
-diagnostic tools"
+description = "You too, can build better networks by using better diagnostic tools"
 +++
 
 I've long hoped that more system administrators and developers began to
@@ -28,7 +27,7 @@ Per Flow Lockout Bug on MVNETA
 --------------------
 
 The
-[MVNETA multi-flow lockout bug](https://bugs.lede-project.org/index.php?do=details&task_id=294)
+[Marvell NETA multi-flow lockout bug](https://bugs.lede-project.org/index.php?do=details&task_id=294)
 was a really good example of a bug that could only have been easily
 diagnosed with flent. A simple single flow test would never
 have found it. A multiflow test, that summarized the result, wouldn't
@@ -40,7 +39,7 @@ starved, but the test would have a total 1Gbit transfer. Ship it!)
 So far as we know, it remains unfixed in millions of devices in
 production hardware - things like the linksys ac1200 series.
 
-The short period wifi glitch
+The 2 minute wifi glitch
 ----------------------------------
 
 The [maddening short period wifi anomaly](/post/disabling_channel_scans)
@@ -51,9 +50,10 @@ test to 5 minutes, from 1.
 
 {{% figure src="http://blog.cerowrt.org/flent/channel_scan/channelscan.svg" %}}
 
-This sort of, kind of, showed up in the graphs sometimes. In the end -
+This sort of, kind of, showed up in the graphs, for about 5 seconds,
+every two minutes. In the end -
 [admittedly after some ranting](https://plus.google.com/u/0/107942175615993706558/posts/WA915Pt4SRN) -
-the bug  wasn't the device driver, or OS - we tied to Network Manager's default
+the bug  wasn't in the device driver, or the OS - we tied to Network Manager's default
 wifi scanning routine. It is now
 [fixed upstream](https://bugzilla.gnome.org/show_bug.cgi?id=766482) in
 Network Manager and we should start seeing it appear in OSes in mid
@@ -65,7 +65,9 @@ this channel scan behavior is nasty in the real world.... It's not so
 much "oh that bug messed up my experiment" - than - "oh, *that's* one of
 the bugs messing up the wifi world"!
 
-It's kind of unknown how many other channel scanning daemons are broken
+You can thank flent, every two minutes your voip call remains glitch-free.
+
+It's unknown how many other channel scanning daemons are broken
 in this way. There are probably more than a few wifi drivers that do it
 badly too. Perhaps the writers of such could run flent for long tests to
 find out?
