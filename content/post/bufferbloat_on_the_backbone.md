@@ -67,12 +67,12 @@ That's unacceptable - it's way too big.
 ````
 
 I have long feared that TCP's behaviors in the mass are no longer governed by
-loss, but by the senders exceeding there minimum or maximum window, that
-congestion control, as we knew it, is broken everywhere, even along the internet
+loss, but by the senders exceeding their minimum or maximum window; that
+congestion control, as we knew it, is broken everywhere, even along the Internet
 backbone.
 
 Also: Level3 has a lot of asymmetric traffic, and one thing that I'd like to see
-more measurement sites do is measure one way delays, not just RTT, through various
+more measurement sites do is measure one way delays (OWD), not just RTT, through various
 providers. We have tools to do this -
 notably [owamp](http://software.internet2.edu/owamp/) - and a new bufferbloat
 project one called [irtt](https://github.com/peteheist/irtt).
@@ -87,7 +87,7 @@ would stay flat and packet loss and ecn markings would go up - and the network
 as a whole would silently adjust to the reduced capacity in milliseconds, not 90
 minutes!
 
-That internet would carry voice, gaming and video traffic far better than the
+That Internet would carry voice, gaming and video traffic far better than the
 one we have. It would be far more resilent to all sorts of outages, and
 rerouting - not just from bgp mistakes but wars and the like.
 
@@ -121,6 +121,7 @@ FQ.
 ````
 
 I'd like to be solving that problem, but we are still a long, long way before
-effective fair queuing and aqm techniques are applied along the backbone. But -
-if layer 3 is 400+ ms overbuffered - I'd argue they'd provide a much better
+effective fair queuing and aqm techniques are applied along the backbone. 
+
+Still - *if* layer 3 is 400+ ms overbuffered - I'd argue they'd provide a much better
 service if they cut it to 50ms. I wish I knew who to ask.
