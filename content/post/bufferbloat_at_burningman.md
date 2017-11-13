@@ -6,6 +6,6 @@ title = "An F for Bufferbloat at Burning man"
 description = "Next year maybe this will go right"
 +++
 
-{{< figure src=/pictures/burningman.png >}}
+{{< figure src="/pictures/burningman.png" >}}
 
 It's always nice to get field data.

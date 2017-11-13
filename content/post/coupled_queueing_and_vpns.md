@@ -6,7 +6,7 @@ title = "Coupled queuing in VPNS"
 description = ""
 +++
 
-{{< figure src=/flent/wireguard >}}
+{{< figure src="/flent/wireguard" >}}
 
 *eventually*, drop on read
 serialized
