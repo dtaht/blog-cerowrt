@@ -13,7 +13,7 @@ caused by a misconfiguration of BGP at Level3.
 
 It's not every day you can blame the Internet for how bad your network is
 behaving. As this outage happened I had a videoconference scheduled with some
-folk in London and South africa. The frame rates dropped to 1 every 5
+folk in London and South Africa. The frame rates dropped to 1 every 5
 seconds for one participant with really terrible audio quality for all.
 
 Just prior to the call, I'd lost connectivity to nearly all my servers in
