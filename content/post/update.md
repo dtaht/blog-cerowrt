@@ -7,15 +7,16 @@ description = "Spring cleaning"
 +++
 
 So, after lede shipped in late january with all the main products of
-the bufferbloat effort in it - working (which took some doing) - and
-the last bits of make-wifi-fast made the mainline kernel - I took time
-out for a vacation, and returned to try to do a post-mortem on what
-went right and wrong, and what I could do to improve things, and relax
-a little bit, and refocus.
+the bufferbloat effort in it - cake, fqcodel, bql, fqcodel for wifi -
+working! (which took some doing) - and the last bits of make-wifi-fast
+phase I made the mainline kernel also - I took time out for a
+vacation, and returned to try to do a post-mortem on what went right
+and wrong, and what I could do to improve things, and relax a little
+bit, and refocus.
 
 First up was: after working on the fundamental layers of the internet
 for so long, and traveling so much, I was surrounded by half
-implemented, partially broken network things. So I started converting
+implemented, only 95% working network things. So I started converting
 over infrastructure that for normal people, is reliable, but for me,
 hadn't been - all my core routers are now running the lede stable
 release (and they are going to stay that way for a while). I got rid
@@ -75,8 +76,8 @@ not quite as automated as I'd like - I would rather write in org than
 markdown - but I hope that I will retain enough lisp in my head to
 keep automating out new things as they come along again. I had a whole
 bunch of more complicated things I'd used - like a procmail to voice
-notifier, footpedal support, and some custom window splitting
-routines - left to recreate)
+notifier, rtb() "read that back", footpedal support, and some custom
+window splitting routines - left to recreate)
 
 Along the way I found some new tools - "ripgrep" is great - things
 like ecb can be made less annoying - and I'm still in a losing battle
@@ -92,10 +93,12 @@ a while. It might be time to change focus - work on higher end
 hardware, or shift to mucking with FPGAs... or to finally build the
 jamaphone.
 
-I just put a [resume up](https://plus.google.com/u/0/107942175615993706558/posts/VP5hVjfn35G). I'm glad that 6 years of work has all landed,
-and have no idea what will happen next. Is there some big problem out
-there that my skillset needs - that I can make a living on solving?
-This time?
+I just put
+a
+[resume up](https://plus.google.com/u/0/107942175615993706558/posts/VP5hVjfn35G). I'm
+glad that 6 years of work has all landed, and have no idea what will
+happen next. Is there some big problem out there that my skillset
+needs - that I can make a living on solving?  This time?
 
 I've been dusting off some old notes on m/m/1 queues, otherwise, that
 needs publication, as well pulling together some latex on some
