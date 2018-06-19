@@ -31,9 +31,9 @@ in-house*, you *will retain* the underlying buffering problems across
 your edge connections. Your network services will remain flaky under load.
 
 PLEASE: In your next RFP for equipment you intend to supply, specify
-RFC8290. Feel free to try something lighter weight, like SFQ, or RFC8033. Reduce
+[RFC8290](https://tools.ietf.org/html/rfc8290). Feel free to try something lighter weight, like [SFQ](https://pdfs.semanticscholar.org/c577/0612bfaa1dff4daf2b0cfe56b79627dddc9c.pdf), or [RFC8033](https://tools.ietf.org/html/rfc8290). Reduce
 your buffering in your head-ends to something sane. In your bandwidth
-shapers, try [cake](https://arxiv.org/abs/1804.07617). Get something like [BQL](https://www.coverfire.com/articles/queueing-in-the-linux-network-stack/) into your ring buffers, particulary on slower speed devices like DSL. In your wifi gear, see [ending the anomaly](https://www.usenix.org/system/files/conference/atc17/atc17-hoiland-jorgensen.pdf), and
+shapers, try [cake](https://arxiv.org/abs/1804.07617). Get something like [BQL](https://www.coverfire.com/articles/queueing-in-the-linux-network-stack/) into your ring buffers, particulary on slower speed devices like DSL. In your wifi gear, see [Ending the Anomaly](https://www.usenix.org/system/files/conference/atc17/atc17-hoiland-jorgensen.pdf), and
 specify something like that.
 
 Many third party manufacturers have already adopted many of the network buffer management techniques created by the bufferbloat projects. All you need to do is ship them by default.
