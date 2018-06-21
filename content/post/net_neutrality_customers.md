@@ -1,5 +1,5 @@
 +++
-date = "2016-06-21T22:02:58+01:00"
+date = "2018-06-21T22:02:58+01:00"
 draft = false
 tags = [ "network neutrality", "wifi", "bufferbloat" ]
 title = "Net Neutrality advocates: Care to try some technical solutions instead?"
