@@ -11,13 +11,13 @@ Dear Network Neutrality advocates:
 Network neutrality is lost in the USA now. You are reduced to fighting rear guard actions - and at least some of your core tenets have *always been wrong*.
 
 Off to side, for over 7 years now, has been a [huge group of engineers and scientists](https://www.bufferbloat.net)
-that recognised that the "buffering" problem *was not ISP
+that recognized that the "buffering" problem *was not ISP
 malfeasance* - but a theory failure, in how routers and endpoints dealt with
 [bufferbloat](https://en.wikipedia.org/wiki/Bufferbloat), a problem [dating back to the earliest days of the Internet](RFC970).
 
-Maybe you've thought better networks could be pickled by politics, not technology. Maybe you thought that people continuing to equate that [awful "buffering" meme](https://www.youtube.com/watch?v=bEFqwmqAvYE) with a need for network neutrality was good for the cause. Maybe you just didn't look into the underlying causes of network flakyness.
+Maybe you've thought better networks could be pickled by politics, not technology. Maybe you thought that people continuing to equate that [awful "buffering" meme](https://www.youtube.com/watch?v=bEFqwmqAvYE) with a need for network neutrality was good for the cause. Maybe you just didn't look into the underlying causes of network flakiness.
 
-*We've* - the engineers that built the internet - have fixed much of that. On the routers, BQL and [fq_codel](https://tools.ietf.org/html/rfc8290) and especially [SQM](https://openwrt.org/docs/guide-user/network/traffic-shaping/sqm) are nearly universal in aftermarket linux firmware and shipping in multiple commercial products. End to end techniques like TCP pacing, TCP small queues, TCP BBR have appeared to make things better there.
+*We've* - the engineers that built the internet - have fixed much of that. On the routers, BQL and [fq_codel](https://tools.ietf.org/html/rfc8290) and especially [SQM](https://openwrt.org/docs/guide-user/network/traffic-shaping/sqm) are nearly universal in aftermarket Linux firmware and shipping in multiple commercial products. End to end techniques like TCP pacing, TCP small queues, and TCP BBR have appeared to make things better there.
 
 All that's left is to achieve is: wider deployment in ISPs supplied gear and improvements to their headends.
 
@@ -62,18 +62,18 @@ priorization and so on.
 I've longed for the day where a [comedian like Kimmel could lampoon buffering](https://www.youtube.com/watch?v=bEFqwmqAvYE) - but identify bufferbloat as the cause. I've longed for the day where more in
 "pro-user" side of this debate, actually investigated technological solutions rather than political ones, maybe even bought a router with fixes on it. I've longed for the day where all sides could have a roundtable discussion over what can be done to make the internet technically better.
 
-Networks are complex. Political solutions overapplied are making
+Networks are complex. Political solutions over applied are making
 things worse.
 
 Per that insiders point above - you can buy a router that does fair queuing, today. You just can't get one as supplied equipment in the USA.
 
-One thing that might prove interesting going forward - is politicing for putting configuration of these routers fully in the hands of the users, so *they* can make the choice over what traffic to prioritize if they so choose. 
+One thing that might prove interesting going forward - is politicking for putting configuration of these routers fully in the hands of the users, so *they* can make the choice over what traffic to prioritize if they so choose. 
  
 With the collapse of Network Neutrality - the underlying buffering problems will remain. *Even as the big ISPs move the bandwidth sucking services in-house*, those ISPs will retain the underlying buffering problems across their edge
 connections. *Your* network services will remain flaky, unless those
 ISPs deploy fixes.
 
-My hope has long been, that members of the Network Nuetrality
+My hope has long been, that members of the Network Neutrality
 movement would *also* enthusiastically adopt techniques that actually
 make the network better. And permit - more than that, *encourage* - hell, even mandate -
 the ISPS to adopt things
@@ -81,8 +81,8 @@ like [RFC8034](https://tools.ietf.org/html/rfc8034)
 and [RFC8290](https://tools.ietf.org/html/rfc8290) in the gear they
 supply. And: Ask them, at the very least, to reduce their buffering in
 their head-ends to something sane. Ask them, in their bandwidth
-shapers, to try [cake](https://www.bufferbloat.net/projects/codel/wiki/CakeTechnical/), the latest result of the bufferbloat effort. I'd really like you to take a hard look at how cake meets up with your principles too! And in their wifi gear, have them see [ending the
-anomaly](https://www.usenix.org/system/files/conference/atc17/atc17-hoiland-jorgensen.pdf). Products leverging that make for tons better wifi. 
+shapers, to try [cake](https://www.bufferbloat.net/projects/codel/wiki/CakeTechnical/), the latest result of the bufferbloat effort. I'd really like y'all to take a hard look at how [cake meets up with your principles too]()! And in their wifi gear, have them see [Ending the
+Anomaly](https://www.usenix.org/system/files/conference/atc17/atc17-hoiland-jorgensen.pdf). Products leveraging that, make for tons better wifi. 
 
 All of these things are available now in third party firmware, and in many
 add on products that you can buy today - but they are not shipping from US ISPs by default.
@@ -111,4 +111,6 @@ on the [old joke about the engineer and the guillotine](http://sethf.com/freespe
 
     Next is the engineer. He, too, decides to die facing up. As they slowly raise the blade of the guillotine, the engineer suddenly says, "Hey, I see what your problem is ..."
 
-I've longed to see an informed article about bufferbloat and the solutions appear in Wired, the atlantic, the economist, the washington post, or anywhere, in the conventional press. I know a bunch of people willing to write 'em.
+I've longed to see an informed article about bufferbloat and the solutions appear in Wired, the Atlantic, the Economist, the washington post, or anywhere, in the conventional press.
+
+I know a bunch of people willing to write 'em. Some of them are names you might have heard of.
