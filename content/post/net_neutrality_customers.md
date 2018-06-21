@@ -111,6 +111,6 @@ on the [old joke about the engineer and the guillotine](http://sethf.com/freespe
 
     Next is the engineer. He, too, decides to die facing up. As they slowly raise the blade of the guillotine, the engineer suddenly says, "Hey, I see what your problem is ..."
 
-I've longed to see an informed article about bufferbloat and the solutions appear in Wired, the Atlantic, the Economist, the washington post, or anywhere, in the conventional press.
+I've longed to see an informed article about bufferbloat and the solutions appear in Wired, the Atlantic, the Economist, the Washington Post, or anywhere, in the conventional press.
 
 I know a bunch of people willing to write 'em. Some of them are names you might have heard of.

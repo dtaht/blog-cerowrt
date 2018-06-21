@@ -6,7 +6,7 @@ title = "ISPs: Please deploy bufferbloat fixes"
 description = "Network neutrality is dead. Can we have a better network now?"
 +++
 
-Dear ISP industries:
+Dear ISP Industries:
 
 After you finish burning billions on massive mergers, could you also
 go and improve your networks? You have [overbuffered uplinks](http://www.dslreports.com/speedtest/results/bufferbloat?up=1), and
@@ -17,9 +17,9 @@ updated](https://www.krackattacks.com/).
 Most of you make insane amounts of money on modem rentals, can you
 please invest into making those modems better over time?
 
-A lot of the furor and frustation expressed to you by your customers,
-about network flakyness, and that awful "buffering" error message and
-[corresponding net nuetrality meme](https://www.youtube.com/watch?v=bEFqwmqAvYE), far too often has been driven by
+A lot of the furor and frustration expressed to you by your customers,
+about network flakiness, and that awful "buffering" error message and
+[corresponding net neutrality meme](https://www.youtube.com/watch?v=bEFqwmqAvYE), far too often has been driven by
 those customers' *misconception* that the problems occur on your
 backbone - and while they sometimes do, often the problem is in
 the last mile, or in the last few feet of *their* link.
@@ -33,7 +33,7 @@ your edge connections. Your network services will remain flaky under load.
 PLEASE: In your next RFP for equipment you intend to supply, specify
 [RFC8290](https://tools.ietf.org/html/rfc8290). Feel free to try something lighter weight, like [SFQ](https://pdfs.semanticscholar.org/c577/0612bfaa1dff4daf2b0cfe56b79627dddc9c.pdf), or [RFC8033](https://tools.ietf.org/html/rfc8290). Reduce
 your buffering in your head-ends to something sane. In your bandwidth
-shapers, try [cake](https://arxiv.org/abs/1804.07617). Get something like [BQL](https://www.coverfire.com/articles/queueing-in-the-linux-network-stack/) into your ring buffers, particulary on slower speed devices like DSL. In your wifi gear, see [Ending the Anomaly](https://www.usenix.org/system/files/conference/atc17/atc17-hoiland-jorgensen.pdf), and
+shapers, try [cake](https://arxiv.org/abs/1804.07617). Get something like [BQL](https://www.coverfire.com/articles/queueing-in-the-linux-network-stack/) into your ring buffers, particularly on slower speed devices like DSL. In your wifi gear, see [Ending the Anomaly](https://www.usenix.org/system/files/conference/atc17/atc17-hoiland-jorgensen.pdf), and
 specify something like that.
 
 Many third party manufacturers have already adopted many of the network buffer management techniques created by the bufferbloat projects. All you need to do is ship them by default.
