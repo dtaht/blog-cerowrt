@@ -19,7 +19,7 @@ Maybe you've thought better networks could be pickled by politics, not technolog
 
 *We've* - the engineers that built the internet - have fixed much of that. On the routers, BQL and [fq_codel](https://tools.ietf.org/html/rfc8290) and especially [SQM](https://openwrt.org/docs/guide-user/network/traffic-shaping/sqm) are nearly universal in aftermarket Linux firmware and shipping in multiple commercial products. End to end techniques like TCP pacing, TCP small queues, and TCP BBR have appeared to make things better there.
 
-All that's left is to achieve is: wider deployment in ISPs supplied gear and improvements to their headends.
+All that's left is to achieve is: wider deployment in ISPs supplied gear and improvements to their headends. Now, mind you, there really is bad behavior out there on the Net. But that's at the management level. Even in the bad, corporate, evil-as-a-daily-practice ISPs, the engineers want to deliver the best service they can, beyond the corporate-blessed, bribery-paid data and the corporate-hated netflix.
 
 After years of communicating privately and publically with groups like "savethenet" and [publicknowledge](https://www.publicknowledge.org/search/results/search&keywords=bufferbloat/) about everything bufferbloat breaks, I'd hoped that ending bufferbloat would also become a part of your crusade.
 
