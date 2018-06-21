@@ -1,5 +1,5 @@
 +++
-date = "2016-06-16T22:02:58+01:00"
+date = "2016-06-21T22:02:58+01:00"
 draft = false
 tags = [ "network neutrality", "wifi", "bufferbloat" ]
 title = "Net Neutrality advocates: Care to try some technical solutions instead?"
@@ -13,7 +13,7 @@ Network neutrality is lost in the USA now. You are reduced to fighting rear guar
 Off to side, for over 7 years now, has been a [huge group of engineers and scientists](https://www.bufferbloat.net)
 that recognised that the "buffering" problem *was not ISP
 malfeasance* - but a theory failure, in how routers and endpoints dealt with
-[bufferbloat](), a problem [dating back to the earliest days of the Internet]().
+[bufferbloat](https://en.wikipedia.org/wiki/Bufferbloat), a problem [dating back to the earliest days of the Internet](RFC970).
 
 Maybe you've thought better networks could be pickled by politics, not technology. Maybe you thought that people continuing to equate that [awful "buffering" meme](https://www.youtube.com/watch?v=bEFqwmqAvYE) with a need for network neutrality was good for the cause. Maybe you just didn't look into the underlying causes of network flakyness.
 
@@ -81,11 +81,11 @@ like [RFC8034](https://tools.ietf.org/html/rfc8034)
 and [RFC8290](https://tools.ietf.org/html/rfc8290) in the gear they
 supply. And: Ask them, at the very least, to reduce their buffering in
 their head-ends to something sane. Ask them, in their bandwidth
-shapers, to try [cake](https://www.bufferbloat.net/projects/codel/wiki/CakeTechnical/), the latest result of the bufferbloat effort. And in their wifi gear, have them see [ending the
-anomaly](https://www.usenix.org/system/files/conference/atc17/atc17-hoiland-jorgensen.pdf), and adopt products leverging that that.
+shapers, to try [cake](https://www.bufferbloat.net/projects/codel/wiki/CakeTechnical/), the latest result of the bufferbloat effort. I'd really like you to take a hard look at how cake meets up with your principles too! And in their wifi gear, have them see [ending the
+anomaly](https://www.usenix.org/system/files/conference/atc17/atc17-hoiland-jorgensen.pdf). Products leverging that make for tons better wifi. 
 
-All of these things are available now in third party firmware, in many
-add on products that you can buy today - but they are not shipping by default.
+All of these things are available now in third party firmware, and in many
+add on products that you can buy today - but they are not shipping from US ISPs by default.
 
 On top of all this - there are many other problems in the Internet today - the one that scares me most is all the compromised routers out there. We all need find ways to regularly update the deployed base to new, faster, more secure router software as exploits arrive.
 
