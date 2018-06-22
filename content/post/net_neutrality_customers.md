@@ -81,7 +81,7 @@ like [RFC8034](https://tools.ietf.org/html/rfc8034)
 and [RFC8290](https://tools.ietf.org/html/rfc8290) in the gear they
 supply. And: Ask them, at the very least, to reduce their buffering in
 their head-ends to something sane. Ask them, in their bandwidth
-shapers, to try [cake](https://www.bufferbloat.net/projects/codel/wiki/CakeTechnical/), the latest result of the bufferbloat effort. I'd really like y'all to take a hard look at how [cake meets up with your principles too]()! And in their wifi gear, have them see [Ending the
+shapers, to try [cake](https://www.bufferbloat.net/projects/codel/wiki/CakeTechnical/), the latest result of the bufferbloat effort. I'd really like y'all to take a hard look at how [cake meets up with your principles too](https://arxiv.org/pdf/1804.07617.pdf)! And in their wifi gear, have them see [Ending the
 Anomaly](https://www.usenix.org/system/files/conference/atc17/atc17-hoiland-jorgensen.pdf). Products leveraging that, make for tons better wifi. 
 
 All of these things are available now in third party firmware, and in many
