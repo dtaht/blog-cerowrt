@@ -8,7 +8,7 @@ description = "You can fix your networks yourselves... and/or help ISPs make bet
 
 Dear Network Neutrality advocates:
 
-Network neutrality is lost in the USA now. You are reduced to fighting rear guard actions - and at least some of your core tenets have *always been wrong*.
+Network neutrality is lost in the USA now. You are reduced to fighting rear guard actions - and at least some of your core examples of the need for Network Neutrality have *always been wrong*.
 
 Off to side, for over 7 years now, has been a [huge group of engineers and scientists](https://www.bufferbloat.net)
 that recognized that the "buffering" problem *was not ISP
@@ -19,7 +19,7 @@ Maybe you've thought better networks could be pickled by politics, not technolog
 
 *We've* - the engineers that built the internet - have fixed much of that. On the routers, BQL and [fq_codel](https://tools.ietf.org/html/rfc8290) and especially [SQM](https://openwrt.org/docs/guide-user/network/traffic-shaping/sqm) are nearly universal in aftermarket Linux firmware and shipping in multiple commercial products. End to end techniques like TCP pacing, TCP small queues, and TCP BBR have appeared to make things better there.
 
-All that's left is to achieve is: wider deployment in ISPs supplied gear and improvements to their headends. Now, mind you, there really is bad behavior out there on the Net. But that's at the management level. Even in the bad, corporate, evil-as-a-daily-practice ISPs, the engineers want to deliver the best service they can, beyond the corporate-blessed, bribery-paid data and the corporate-hated netflix.
+All that's left is to achieve is: wider deployment in ISPs supplied gear and improvements to their headends. Now, mind you, there really is bad behavior out there on the Net. But that's at the management level. But: even in the bad, corporate, evil-as-a-daily-practice ISPs, the engineers want to deliver the best service they can, beyond the corporate-blessed, bribery-paid data and the corporate-hated netflix.
 
 After years of communicating privately and publically with groups like "savethenet" and [publicknowledge](https://www.publicknowledge.org/search/results/search&keywords=bufferbloat/) about everything bufferbloat breaks, I'd hoped that ending bufferbloat would also become a part of your crusade.
 
