@@ -19,15 +19,15 @@ Maybe you've thought better networks could be pickled by politics, not technolog
 
 *We've* - the engineers that built the internet - have fixed much of that. On the routers, BQL and [fq_codel](https://tools.ietf.org/html/rfc8290) and especially [SQM](https://openwrt.org/docs/guide-user/network/traffic-shaping/sqm) are nearly universal in aftermarket Linux firmware and shipping in multiple commercial products. End to end techniques like TCP pacing, TCP small queues, and TCP BBR have appeared to make things better there.
 
-All that's left is to achieve is: wider deployment in ISPs supplied gear and improvements to their headends. Now, mind you, there really is bad behavior out there on the Net. But that's at the management level. But: even in the bad, corporate, evil-as-a-daily-practice ISPs, the engineers want to deliver the best service they can, beyond the corporate-blessed, bribery-paid data and the corporate-hated netflix.
+All that's left is to achieve is: wider deployment in ISPs supplied gear and improvements to their headends. Now, mind you, there really is bad behavior out there on the Net. But that's at the management level. Even in the bad, corporate, evil-as-a-daily-practice ISPs, the engineers want to deliver the best service they can, beyond the corporate-blessed, bribery-paid data and the corporate-hated netflix.
 
 After years of communicating privately and publically with groups like "savethenet" and [publicknowledge](https://www.publicknowledge.org/search/results/search&keywords=bufferbloat/) about everything bufferbloat breaks, I'd hoped that ending bufferbloat would also become a part of your crusade.
 
 Not a word. Nothing. Crickets. I shudder to think of how much money and time you've spent politicking, when a good subset of the problems that upset y'all can be solved with better software and hardware. In fact, the biggest thing now stopping wider deployment of all these fixes - often seems to be *you* in the network neutrality movement that would benefit most from fixes arriving universally!
 
-_From a cable industry insider, [responding to my plea that they deploy bufferbloat fixes](/post/net_neutrality_isps)_:
+From a cable industry insider, [responding to my plea that they deploy bufferbloat fixes](/post/net_neutrality_isps):
 
-    "One aspect which will likely kill the fq_codel and cake ideas in ISPs is the prioritized queueing for sparse flows part.  ISP folks are *ultra* sensitive about doing anything that could be interpreted (or even misinterpreted) as being contrary to network neutrality.  If a customer buys a router that has fair queuing, that is one thing, but for an operator to do it would open them up to attack.  We're not living in a rational world.  Plus, even for those who are rational, there are a lot more people that *think* they know how networks, protocols, and applications work, than there are who really understand it (even within ISPs and equipment vendors).  We've spent a lot of time recently trying to dispel the persistent and widespread view that application performance is by definition a zero-sum game (any improvement in performance must result in a degradation in performance somewhere else)."
+> "One aspect which will likely kill the fq_codel and cake ideas in ISPs is the prioritized queueing for sparse flows part.  ISP folks are *ultra* sensitive about doing anything that could be interpreted (or even misinterpreted) as being contrary to network neutrality.  If a customer buys a router that has fair queuing, that is one thing, but for an operator to do it would open them up to attack.  We're not living in a rational world.  Plus, even for those who are rational, there are a lot more people that *think* they know how networks, protocols, and applications work, than there are who really understand it (even within ISPs and equipment vendors).  We've spent a lot of time recently trying to dispel the persistent and widespread view that application performance is by definition a zero-sum game (any improvement in performance must result in a degradation in performance somewhere else)."
 
 Misapplied concepts of network neutrality is one of the things that killed [fq codel for DOCSIS 3.1](https://www.cablelabs.com/wp-content/uploads/2014/05/Active_Queue_Management_Algorithms_DOCSIS_3_0.pdf), despite [really impressive benchmark results](https://datatracker.ietf.org/meeting/86/materials/slides-86-iccrg-3).
 
@@ -103,13 +103,13 @@ and investment. *Make them prove it*!
 
 PPS In trying to disentangle the political and technical mess that the
 network neutrality debate has created, I find myself reflecting 
-on the [old joke about the engineer and the guillotine](http://sethf.com/freespeech/memoirs/humor/guillotine.php)
+on the [old joke about the engineer and the guillotine](http://sethf.com/freespeech/memoirs/humor/guillotine.php):
 
-     On a beautiful Sunday afternoon in the midst of the French Revolution the revolting citizens led a priest, a drunkard and an engineer to the guillotine. They ask the priest if he wants to face up or down when he meets his fate. The priest says he would like to face up so he will be looking towards heaven when he dies. They raise the blade of the guillotine and release it. It comes speeding down and suddenly stops just inches from his neck. The authorities take this as divine intervention and release the priest.
+> On a beautiful Sunday afternoon in the midst of the French Revolution the revolting citizens led a priest, a drunkard and an engineer to the guillotine. They ask the priest if he wants to face up or down when he meets his fate. The priest says he would like to face up so he will be looking towards heaven when he dies. They raise the blade of the guillotine and release it. It comes speeding down and suddenly stops just inches from his neck. The authorities take this as divine intervention and release the priest.
 
-     The drunkard comes to the guillotine next. He also decides to die face up, hoping that he will be as fortunate as the priest. They raise the blade of the guillotine and release it. It comes speeding down and suddenly stops just inches from his neck. Again, the authorities take this as a sign of divine intervention, and they release the drunkard as well.
+>The drunkard comes to the guillotine next. He also decides to die face up, hoping that he will be as fortunate as the priest. They raise the blade of the guillotine and release it. It comes speeding down and suddenly stops just inches from his neck. Again, the authorities take this as a sign of divine intervention, and they release the drunkard as well.
 
-    Next is the engineer. He, too, decides to die facing up. As they slowly raise the blade of the guillotine, the engineer suddenly says, "Hey, I see what your problem is ..."
+>Next is the engineer. He, too, decides to die facing up. As they slowly raise the blade of the guillotine, the engineer suddenly says, "Hey, I see what your problem is ..."
 
 I've longed to see an informed article about bufferbloat and the solutions appear in Wired, the Atlantic, the Economist, the Washington Post, or anywhere, in the conventional press.
 
