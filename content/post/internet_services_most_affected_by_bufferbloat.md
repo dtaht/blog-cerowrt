@@ -14,9 +14,7 @@ Everybody else, not so much.
 
 For a long time I wrote it off to the fact that only early adopters had fq_codel and cake available to them on their openwrt, ubnt, duma, routers, etc - but now that bufferbloat solutions fill the marketplace, I'd hoped the cloudy services would get on board, and drive bufferbloat fixes to an ubiquitous level.
 
-DropBox, for example, with millions of customers, is critically
-dependent on uploads for their business to exist in the first
-place. While they've published some great blog entries about how they've improved their data center, there's been not a peep about how their customers can get a better dropbox experience by fixing their routers.
+DropBox, for example, with millions of customers, is critically dependent on uploads for their business to exist in the first place. While they've published some great blog entries about how they've improved their data center, there's been not a peep about how their customers can get a better dropbox experience by fixing their routers.
 
 Steam - long abusing tcp in their downloads - not a peep.
 
@@ -30,4 +28,4 @@ The gaming field largely gets it, but has there been a blog on fixing bufferbloa
 
 Another sadness is I keep getting questions like "is bufferbloat still a problem in 2019" - and I look at the stats, worldwide, and sigh - as *especially* in the places where bufferbloat fixes are most needed - in South America, Africa, and so on - [the bufferbloat meme has not yet penetrated](fixme). Short of composing a good tutorial or rant in every language of the world, I don't know how to address this. My "home town" of San Juan Del Sur, Nicaragua, has been debloated in multiple places merely by me wandering around and setting up openwrt for people, and then by word of mouth, but that's just one town, in a very big continent. 
 
-I'd like 2019 to be the year where bufferbloat awareness and fixes crossed the chasm and 
+I'd like 2019 to be the year where bufferbloat awareness and fixes crossed the chasm. 
