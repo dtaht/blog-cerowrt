@@ -22,19 +22,23 @@ and what you are actually testing is the system's abilility to discard packets e
 
 As it turned out, that we did things gently, rather than 
 
-Eric Dumazetcame up with a very efficient - drastic - sort of patch - to cope with this sort of overload condition effeciently,
-which brought things back under control
+Eric Dumazet came up with a very efficient - drastic - sort of patch -
+to cope with this sort of overload condition effeciently, which
+brought things back under control, but I missed - for years now,
+something that would improve matters more regularly. One line of code
+to bring codel's signal strength up.
 
-how long does the test run for? One of the causes for the rise of bufferbloat in the world was the usage of speedtest.net's tuning - 
-where the test ran for under 15 seconds, and thus people tuned their buffer sizes to never have a drop during that time.
+
+
+how long does the test run for? One of the causes for the rise of bufferbloat in the world was the usage of speedtest.net's tuning - where the test ran for under 15 seconds, and thus people tuned their buffer sizes to never have a drop during that time.
 
 to be sure that they optimized out any opp
 
-The basic form of wifi testing that I most strongly desire is for a family of four - one uploading a big file to youtube,
-another doing basic browsing, another in a videoconference, and the last playing a twitch game. 
+The basic form of wifi testing that I most strongly desire is for a
+family of four - one uploading a big file to youtube, another doing basic browsing, another in a videoconference, and the last playing a twitch game. 
 
-That is the most common - you could add another one - bittorrent - but bittorent itself is basically fading in predomance
-in favor of streaming.
+That is the most common - you could add another one - bittorrent - but
+bittorent itself is basically fading in predomance in favor of streaming.
 
 But nobody's test tools do that - not even the ones we have. Another scenario worth optimizing
 
